@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:todo_app/Pages/calendar_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
 
@@ -37,26 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   //Variables
   String userName = 'John';
 
-  var pageList = [HomePage(),CalendarPage()];
+  var pageList = [const HomePage(),const CalendarPage()];
 
   int selectedPage = 0;
   @override
   Widget build(BuildContext context) {
-    var screenInfo = MediaQuery.of(context);
-    var screenWidht = screenInfo.size.width;
-    var screenHeight = screenInfo.size.height;
-
-
-
     return Scaffold(
-      backgroundColor: HexColor('#f7f6f1'),
+      backgroundColor: HexColor('#f3f0e5'),
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 10.0, top: 15.0),
-          child: FaIcon(
-            FontAwesomeIcons.cog,
-            color: HexColor('#000000'),
-          ),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 10.0, top: 15.0),
+          child: Icon(Icons.settings, color: Colors.black)
         ),
         //Icon(Icons.settings),
         backgroundColor: HexColor('#f7f6f1'),

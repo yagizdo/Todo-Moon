@@ -11,6 +11,6 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [Text('Calendar Page')],);
+    return Column(children: const [Text('Calendar Page')],);
   }
 }
