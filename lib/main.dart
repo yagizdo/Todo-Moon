@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:todo_app/Pages/add_todo.dart';
 import 'package:todo_app/Pages/calendar_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
 
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //Variables
   String userName = 'John';
 
-  var pageList = [const HomePage(),const CalendarPage()];
+  var pageList = [const HomePage(),const CalendarPage(),const AddTodo()];
 
   int selectedPage = 0;
   @override
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
         items: [
           BottomNavigationBarItem(
             icon: FaIcon(
@@ -69,12 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.plus,
-              color: HexColor('#000000'),
-            ),
-            label: '',
-          ),BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.calendar ,
               color: HexColor('#000000'),
