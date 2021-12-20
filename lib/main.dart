@@ -3,7 +3,9 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo_app/Pages/add_todo.dart';
 import 'package:todo_app/Pages/calendar_page.dart';
+import 'package:todo_app/Pages/dashboard_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
+import 'package:todo_app/Pages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,65 +38,139 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //Variables
   String userName = 'John';
+  int currentTab = 0;
+  var pageList = [const HomePage(), const CalendarPage(), const AddTodo(),const DashboardPage(),const ProfilePage()];
 
-  var pageList = [const HomePage(),const CalendarPage(),const AddTodo()];
-
-  int selectedPage = 0;
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = const HomePage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f3f0e5'),
       appBar: AppBar(
         leading: const Padding(
-          padding: EdgeInsets.only(left: 10.0, top: 15.0),
-          child: Icon(Icons.settings, color: Colors.black)
-        ),
+            padding: EdgeInsets.only(left: 10.0, top: 15.0),
+            child: Icon(Icons.settings, color: Colors.black)),
         //Icon(Icons.settings),
         backgroundColor: HexColor('#f7f6f1'),
         elevation: 0,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        items: [
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.home,
-              color: HexColor('#000000'),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.th,
-              color: HexColor('#000000'),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.calendar ,
-              color: HexColor('#000000'),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.user,
-              color: HexColor('#000000'),
-            ),
-            label: '2',
-          ),
-        ],
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.white,
-        currentIndex: selectedPage,
-        onTap: (index) {
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: HexColor('#000000'),
+        child: const Icon(Icons.add),
+        onPressed: () {
           setState(() {
-            selectedPage = index;
+            currentScreen = const AddTodo();
+            currentTab = 3;
           });
         },
       ),
-      body: pageList[selectedPage],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 5,
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = const HomePage();
+                        currentTab = 0;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.home,
+                          color: currentTab == 0 ? Colors.black : Colors.grey,
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35.0),
+                    child: MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = const CalendarPage();
+                          currentTab = 1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.calendar,
+                            color: currentTab == 1 ? Colors.black : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // Right Tab Icons
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = const DashboardPage();
+                        currentTab = 3;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.clipboardCheck,
+                          color: currentTab == 3 ? Colors.black : Colors.grey,
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 35.0),
+                    child: MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = const ProfilePage();
+                          currentTab = 4;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.user,
+                            color: currentTab == 4 ? Colors.black : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
