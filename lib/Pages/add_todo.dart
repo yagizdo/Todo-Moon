@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
+
 Widget _textFormFields (String hint, TextEditingController controller) {
   return Padding(
     padding: const EdgeInsets.only(left : 20.0, right: 20.0,top : 50.0),
@@ -23,6 +26,11 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
+  // UUID
+  var uuid = const Uuid();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,7 +38,7 @@ class _AddTodoState extends State<AddTodo> {
         padding: const EdgeInsets.only(top : 20.0),
         child: Column(
           children: [
-            Text('Add Task',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            const Text('Add Task',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
 
             _textFormFields('Title', titleController),
             _textFormFields('Description', descController),
@@ -41,7 +49,10 @@ class _AddTodoState extends State<AddTodo> {
               child: SizedBox(
                   width: 300,
                   height: 50,
-                  child: ElevatedButton(onPressed: () {}, child: Text('Add Todo'))),
+                  child: ElevatedButton(style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent
+                  ),onPressed: () {
+                  }, child: const Text('Add Todo'))),
             )
           ],
           ),

@@ -32,7 +32,7 @@ class InfoWidget extends StatelessWidget {
           alignment: Alignment.topRight,
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 36, bottom: 12),
+              margin: const EdgeInsets.only(bottom: 12),
               width: MediaQuery.of(context).size.width / 1.1,
               decoration: BoxDecoration(
                 color: HexColor('#ff9d73'),

@@ -47,14 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f3f0e5'),
-      appBar: AppBar(
-        leading: const Padding(
-            padding: EdgeInsets.only(left: 10.0, top: 15.0),
-            child: Icon(Icons.settings, color: Colors.black)),
-        //Icon(Icons.settings),
-        backgroundColor: HexColor('#f7f6f1'),
-        elevation: 0,
-      ),
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,

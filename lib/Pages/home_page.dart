@@ -13,12 +13,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Greetings(),
-        InfoWidget(),
-        TaskInfo()
-      ],
+    return Scaffold(
+      appBar: homePageAP(),
+      body: Column(
+        children: const [
+          Greetings(),
+          InfoWidget(),
+          TaskInfo()
+        ],
+      ),
     );
   }
+}
+
+AppBar homePageAP() {
+  return AppBar(
+    leading: const Padding(
+        padding: EdgeInsets.only(left: 10.0, top: 15.0),
+        child: Icon(Icons.settings, color: Colors.black)),
+    //Icon(Icons.settings),
+    backgroundColor: Colors.white,
+    elevation: 0,
+  );
 }
