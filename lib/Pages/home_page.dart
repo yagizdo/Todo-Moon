@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/Widgets/Grettings/greetings.dart';
 import 'package:todo_app/Widgets/Info/info_widget.dart';
 import 'package:todo_app/Widgets/Tasks/task_info.dart';
+import 'package:todo_app/Widgets/Todo/todo_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class _HomePageState extends State<HomePage> {
         children: const [
           Greetings(),
           InfoWidget(),
-          TaskInfo()
+          TaskInfo(),
+          TodoWidget()
         ],
       ),
     );

@@ -20,7 +20,7 @@ class Greetings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 4,
+      height: MediaQuery.of(context).size.height / 5.7,
       color: Colors.white,
       child: Column(children: [
         Row(
