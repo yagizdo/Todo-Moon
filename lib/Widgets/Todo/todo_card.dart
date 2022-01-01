@@ -6,6 +6,7 @@ import 'package:todo_app/Pages/detail_screen.dart';
 
 class TodoCard extends StatelessWidget {
   const TodoCard({required this.todo});
+
   final Todo todo;
 
   @override
@@ -34,12 +35,13 @@ class TodoCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 8.0),
-                    child: FaIcon(
-                      FontAwesomeIcons.circle,
-                      size: 25.0,
-                      color: Colors.grey,
+                    child: Checkbox(
+                      value: todo.complete,
+                      onChanged: (bool? value) {
+                        todo.toggleCompleted();
+                      },
                     ),
                   ),
                   Padding(
@@ -47,8 +49,8 @@ class TodoCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        categoryText(todo.title),
-                        titleText(todo.description),
+                        categoryText(todo.category),
+                        titleText(todo.title),
                       ],
                     ),
                   )
@@ -83,7 +85,7 @@ Widget categoryText(String categoryName) {
 
 Widget titleText(String titleName) {
   return Padding(
-    padding: const EdgeInsets.only(top : 10.0),
+    padding: const EdgeInsets.only(top: 10.0),
     child: Center(
         child: Text(
       titleName,

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Pages/add_todo.dart';
 import 'package:todo_app/Pages/calendar_page.dart';
 import 'package:todo_app/Pages/dashboard_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
 import 'package:todo_app/Pages/profile_page.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,13 +19,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ToDo App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => TodosProvider(),
+      child: MaterialApp(
+        title: 'ToDo App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'ToDo App'),
       ),
-      home: const MyHomePage(title: 'ToDo App'),
     );
   }
 }

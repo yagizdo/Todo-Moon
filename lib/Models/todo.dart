@@ -2,9 +2,13 @@ class Todo {
   String title;
   String description;
   bool complete = false;
+  String category;
 
+  Todo({required this.title, this.description='', this.complete=false, this.category='Uncategorized'});
 
-  Todo(this.title,  this.description, this.complete);
+  void toggleCompleted(){
+    complete = !complete;
+  }
 
   /*Todo.fromMap(Map map) :
         title = map['title'] as String,
