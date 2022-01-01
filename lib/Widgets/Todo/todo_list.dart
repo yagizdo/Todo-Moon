@@ -21,10 +21,10 @@ class _TodoWidgetState extends State<TodoWidget> {
         builder: (context, state, child) => SizedBox(
           height: MediaQuery.of(context).size.height / 2,
           child: ListView.builder(
-              itemCount: state.allTodos.length,
+              itemCount: state.unCompletedTodos.length,
               itemBuilder: (context, index) {
                 return TodoCard(
-                  todo: state.allTodos[index],
+                  todo: state.unCompletedTodos[index],
                 );
               }),
         ),

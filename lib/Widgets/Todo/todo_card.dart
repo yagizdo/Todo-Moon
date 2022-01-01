@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Pages/detail_screen.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 class TodoCard extends StatelessWidget {
   const TodoCard({required this.todo});
@@ -20,8 +22,7 @@ class TodoCard extends StatelessWidget {
                     DetailScreen(title: todo.title, desc: todo.description)));
       },
       child: Container(
-        width: 200,
-        height: 70,
+        padding: EdgeInsets.all(12),
         child: Card(
           shadowColor: Colors.transparent,
           color: Colors.white,
@@ -36,11 +37,11 @@ class TodoCard extends StatelessWidget {
               children: [
                 Row(children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.all(18.0),
                     child: Checkbox(
                       value: todo.complete,
                       onChanged: (bool? value) {
-                        todo.toggleCompleted();
+                        Provider.of<TodosProvider>(context, listen: false).toggleTodo(todo);
                       },
                     ),
                   ),

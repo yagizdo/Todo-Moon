@@ -18,8 +18,6 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  SharedPreferences? sp;
-
   void saveTodo(){
     Todo todo = Todo(title: titleController.text, description: descController.text, category: categoryController.text);
 

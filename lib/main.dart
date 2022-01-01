@@ -43,9 +43,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //Variables
-  String userName = 'John';
   int currentTab = 0;
   var pageList = [const HomePage(), const CalendarPage(), const AddTodo(),const DashboardPage(),const ProfilePage()];
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<TodosProvider>(context, listen: false).initSharedPreferences();
+  }
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomePage();
