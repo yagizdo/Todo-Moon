@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uuid/uuid.dart';
+import 'package:todo_app/Widgets/Todo/custom_tf.dart';
 
-Widget _textFormFields (String hint, TextEditingController controller) {
-  return Padding(
-    padding: const EdgeInsets.only(left : 20.0, right: 20.0,top : 50.0),
-    child: TextField(
-      controller: controller,
-      decoration: InputDecoration(
-          hintText: hint
-      ),
-    ),
-  );
-}
 class AddTodo extends StatefulWidget {
   const AddTodo({Key? key}) : super(key: key);
 
@@ -21,41 +10,61 @@ class AddTodo extends StatefulWidget {
 }
 
 class _AddTodoState extends State<AddTodo> {
-
+  var formKey = GlobalKey<FormState>();
   var titleController = TextEditingController();
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  // UUID
-  var uuid = const Uuid();
+  SharedPreferences? sp;
 
-
-
+  void saveNewTodo() {
+    print('Saved todos!');
+  }
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top : 20.0),
-        child: Column(
-          children: [
-            const Text('Add Task',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-
-            _textFormFields('Title', titleController),
-            _textFormFields('Description', descController),
-            _textFormFields('Category', categoryController),
-
-            Padding(
-              padding: const EdgeInsets.only(top : 50.0),
-              child: SizedBox(
-                  width: 300,
-                  height: 50,
-                  child: ElevatedButton(style: ElevatedButton.styleFrom(
-                    primary: Colors.orangeAccent
-                  ),onPressed: () {
-                  }, child: const Text('Add Todo'))),
-            )
-          ],
+    return SingleChildScrollView(
+      child: Form(
+        key: formKey,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    'Add Task',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                CustomTF(hint: 'Title', controller: titleController, labelText: 'Title'),
+                CustomTF(hint: 'Description', controller: descController, labelText: 'Description'),
+                CustomTF(hint: 'Category', controller: categoryController, labelText: 'Category'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: SizedBox(
+                      width: 300,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.orangeAccent),
+                          onPressed: () {
+                            setState(() {
+                              if(formKey.currentState!.validate()) {
+                                saveNewTodo();
+                                titleController.text = '';
+                                descController.text = '';
+                                categoryController.text = '';
+                              }
+                            });
+                          },
+                          child: const Text('Add Todo'))),
+                )
+              ],
+            ),
           ),
+        ),
       ),
     );
   }

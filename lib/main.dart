@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           setState(() {
             currentScreen = const AddTodo();
-            currentTab = 3;
+            currentTab = 5;
           });
         },
       ),
