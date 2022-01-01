@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/custom_tf.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({Key? key}) : super(key: key);
@@ -15,11 +18,12 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  SharedPreferences? sp;
+  void saveTodo(){
+    Todo todo = Todo(title: titleController.text, description: descController.text, category: categoryController.text);
 
-  void saveNewTodo() {
-    print('Saved todos!');
+    Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,7 +56,7 @@ class _AddTodoState extends State<AddTodo> {
                           onPressed: () {
                             setState(() {
                               if(formKey.currentState!.validate()) {
-                                saveNewTodo();
+                                saveTodo();
                                 titleController.text = '';
                                 descController.text = '';
                                 categoryController.text = '';

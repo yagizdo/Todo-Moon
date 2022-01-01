@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Pages/detail_screen.dart';
 import 'package:todo_app/Widgets/Todo/todo_card.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 class TodoWidget extends StatefulWidget {
   const TodoWidget({Key? key}) : super(key: key);
@@ -13,26 +15,20 @@ class TodoWidget extends StatefulWidget {
 class _TodoWidgetState extends State<TodoWidget> {
   @override
   Widget build(BuildContext context) {
-    var todos = <Todo>[Todo('Work', 'Create wireframes', false),Todo('Family & Friends', 'Dinner with parents', false),Todo('Todo 3', 'todo3', false),Todo('Todo 4', 'todo4', false)];
     return Padding(
-      padding: const EdgeInsets.only(top : 20.0),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 400,
-            height: 200,
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Consumer<TodosProvider>(
+        builder: (context, state, child) => SizedBox(
+          height: MediaQuery.of(context).size.height / 2,
           child: ListView.builder(
-            shrinkWrap: true,
-              itemCount: todos.length,
+              itemCount: state.unCompletedTodos.length,
               itemBuilder: (context, index) {
                 return TodoCard(
-                  todo: todos[index],
+                  todo: state.unCompletedTodos[index],
                 );
               }),
         ),
-  ],
       ),
     );
   }
 }
-

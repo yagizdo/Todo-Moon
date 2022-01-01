@@ -2,21 +2,29 @@ class Todo {
   String title;
   String description;
   bool complete = false;
+  String category;
 
+  Todo({required this.title, this.description='', this.complete=false, this.category='Uncategorized'});
 
-  Todo(this.title,  this.description, this.complete);
-
-  /*Todo.fromMap(Map map) :
+  //toObject
+  Todo.fromMap(Map map):
         title = map['title'] as String,
         description = map['description'] as String,
-        complete = map['complete'] as bool;
+        complete = map['complete'] as bool,
+        category = map['category'] as String;
 
-  Map toMap() {
-    return {
-      'title' : title,
-      'description' : description,
-      'complete' : complete,
-    };
+  //toJson
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['description'] = description;
+    data['complete'] = complete;
+    data['category'] = category;
+    return data;
   }
-}*/
+
+  void toggleCompleted(){
+    complete = !complete;
+  }
+
 }
