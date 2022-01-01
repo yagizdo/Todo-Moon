@@ -5,9 +5,11 @@ When the project is finished, I will share the features, the libs I use, etc.
 
 
 ##  What will be add :question:
-- [ ] Todo's
-- [ ] HomePage UI (30% complete now)
-- [ ] Add Todo Page
+- [ ] Dynamic Todos
+- [ ] HomePage UI (80% complete now)
+- [X] Add Todo Page
+- [ ] Shared Preferences for Add Todo Page
+- [ ] State Management (Provider)
 - [ ] Settings Page
 
 ## Screenshots
