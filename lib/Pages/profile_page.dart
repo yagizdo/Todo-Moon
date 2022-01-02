@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:todo_app/Widgets/Profile/complete_todo_list.dart';
+import 'package:todo_app/Widgets/Profile/completed_task_info.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -18,47 +20,21 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Container(
           color: HexColor('#f3f0e5'),
           child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage('https://yagizdokumaci.com/img/yagophoto.jpg'),
-                    radius: 60,
-                  ),
-                ],
+            children: const [
+              CircleAvatar(
+                backgroundImage:
+                    NetworkImage('https://yagizdokumaci.com/img/yagophoto.jpg'),
+                radius: 60,
               ),
               Padding(
-                padding: const EdgeInsets.only(top : 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Yılmaz Yağız Dokumacı',
-                      style: TextStyle(fontSize: 30),
-                    )
-                  ],
+                padding: EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'Yılmaz Yağız Dokumacı',
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top : 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width /1.05,
-                    height: MediaQuery.of(context).size.height/9,
-                    decoration: BoxDecoration(
-                        color: HexColor('#ff9d73'),
-                        borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: const Padding(
-                      padding:  EdgeInsets.only(top : 20.0,left: 10),
-                      child: Text('Completed Tasks : ',style: TextStyle(fontSize: 20,color: Colors.white),),
-                    ),
-                  )
-                ],),
-              )
+              CompletedTaskInfo(),
+              CompleteTodoList()
             ],
           ),
         ),
