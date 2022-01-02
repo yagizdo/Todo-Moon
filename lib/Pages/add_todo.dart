@@ -18,8 +18,11 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  void saveTodo(){
-    Todo todo = Todo(title: titleController.text, description: descController.text, category: categoryController.text);
+  void saveTodo() {
+    Todo todo = Todo(
+        title: titleController.text,
+        description: descController.text,
+        category: categoryController.text);
 
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
@@ -42,9 +45,18 @@ class _AddTodoState extends State<AddTodo> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                CustomTF(hint: 'Title', controller: titleController, labelText: 'Title'),
-                CustomTF(hint: 'Description', controller: descController, labelText: 'Description'),
-                CustomTF(hint: 'Category', controller: categoryController, labelText: 'Category'),
+                CustomTF(
+                    hint: 'Title',
+                    controller: titleController,
+                    labelText: 'Title'),
+                CustomTF(
+                    hint: 'Description',
+                    controller: descController,
+                    labelText: 'Description'),
+                CustomTF(
+                    hint: 'Category',
+                    controller: categoryController,
+                    labelText: 'Category'),
                 Padding(
                   padding: const EdgeInsets.only(top: 50.0),
                   child: SizedBox(
@@ -55,11 +67,19 @@ class _AddTodoState extends State<AddTodo> {
                               primary: Colors.orangeAccent),
                           onPressed: () {
                             setState(() {
-                              if(formKey.currentState!.validate()) {
-                                saveTodo();
-                                titleController.text = '';
-                                descController.text = '';
-                                categoryController.text = '';
+                              if (formKey.currentState!.validate()) {
+                                if (categoryController.text.contains('')) {
+                                  categoryController.text = 'Uncategorized';
+                                  saveTodo();
+                                  titleController.text = '';
+                                  descController.text = '';
+                                  categoryController.text = '';
+                                } else {
+                                  saveTodo();
+                                  titleController.text = '';
+                                  descController.text = '';
+                                  categoryController.text = '';
+                                }
                               }
                             });
                           },

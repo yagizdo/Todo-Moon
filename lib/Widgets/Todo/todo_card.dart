@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
@@ -23,37 +24,81 @@ class TodoCard extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.all(12),
-        child: Card(
-          shadowColor: Colors.transparent,
-          color: Colors.white,
-          elevation: 20,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+        child: Slidable(
+          key: UniqueKey(),
+          startActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            dismissible: DismissiblePane(
+              onDismissed: () {
+                Provider.of<TodosProvider>(context, listen: false)
+                    .toggleTodo(todo);
+              },
+            ),
+            children: [
+              SlidableAction(
+                onPressed: (BuildContext context) {
+                  Provider.of<TodosProvider>(context, listen: false)
+                      .toggleTodo(todo);
+                },
+                backgroundColor: Colors.green,
+                label: 'Done!',
+              )
+            ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            dismissible: DismissiblePane(
+              onDismissed: () {
+                Provider.of<TodosProvider>(context, listen: false)
+                    .removeTodo(todo);
+              },
+            ),
+            children: [
+              SlidableAction(
+                onPressed: (BuildContext context) {
+                  Provider.of<TodosProvider>(context, listen: false)
+                      .removeTodo(todo);
+                },
+                backgroundColor: Colors.red,
+                label: 'Removed!',
+              )
+            ],
+          ),
+          child: Card(
+            shadowColor: Colors.transparent,
+            color: Colors.white,
+            elevation: 20,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
                   Padding(
                     padding: const EdgeInsets.all(18.0),
-                    child: Checkbox(
-                      value: todo.complete,
-                      onChanged: (bool? value) {
-                        Provider.of<TodosProvider>(context, listen: false).toggleTodo(todo);
-                      },
+                    child: SizedBox(
+                      child: Transform.scale(
+                        scale: 1.4,
+                        child: Checkbox(
+                          shape: const CircleBorder(),
+                          checkColor: Colors.white,
+                          activeColor: Colors.black,
+                          value: todo.complete,
+                          onChanged: (bool? value) {
+                            Provider.of<TodosProvider>(context, listen: false)
+                                .toggleTodo(todo);
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        categoryText(todo.category),
-                        titleText(todo.title),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      categoryText(todo.category),
+                      titleText(todo.title),
+                    ],
                   )
                 ]),
               ],

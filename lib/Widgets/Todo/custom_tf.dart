@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CustomTF extends StatelessWidget {
-   CustomTF({Key? key, required this.hint,required this.controller, required this.labelText}) : super(key: key);
+  CustomTF(
+      {Key? key,
+      required this.hint,
+      required this.controller,
+      required this.labelText})
+      : super(key: key);
 
   String labelText;
   String hint;
   TextEditingController controller;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,12 +19,8 @@ class CustomTF extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         validator: (value) {
-          if(labelText.contains('Title')) {
-            if(value!.isEmpty) {
-              return 'Please enter $labelText';
-            }
-          } else if (labelText.contains('Category')) {
-            if(value!.isEmpty) {
+          if (labelText.contains('Title')) {
+            if (value!.isEmpty) {
               return 'Please enter $labelText';
             }
           }

@@ -44,7 +44,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //Variables
   int currentTab = 0;
-  var pageList = [const HomePage(), const CalendarPage(), const AddTodo(),const DashboardPage(),const ProfilePage()];
+  var pageList = [
+    const HomePage(),
+    const CalendarPage(),
+    const AddTodo(),
+    const DashboardPage(),
+    const ProfilePage()
+  ];
 
   @override
   void initState() {
@@ -54,10 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomePage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f3f0e5'),
+      backgroundColor: HexColor('#f3efda'),
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,

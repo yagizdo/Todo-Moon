@@ -4,11 +4,15 @@ class Todo {
   bool complete = false;
   String category;
 
-  Todo({required this.title, this.description='', this.complete=false, this.category='Uncategorized'});
+  Todo(
+      {required this.title,
+      this.description = '',
+      this.complete = false,
+      this.category = 'Uncategorized'});
 
   //toObject
-  Todo.fromMap(Map map):
-        title = map['title'] as String,
+  Todo.fromMap(Map map)
+      : title = map['title'] as String,
         description = map['description'] as String,
         complete = map['complete'] as bool,
         category = map['category'] as String;
@@ -23,8 +27,7 @@ class Todo {
     return data;
   }
 
-  void toggleCompleted(){
+  void toggleCompleted() {
     complete = !complete;
   }
-
 }
