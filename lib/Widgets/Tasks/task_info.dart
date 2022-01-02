@@ -27,24 +27,25 @@ class _Task_InfoState extends State<TaskInfo> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Consumer<TodosProvider>(builder: (context, state, child) => Text(
-                    'You have ${state.unCompletedTodos.length} tasks for today',
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  ))
-                )
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Consumer<TodosProvider>(
+                      builder: (context, state, child) => Text(
+                        'You have ${state.unCompletedTodos.length} tasks for today',
+                        style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                      ),
+                    ))
               ],
             ),
           ),
-            Container(
-              width: 30,
-              height: 30,
-              color: Colors.white,
-              child: const Icon(Icons.calendar_today),
-            ),
+          Container(
+            width: 30,
+            height: 30,
+            color: Colors.white,
+            child: const Icon(Icons.calendar_today),
+          ),
         ],
       ),
     );

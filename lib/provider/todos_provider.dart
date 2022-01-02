@@ -12,7 +12,8 @@ class TodosProvider extends ChangeNotifier {
   List<Todo> todos = [];
 
   //  getter
-  UnmodifiableListView<Todo> get allTodos => UnmodifiableListView(todos.reversed);
+  UnmodifiableListView<Todo> get allTodos =>
+      UnmodifiableListView(todos.reversed);
 
   UnmodifiableListView<Todo> get completedTodos =>
       UnmodifiableListView(todos.reversed.where((todo) => todo.complete));
@@ -26,7 +27,7 @@ class TodosProvider extends ChangeNotifier {
     saveDataToLocalStorage();
     notifyListeners();
   }
-  
+
   void removeTodo(Todo todo) {
     todos.remove(todo);
     updateDataToLocalStorage();
@@ -47,22 +48,31 @@ class TodosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Percent Method
+  double calcTodoPercent() {
+    double percent = (completedTodos.length / allTodos.length);
+    print('Percent : $percent');
+    print('Comp todos : ${completedTodos.length}');
+    print('UnComp todos : ${unCompletedTodos.length}');
+    print(percent.runtimeType);
+    return percent == double.infinity ? 0 : percent;
+  }
+
   void saveDataToLocalStorage() {
     List<String>? spList =
-    todos.map((todo) => json.encode(todo.toJson())).toList();
+        todos.map((todo) => json.encode(todo.toJson())).toList();
     sharedPreferences!.setStringList('list', spList);
   }
 
-  void loadDataFromLocalStorage(){
+  void loadDataFromLocalStorage() {
     List<String>? spList = sharedPreferences!.getStringList('list');
     todos = spList!.map((item) => Todo.fromMap(json.decode(item))).toList();
   }
 
   void updateDataToLocalStorage() {
     List<String>? spList =
-    todos.map((item) => json.encode(item.toJson())).toList();
+        todos.map((item) => json.encode(item.toJson())).toList();
     sharedPreferences?.remove('list');
     sharedPreferences!.setStringList('list', spList);
   }
-
 }

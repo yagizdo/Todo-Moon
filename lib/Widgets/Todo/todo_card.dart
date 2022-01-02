@@ -60,7 +60,7 @@ class TodoCard extends StatelessWidget {
                       .removeTodo(todo);
                 },
                 backgroundColor: Colors.red,
-                label: 'Removed!',
+                label: 'Remove!',
               )
             ],
           ),
