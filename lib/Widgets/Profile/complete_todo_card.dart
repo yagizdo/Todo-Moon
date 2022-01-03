@@ -19,8 +19,11 @@ class CompleteTodoCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    DetailScreen(title: todo.title, desc: todo.description)));
+                builder: (context) => DetailScreen(
+                      title: todo.title,
+                      desc: todo.description,
+                      category: todo.category,
+                    )));
       },
       child: Container(
         padding: const EdgeInsets.all(10),

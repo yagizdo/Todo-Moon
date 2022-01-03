@@ -16,14 +16,18 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    DetailScreen(title: todo.title, desc: todo.description)));
+        Future(() {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailScreen(
+                      title: todo.title,
+                      desc: todo.description,
+                      category: todo.category)));
+        });
       },
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Slidable(
           key: UniqueKey(),
           startActionPane: ActionPane(
