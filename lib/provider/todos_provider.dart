@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
+import 'package:todo_app/Pages/home_page.dart';
 
 class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
@@ -55,7 +56,7 @@ class TodosProvider extends ChangeNotifier {
     print('Comp todos : ${completedTodos.length}');
     print('UnComp todos : ${unCompletedTodos.length}');
     print(percent.runtimeType);
-    return percent == double.infinity ? 0 : percent;
+    return completedTodos == 0 && unCompletedTodos == 0 ? 0 : percent = 0;
   }
 
   void saveDataToLocalStorage() {
@@ -74,5 +75,12 @@ class TodosProvider extends ChangeNotifier {
         todos.map((item) => json.encode(item.toJson())).toList();
     sharedPreferences?.remove('list');
     sharedPreferences!.setStringList('list', spList);
+  }
+
+  bool checkUncompletedTodos() {
+    if (unCompletedTodos.isEmpty) {
+      return true;
+    }
+    return false;
   }
 }
