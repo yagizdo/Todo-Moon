@@ -56,7 +56,7 @@ class TodosProvider extends ChangeNotifier {
     print('Comp todos : ${completedTodos.length}');
     print('UnComp todos : ${unCompletedTodos.length}');
     print(percent.runtimeType);
-    return completedTodos == 0 && unCompletedTodos == 0 ? 0 : percent;
+    return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
   }
 
   void saveDataToLocalStorage() {

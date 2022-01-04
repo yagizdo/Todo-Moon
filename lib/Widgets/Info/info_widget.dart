@@ -15,9 +15,9 @@ class InfoWidget extends StatelessWidget {
       radius: 60.0,
       lineWidth: 8.0,
       animation: true,
-      percent: percent,
+      percent:  percent.isNaN ? 0 : percent,
       center: Text(
-        '${(percent * 100).round()}%',
+        percent.isNaN ? '${((percent = 0)*100).round()}%' : '${(percent * 100).round()}%' ,
         style: const TextStyle(color: Colors.white, fontSize: 10),
       ),
       backgroundColor: Colors.orangeAccent,
