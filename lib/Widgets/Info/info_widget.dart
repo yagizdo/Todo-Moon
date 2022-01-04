@@ -28,6 +28,7 @@ class InfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percent = Provider.of<TodosProvider>(context).calcTodoPercent();
+    print(percent);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

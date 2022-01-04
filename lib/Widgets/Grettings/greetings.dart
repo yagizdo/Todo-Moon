@@ -21,7 +21,7 @@ class Greetings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 5.7,
+      height: MediaQuery.of(context).size.height / 6.5,
       color: HexColor('#f9f6e8'),
       child: Column(children: [
         Row(
@@ -39,7 +39,7 @@ class Greetings extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-                padding: const EdgeInsets.only(top: 13.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: _welcomeText('How is your work life balance this week?',
                     15.5, FontWeight.normal, Colors.black, 15)),
           ],

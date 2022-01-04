@@ -13,12 +13,12 @@ class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 20.0),
+            padding: const EdgeInsets.only(top: 5.0, left: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

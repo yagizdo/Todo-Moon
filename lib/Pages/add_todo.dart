@@ -68,7 +68,7 @@ class _AddTodoState extends State<AddTodo> {
                           onPressed: () {
                             setState(() {
                               if (formKey.currentState!.validate()) {
-                                if (categoryController.text.contains('')) {
+                                if (categoryController.text.isEmpty) {
                                   categoryController.text = 'Uncategorized';
                                   saveTodo();
                                   titleController.text = '';

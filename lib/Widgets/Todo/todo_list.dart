@@ -19,7 +19,7 @@ class _TodoWidgetState extends State<TodoWidget> {
       padding: const EdgeInsets.only(top: 20.0),
       child: Consumer<TodosProvider>(
         builder: (context, state, child) => SizedBox(
-          height: MediaQuery.of(context).size.height / 3.7,
+          height: MediaQuery.of(context).size.height / 2.68,
           child: ListView.builder(
               itemCount: state.unCompletedTodos.length,
               itemBuilder: (context, index) {

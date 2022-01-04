@@ -27,7 +27,7 @@ class TodoCard extends StatelessWidget {
         });
       },
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(8),
         child: Slidable(
           key: UniqueKey(),
           startActionPane: ActionPane(
