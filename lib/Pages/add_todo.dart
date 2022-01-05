@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
@@ -74,11 +75,29 @@ class _AddTodoState extends State<AddTodo> {
                                   titleController.text = '';
                                   descController.text = '';
                                   categoryController.text = '';
+                                  Fluttertoast.showToast(
+                                      msg: "Added!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0
+                                  );
                                 } else {
                                   saveTodo();
                                   titleController.text = '';
                                   descController.text = '';
                                   categoryController.text = '';
+                                  Fluttertoast.showToast(
+                                      msg: "Added!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0
+                                  );
                                 }
                               }
                             });

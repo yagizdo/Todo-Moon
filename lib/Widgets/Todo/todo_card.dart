@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,15 @@ class TodoCard extends StatelessWidget {
               onDismissed: () {
                 Provider.of<TodosProvider>(context, listen: false)
                     .toggleTodo(todo);
+                Fluttertoast.showToast(
+                    msg: "Done!",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
               },
             ),
             children: [
@@ -43,6 +53,15 @@ class TodoCard extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Provider.of<TodosProvider>(context, listen: false)
                       .toggleTodo(todo);
+                  Fluttertoast.showToast(
+                      msg: "Done!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                 },
                 backgroundColor: Colors.green,
                 label: 'Done!',
@@ -55,6 +74,15 @@ class TodoCard extends StatelessWidget {
               onDismissed: () {
                 Provider.of<TodosProvider>(context, listen: false)
                     .removeTodo(todo);
+                Fluttertoast.showToast(
+                    msg: "Uncompleted!!",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
               },
             ),
             children: [
@@ -62,6 +90,15 @@ class TodoCard extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Provider.of<TodosProvider>(context, listen: false)
                       .removeTodo(todo);
+                  Fluttertoast.showToast(
+                      msg: "Removed!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                 },
                 backgroundColor: Colors.red,
                 label: 'Remove!',
@@ -92,6 +129,15 @@ class TodoCard extends StatelessWidget {
                           onChanged: (bool? value) {
                             Provider.of<TodosProvider>(context, listen: false)
                                 .toggleTodo(todo);
+                            Fluttertoast.showToast(
+                                msg: "Done!",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.green,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
                           },
                         ),
                       ),
