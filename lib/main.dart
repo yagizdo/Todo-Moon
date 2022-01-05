@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f3efda'),
+      backgroundColor: HexColor('#f3f0e5'),
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,

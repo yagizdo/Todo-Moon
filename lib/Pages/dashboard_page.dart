@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:todo_app/Widgets/Dashboard/complete_todo_list.dart';
+import 'package:todo_app/Widgets/Dashboard/completed_task_info.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -11,21 +14,27 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homePageAB(),
+      appBar: DashboardAP(),
       body: Container(
-        child: Text('Dashboard Page'),
+        color: HexColor('#f9f6e8'),
+        child: Column(
+          children: const [
+            CompletedTaskInfo(),
+            CompleteTodoList()
+          ],
+        ),
       ),
     );
   }
 }
 
-AppBar homePageAB() {
+AppBar DashboardAP() {
   return AppBar(
     leading: const Padding(
         padding: EdgeInsets.only(left: 10.0, top: 15.0),
         child: Icon(Icons.settings, color: Colors.black)),
     //Icon(Icons.settings),
-    backgroundColor: Colors.white,
+    backgroundColor: HexColor('#f9f6e8'),
     elevation: 0,
   );
 }
