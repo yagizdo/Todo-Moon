@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
@@ -18,7 +19,7 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 20.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,14 +41,30 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
               ],
             ),
           ),
-          Container(
-            width: 30,
-            height: 30,
-            color: Colors.white,
-            child: const Icon(Icons.calendar_today),
-          ),
+          ElevatedButton(onPressed:
+          () {
+            print('Button clicked!');
+            Fluttertoast.showToast(
+                msg: "Button Clicked!",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.black,
+                textColor: Colors.white,
+                fontSize: 16.0
+            );
+           }
+            // Not working rn
+           /* Provider.of<TodosProvider>(context,listen: false).checkCompletedTodos() ? print('Şuan da liste boş')
+                : Provider.of<TodosProvider>(context,listen: false).removeCompletedTodos();
+          */
+
+            , child: const Text('Clear Todos',style: TextStyle(fontSize: 10),),
+            style: ElevatedButton.styleFrom(shape: StadiumBorder()),
+          )
         ],
       ),
     );
   }
 }
+

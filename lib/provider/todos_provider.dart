@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
-import 'package:todo_app/Pages/home_page.dart';
 
 class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
@@ -32,8 +31,31 @@ class TodosProvider extends ChangeNotifier {
   void removeTodo(Todo todo) {
     todos.remove(todo);
     updateDataToLocalStorage();
+    checkCompletedTodos();
     notifyListeners();
   }
+
+  bool checkCompletedTodos() {
+    if (completedTodos.isEmpty) {
+      notifyListeners();
+      return true;
+    }
+    notifyListeners();
+    return false;
+  }
+
+  /* Not working rn
+  void removeCompletedTodos() {
+    List<Todo> compTodos = (todos.where((todo) => todo.complete).toList());
+    print('length before delete : ${compTodos.length}');
+    compTodos.clear();
+    todos.where((todo) => todo.complete) == compTodos;
+    print('length after clear: ${compTodos.length}');
+    todos.addAll(compTodos);
+    updateDataToLocalStorage();
+    print('List deleted');
+    notifyListeners();
+  }*/
 
   void toggleTodo(Todo todo) {
     var index = todos.indexOf(todo);
@@ -75,12 +97,5 @@ class TodosProvider extends ChangeNotifier {
         todos.map((item) => json.encode(item.toJson())).toList();
     sharedPreferences?.remove('list');
     sharedPreferences!.setStringList('list', spList);
-  }
-
-  bool checkUncompletedTodos() {
-    if (unCompletedTodos.isEmpty) {
-      return true;
-    }
-    return false;
   }
 }
