@@ -12,6 +12,7 @@ When the project is finished, I will share the features, the libs I use, etc.
 - [x] Shared Preferences for Add Todo Page
 - [x] State Management (Provider)
 - [ ] Settings Page
+- [ ] Dark Mode
 
 ## Screenshots
 
