@@ -2,14 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-Widget _welcomeText(String text, double size, FontWeight fontWeight,
+Widget _welcomeText(BuildContext context, String text, double size, FontWeight fontWeight,
     Color color, double minFont) {
   return AutoSizeText(
     text,
     style: TextStyle(
       fontSize: size,
       fontWeight: fontWeight,
-      color: color,
+      color: Theme.of(context).primaryColor,
     ),
     minFontSize: minFont,
   );
@@ -22,16 +22,16 @@ class Greetings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 6.5,
-      color: HexColor('#f9f6e8'),
+      color: Theme.of(context).backgroundColor,
       child: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _welcomeText('Hello', 40, FontWeight.normal, Colors.black, 15),
+            _welcomeText(context, 'Hello', 40, FontWeight.normal, Colors.black, 15),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child:
-                  _welcomeText('John', 40, FontWeight.bold, Colors.black, 15),
+                  _welcomeText(context, 'John', 40, FontWeight.bold, Colors.black, 15),
             ),
           ],
         ),
@@ -40,7 +40,7 @@ class Greetings extends StatelessWidget {
           children: [
             Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: _welcomeText('How is your work life balance this week?',
+                child: _welcomeText(context, 'How is your work life balance this week?',
                     15.5, FontWeight.normal, Colors.black, 15)),
           ],
         ),

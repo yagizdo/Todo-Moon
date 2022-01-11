@@ -13,11 +13,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f9f6e8'),
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: profilePageAB(),
       body: Center(
         child: Column(
-          children: [
+          children: const [
             CircleAvatar(
               radius: 60,
             ),

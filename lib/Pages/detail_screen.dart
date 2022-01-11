@@ -22,10 +22,9 @@ class DetailScreen extends StatelessWidget {
             onPressed: () { Navigator.pop(context);},
             color: Colors.black),
         //Icon(Icons.settings),
-        backgroundColor: HexColor('#f9f6e8'),
+        backgroundColor: Theme.of(context).backgroundColor,
         elevation: 0,
       ),
-      backgroundColor: HexColor('#f9f6e8'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

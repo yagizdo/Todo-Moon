@@ -11,20 +11,21 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homePageAB(),
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: homePageAB(context),
       body: Column(
         children: const [Text('Calendar Page')],
       ),
     );
   }
 }
-AppBar homePageAB() {
+AppBar homePageAB(BuildContext context) {
   return AppBar(
     leading: const Padding(
         padding: EdgeInsets.only(left: 10.0, top: 15.0),
         child: Icon(Icons.settings, color: Colors.black)),
     //Icon(Icons.settings),
-    backgroundColor: Colors.white,
+    backgroundColor: Theme.of(context).backgroundColor,
     elevation: 0,
   );
 }

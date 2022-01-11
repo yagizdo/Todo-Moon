@@ -22,19 +22,23 @@ class _Task_InfoState extends State<TaskInfo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   'Your tasks',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor
+                  )
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
                         'You have ${state.unCompletedTodos.length} tasks for today',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                            color: Theme.of(context).disabledColor),
                       ),
                     ))
               ],

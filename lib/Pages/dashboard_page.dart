@@ -16,7 +16,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       appBar: DashboardAP(),
       body: Container(
-        color: HexColor('#f9f6e8'),
+        color: Theme.of(context).backgroundColor,
         child: Column(
           children: const [
             CompletedTaskInfo(),
@@ -34,7 +34,6 @@ AppBar DashboardAP() {
         padding: EdgeInsets.only(left: 10.0, top: 15.0),
         child: Icon(Icons.settings, color: Colors.black)),
     //Icon(Icons.settings),
-    backgroundColor: HexColor('#f9f6e8'),
     elevation: 0,
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -9,9 +10,20 @@ import 'package:todo_app/Pages/dashboard_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
 import 'package:todo_app/Pages/profile_page.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/values/theme.dart';
+
+import 'utils/theme_notifier.dart';
 
 void main() {
-  runApp(const MyApp());
+  SharedPreferences.getInstance().then((prefs) {
+    var isDarkModeActive = prefs.getBool('darkMode') ?? false;
+    runApp(
+      ChangeNotifierProvider<ThemeNotifier>(
+        create: (BuildContext context) => ThemeNotifier(isDarkModeActive ? darkTheme : lightTheme),
+        child: const MyApp(),
+      ),
+    );
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -19,14 +31,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return ChangeNotifierProvider(
       create: (BuildContext context) => TodosProvider(),
       child: MaterialApp(
         title: 'ToDo App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: themeNotifier.getTheme(),
         home: const MyHomePage(title: 'ToDo App'),
       ),
     );
@@ -64,13 +76,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f3f0e5'),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: HexColor('#000000'),
+        backgroundColor: Theme.of(context).primaryColorDark,
+        foregroundColor: Theme.of(context).primaryColor,
         child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
