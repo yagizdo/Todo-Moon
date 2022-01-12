@@ -41,27 +41,6 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
               ],
             ),
           ),
-          ElevatedButton(onPressed:
-          () {
-            print('Button clicked!');
-            Fluttertoast.showToast(
-                msg: "Button Clicked!",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.black,
-                textColor: Colors.white,
-                fontSize: 16.0
-            );
-           }
-            // Not working rn
-           /* Provider.of<TodosProvider>(context,listen: false).checkCompletedTodos() ? print('Şuan da liste boş')
-                : Provider.of<TodosProvider>(context,listen: false).removeCompletedTodos();
-          */
-
-            , child: const Text('Clear Todos',style: TextStyle(fontSize: 10),),
-            style: ElevatedButton.styleFrom(shape: StadiumBorder()),
-          )
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Pages/dashboard_page.dart';
+import 'package:todo_app/Widgets/Profile/clear_todos_btn.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -17,10 +18,13 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: profilePageAB(),
       body: Center(
         child: Column(
-          children: [
+          children: const [
             CircleAvatar(
-              radius: 60,
+              child: Text('YD',style: TextStyle(fontSize: 30,color: Colors.white),),
+              backgroundColor: Colors.black,
+              radius: 50,
             ),
+            ClearTodosBtn(),
           ],
         ),
       ),

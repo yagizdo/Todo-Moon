@@ -31,12 +31,12 @@ class TodosProvider extends ChangeNotifier {
   void removeTodo(Todo todo) {
     todos.remove(todo);
     updateDataToLocalStorage();
-    checkCompletedTodos();
+    checkAllTodos();
     notifyListeners();
   }
 
-  bool checkCompletedTodos() {
-    if (completedTodos.isEmpty) {
+  bool checkAllTodos() {
+    if (allTodos.isEmpty) {
       notifyListeners();
       return true;
     }
@@ -44,6 +44,11 @@ class TodosProvider extends ChangeNotifier {
     return false;
   }
 
+  void removeAllTodos() {
+    todos.clear();
+    updateDataToLocalStorage();
+    notifyListeners();
+  }
   /* Not working rn
   void removeCompletedTodos() {
     List<Todo> compTodos = (todos.where((todo) => todo.complete).toList());
@@ -56,6 +61,8 @@ class TodosProvider extends ChangeNotifier {
     print('List deleted');
     notifyListeners();
   }*/
+
+
 
   void toggleTodo(Todo todo) {
     var index = todos.indexOf(todo);
