@@ -18,7 +18,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Column(
-        children: const [Greetings(), InfoWidget(), TaskInfo(), TodoWidget()],
+        children: const [Greetings(), InfoWidget(), TaskInfo(),
+          Expanded(child: TodoWidget())],
       ),
     );
   }
