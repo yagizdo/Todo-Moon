@@ -9,7 +9,6 @@ import 'package:todo_app/Pages/dashboard_page.dart';
 import 'package:todo_app/Pages/home_page.dart';
 import 'package:todo_app/Pages/profile_page.dart';
 import 'package:todo_app/Pages/welcome_screen.dart';
-import 'package:todo_app/provider/name_provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 import 'Pages/main_screen.dart';
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
 
         providers: [
           ChangeNotifierProvider(create: (context) => TodosProvider()),
-          ChangeNotifierProvider(create: (context) => NameProvider()),
         ],
       child: MaterialApp(
       title: 'ToDo App',

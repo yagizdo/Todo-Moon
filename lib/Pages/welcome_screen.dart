@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/provider/name_provider.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 import 'main_screen.dart';
 
@@ -16,53 +16,60 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    if(Provider.of<NameProvider>(context,listen: false).nameIsEmpty() == false) {
-      setState(() {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-      });
-
-    }
+    Provider.of<TodosProvider>(context,listen: false).initSharedPreferences();
+    Future.delayed(Duration.zero,(){
+      //your code goes here
+      print('Sonuc : ${Provider.of<TodosProvider>(context,listen: false).nameIsEmpty()} ');
+      if(Provider.of<TodosProvider>(context,listen: false).nameIsEmpty() == false) {
+        setState(() {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+        });
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {
+
     var nameController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: welcomeScreenAB(),
-      body: Column(
-        children: [
-          const Text('Please write your name..'),
-          Form(
-              key:formKey ,
-              child: TextFormField(
-                controller: nameController,
-                validator: (value) {
-                  if(value!.isEmpty) {
-                    return 'Name cant be empty';
-                  }
-                  return null;
-                },
-              )
-          ),
-          ElevatedButton(onPressed: () {
-            bool validResult = formKey.currentState!.validate();
-            if(validResult == true) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-            }
-          }, child: Text('Next'))
-        ],
+      body: Padding(
+        padding: const EdgeInsets.only(top : 100.0),
+        child: Column(
+          children: [
+            const Text('Please write your name..'),
+            Form(
+                key:formKey ,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    controller: nameController,
+                    validator: (value) {
+                      if(value!.isEmpty) {
+                        return 'Name cant be empty';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                )
+            ),
+            Consumer<TodosProvider>(
+              builder: (context,state,child) => ElevatedButton(onPressed: () {
+                bool validResult = formKey.currentState!.validate();
+                if(validResult == true) {
+                  state.setName(nameController.text);
+                  print('Name : ${state.name}');
+                  print('Name 2 : ${nameController.text}');
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                }
+              }, child: Text('Next')),
+            )
+          ],
+        ),
       ),
     );
   }
-}
-
-AppBar welcomeScreenAB() {
-  return AppBar(
-    leading: const Padding(
-        padding: EdgeInsets.only(left: 10.0, top: 15.0),
-        child: Icon(Icons.settings, color: Colors.black)),
-    //Icon(Icons.settings),
-    backgroundColor: HexColor('#f9f6e8'),
-    elevation: 0,
-  );
 }

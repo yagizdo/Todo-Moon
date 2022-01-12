@@ -7,11 +7,14 @@ import 'package:todo_app/Models/todo.dart';
 
 class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
+  String _name = '';
 
   //initial state
   List<Todo> todos = [];
 
   //  getter
+
+  String get name => _name;
   UnmodifiableListView<Todo> get allTodos =>
       UnmodifiableListView(todos.reversed);
 
@@ -75,6 +78,7 @@ class TodosProvider extends ChangeNotifier {
   void initSharedPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     loadDataFromLocalStorage();
+    getName();
     notifyListeners();
   }
 
@@ -96,13 +100,51 @@ class TodosProvider extends ChangeNotifier {
 
   void loadDataFromLocalStorage() {
     List<String>? spList = sharedPreferences!.getStringList('list');
-    todos = spList!.map((item) => Todo.fromMap(json.decode(item))).toList();
-  }
+    if(spList != null) {
+      todos = spList.map((item) => Todo.fromMap(json.decode(item))).toList();
+    }
 
+  }
   void updateDataToLocalStorage() {
     List<String>? spList =
         todos.map((item) => json.encode(item.toJson())).toList();
     sharedPreferences?.remove('list');
     sharedPreferences!.setStringList('list', spList);
+  }
+
+  void setName(String userText) {
+    if(userText.isEmpty) {
+      print('Boş bura kardeşş');
+    } else {
+      saveName(userText);
+      notifyListeners();
+    }
+  }
+  void saveName(String userText) {
+    _name = userText;
+    sharedPreferences!.setString('userName', userText);
+    notifyListeners();
+  }
+  void getName() {
+    String spName = sharedPreferences!.getString('userName')!;
+    if(spName != null) {
+      _name = spName;
+      print('SP den gelen name : $spName');
+      print('SP den gelen name 2 : $_name');
+      notifyListeners();
+    } else {
+      print('değer null gardaşş');
+    }
+  }
+
+  bool nameIsEmpty() {
+    print('Check name : $_name');
+    if(_name.isEmpty) {
+      return true;
+      notifyListeners();
+    } else {
+      return false;
+      notifyListeners();
+    }
   }
 }
