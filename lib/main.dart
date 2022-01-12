@@ -21,16 +21,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => TodosProvider(),
+    return MultiProvider(
+
+        providers: [
+          ChangeNotifierProvider(create: (context) => TodosProvider()),
+        ],
       child: MaterialApp(
-        title: 'ToDo App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MainScreen(title: 'ToDo App'),
+      title: 'ToDo App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const MainScreen(title: 'ToDo App'),
+    ),
     );
   }
 }
