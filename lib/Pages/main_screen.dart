@@ -11,8 +11,7 @@ import 'dashboard_page.dart';
 import 'home_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();

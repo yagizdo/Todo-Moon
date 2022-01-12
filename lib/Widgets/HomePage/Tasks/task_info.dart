@@ -18,7 +18,7 @@ class _Task_InfoState extends State<TaskInfo> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 5.0, left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,7 +27,7 @@ class _Task_InfoState extends State<TaskInfo> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 5.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
                         'You have ${state.unCompletedTodos.length} tasks for today',

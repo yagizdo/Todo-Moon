@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Widgets/Info/info_image.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+
+import 'info_image.dart';
 
 class InfoWidget extends StatelessWidget {
   const InfoWidget({Key? key}) : super(key: key);
@@ -36,8 +37,8 @@ class InfoWidget extends StatelessWidget {
           alignment: Alignment.topRight,
           children: [
             Container(
-              margin: const EdgeInsets.only(bottom: 12),
               width: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 7.5,
               decoration: BoxDecoration(
                   color: HexColor('#ff9d73'),
                   borderRadius: BorderRadius.circular(20)),
