@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
+import 'package:todo_app/provider/shared_prefences_helper.dart';
 
 class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
@@ -65,8 +66,6 @@ class TodosProvider extends ChangeNotifier {
     notifyListeners();
   }*/
 
-
-
   void toggleTodo(Todo todo) {
     var index = todos.indexOf(todo);
     todos[index].toggleCompleted();
@@ -76,7 +75,9 @@ class TodosProvider extends ChangeNotifier {
 
   // methods for shared preferences
   void initSharedPreferences() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+    // sharedPreferences = await SharedPreferences.getInstance();
+    await SharedPreferencesHelper.init();
+    sharedPreferences = SharedPreferencesHelper.instance;
     loadDataFromLocalStorage();
     getName();
     notifyListeners();
@@ -100,11 +101,11 @@ class TodosProvider extends ChangeNotifier {
 
   void loadDataFromLocalStorage() {
     List<String>? spList = sharedPreferences!.getStringList('list');
-    if(spList != null) {
+    if (spList != null) {
       todos = spList.map((item) => Todo.fromMap(json.decode(item))).toList();
     }
-
   }
+
   void updateDataToLocalStorage() {
     List<String>? spList =
         todos.map((item) => json.encode(item.toJson())).toList();
@@ -113,21 +114,23 @@ class TodosProvider extends ChangeNotifier {
   }
 
   void setName(String userText) {
-    if(userText.isEmpty) {
+    if (userText.isEmpty) {
       print('Boş bura kardeşş');
     } else {
       saveName(userText);
       notifyListeners();
     }
   }
+
   void saveName(String userText) {
     _name = userText;
     sharedPreferences!.setString('userName', userText);
     notifyListeners();
   }
+
   void getName() {
     String spName = sharedPreferences!.getString('userName')!;
-    if(spName != null) {
+    if (spName != null) {
       _name = spName;
       print('SP den gelen name : $spName');
       print('SP den gelen name 2 : $_name');
@@ -139,7 +142,7 @@ class TodosProvider extends ChangeNotifier {
 
   bool nameIsEmpty() {
     print('Check name : $_name');
-    if(_name.isEmpty) {
+    if (_name.isEmpty) {
       return true;
       notifyListeners();
     } else {
