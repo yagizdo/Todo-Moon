@@ -20,6 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     Future.delayed(Duration.zero,(){
       //your code goes here
       print('Sonuc : ${Provider.of<TodosProvider>(context,listen: false).nameIsEmpty()} ');
+      print('Selimcik : ${Provider.of<TodosProvider>(context,listen: false).nameIsEmpty()}');
       if(Provider.of<TodosProvider>(context,listen: false).nameIsEmpty() == false) {
         setState(() {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));

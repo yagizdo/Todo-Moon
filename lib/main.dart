@@ -14,7 +14,12 @@ import 'package:todo_app/provider/todos_provider.dart';
 import 'Pages/main_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider<TodosProvider>(
+          create: (BuildContext context) => TodosProvider(),
+        child: const MyApp(),
+      ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,19 +27,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-
-        providers: [
-          ChangeNotifierProvider(create: (context) => TodosProvider()),
-        ],
-      child: MaterialApp(
-      title: 'ToDo App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const WelcomeScreen(),
+    return MaterialApp(
+    title: 'ToDo App',
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
     ),
+    home: Consumer<TodosProvider>(
+      builder: (context, state,child) => state.nameIsEmpty() == false ? const MainScreen() :const WelcomeScreen(),
+      ),
     );
   }
 }

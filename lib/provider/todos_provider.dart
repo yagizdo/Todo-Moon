@@ -80,6 +80,7 @@ class TodosProvider extends ChangeNotifier {
     sharedPreferences = SharedPreferencesHelper.instance;
     loadDataFromLocalStorage();
     getName();
+    nameIsEmpty();
     notifyListeners();
   }
 
@@ -142,7 +143,8 @@ class TodosProvider extends ChangeNotifier {
 
   bool nameIsEmpty() {
     print('Check name : $_name');
-    if (_name.isEmpty) {
+    print('Check name 2 : $name');
+    if (name.isEmpty) {
       return true;
       notifyListeners();
     } else {
