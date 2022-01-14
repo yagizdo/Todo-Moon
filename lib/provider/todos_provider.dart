@@ -80,7 +80,6 @@ class TodosProvider extends ChangeNotifier {
     sharedPreferences = SharedPreferencesHelper.instance;
     loadDataFromLocalStorage();
     getName();
-    nameIsEmpty();
     notifyListeners();
   }
 
@@ -130,21 +129,20 @@ class TodosProvider extends ChangeNotifier {
   }
 
   void getName() {
-    String spName = sharedPreferences!.getString('userName')!;
+    String? spName = sharedPreferences!.getString('userName');
     if (spName != null) {
       _name = spName;
       print('SP den gelen name : $spName');
       print('SP den gelen name 2 : $_name');
       notifyListeners();
     } else {
-      print('değer null gardaşş');
+      print('Name is null');
     }
   }
 
   bool nameIsEmpty() {
     print('Check name : $_name');
-    print('Check name 2 : $name');
-    if (name.isEmpty) {
+    if (_name.isEmpty) {
       return true;
       notifyListeners();
     } else {

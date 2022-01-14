@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/Widgets/Welcome/welcome_text.dart';
+import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 import 'main_screen.dart';
@@ -17,16 +19,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     super.initState();
     Provider.of<TodosProvider>(context,listen: false).initSharedPreferences();
-    Future.delayed(Duration.zero,(){
-      //your code goes here
-      print('Sonuc : ${Provider.of<TodosProvider>(context,listen: false).nameIsEmpty()} ');
-      print('Selimcik : ${Provider.of<TodosProvider>(context,listen: false).nameIsEmpty()}');
-      if(Provider.of<TodosProvider>(context,listen: false).nameIsEmpty() == false) {
-        setState(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-        });
-      }
-    });
   }
   @override
   Widget build(BuildContext context) {
@@ -34,27 +26,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     var nameController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     return Scaffold(
+      backgroundColor: HexColor('#f9f6e8'),
       body: Padding(
         padding: const EdgeInsets.only(top : 100.0),
         child: Column(
           children: [
-            const Text('Please write your name..'),
+            const welcomeText(),
             Form(
                 key:formKey ,
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    controller: nameController,
-                    validator: (value) {
-                      if(value!.isEmpty) {
-                        return 'Name cant be empty';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                  child:
+                  WelcomCustomTF(controller: nameController,labelText: 'name'),
                 )
             ),
             Consumer<TodosProvider>(
@@ -66,7 +49,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   print('Name 2 : ${nameController.text}');
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
                 }
-              }, child: Text('Next')),
+              }, child: Text('Set Name')),
             )
           ],
         ),

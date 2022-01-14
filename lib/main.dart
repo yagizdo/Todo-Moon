@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       primarySwatch: Colors.blue,
     ),
     home: Consumer<TodosProvider>(
-      builder: (context, state,child) => state.nameIsEmpty() == false ? const MainScreen() :const WelcomeScreen(),
+      builder: (context, state,child) => state.nameIsEmpty() == true ? const WelcomeScreen() :const MainScreen(),
       ),
     );
   }
