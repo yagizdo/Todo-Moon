@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Pages/dashboard_page.dart';
+import 'package:todo_app/Widgets/Profile/change_name_btn.dart';
+import 'package:todo_app/Widgets/Profile/change_name_text.dart';
 import 'package:todo_app/Widgets/Profile/clear_todos_btn.dart';
+import 'package:todo_app/Widgets/Profile/delete_todo_text.dart';
+import 'package:todo_app/Widgets/Profile/name_text.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -22,20 +25,27 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             Consumer<TodosProvider>(
-              builder: (context, state,child) =>
-                  CircleAvatar(
-                  child: Text(state.name,style: TextStyle(fontSize: 30,color: Colors.white),),
-                  backgroundColor: Colors.black,
-                  radius: 50,
+              builder: (context, state, child) => const CircleAvatar(
+                child: Text(
+                  'YYD',
+                  style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
+                backgroundColor: Colors.orange,
+                radius: 50,
+              ),
             ),
-            ClearTodosBtn(),
+            const NameText(),
+            const DeleteTodoTitle(),
+            const ClearTodosBtn(),
+            const ChangeNameText(),
+            const ChangeNameBTN(),
           ],
         ),
       ),
     );
   }
 }
+
 AppBar profilePageAB() {
   return AppBar(
     leading: const Padding(

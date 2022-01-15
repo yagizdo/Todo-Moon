@@ -9,6 +9,7 @@ import 'package:todo_app/provider/shared_prefences_helper.dart';
 class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
   String _name = '';
+  String _surname = '';
 
   //initial state
   List<Todo> todos = [];
@@ -16,6 +17,7 @@ class TodosProvider extends ChangeNotifier {
   //  getter
 
   String get name => _name;
+  String get surname => _surname;
   UnmodifiableListView<Todo> get allTodos =>
       UnmodifiableListView(todos.reversed);
 
@@ -80,6 +82,7 @@ class TodosProvider extends ChangeNotifier {
     sharedPreferences = SharedPreferencesHelper.instance;
     loadDataFromLocalStorage();
     getName();
+    getSurname();
     notifyListeners();
   }
 
@@ -122,9 +125,24 @@ class TodosProvider extends ChangeNotifier {
     }
   }
 
+  void setsurName(String userText) {
+    if (userText.isEmpty) {
+      print('Boş bura kardeşş');
+    } else {
+      savesurname(userText);
+      notifyListeners();
+    }
+  }
+
   void saveName(String userText) {
     _name = userText;
     sharedPreferences!.setString('userName', userText);
+    notifyListeners();
+  }
+
+  void savesurname(String userText) {
+    _surname = userText;
+    sharedPreferences!.setString('userSurname', userText);
     notifyListeners();
   }
 
@@ -140,14 +158,25 @@ class TodosProvider extends ChangeNotifier {
     }
   }
 
+  void getSurname() {
+    String? spName = sharedPreferences!.getString('userSurname');
+    if (spName != null) {
+      _surname = spName;
+      print('SP den gelen surname : $_surname');
+      print('SP den gelen surname 2 : $_surname');
+      notifyListeners();
+    } else {
+      print('Surname is null');
+    }
+  }
+
   bool nameIsEmpty() {
     print('Check name : $_name');
     if (_name.isEmpty) {
       return true;
-      notifyListeners();
     } else {
       return false;
-      notifyListeners();
     }
+
   }
 }

@@ -18,38 +18,50 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<TodosProvider>(context,listen: false).initSharedPreferences();
+    Provider.of<TodosProvider>(context, listen: false).initSharedPreferences();
   }
+
   @override
   Widget build(BuildContext context) {
-
     var nameController = TextEditingController();
+    var surnameController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Padding(
-        padding: const EdgeInsets.only(top : 100.0),
+        padding: const EdgeInsets.only(top: 100.0),
         child: Column(
           children: [
             const welcomeText(),
             Form(
-                key:formKey ,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child:
-                  WelcomCustomTF(controller: nameController,labelText: 'name'),
-                )
+              key: formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(children: [
+                  WelcomCustomTF(controller: nameController, labelText: 'name'),
+                  WelcomCustomTF(
+                      controller: surnameController, labelText: 'Surname'),
+                ]),
+              ),
             ),
             Consumer<TodosProvider>(
-              builder: (context,state,child) => ElevatedButton(onPressed: () {
-                bool validResult = formKey.currentState!.validate();
-                if(validResult == true) {
-                  state.setName(nameController.text);
-                  print('Name : ${state.name}');
-                  print('Name 2 : ${nameController.text}');
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-                }
-              }, child: Text('Set Name')),
+              builder: (context, state, child) => ElevatedButton(
+                  onPressed: () {
+                    bool validResult = formKey.currentState!.validate();
+                    if (validResult == true) {
+                      state.setName(nameController.text);
+                      state.setsurName(surnameController.text);
+                      print('Name : ${state.name}');
+                      print('Surname : ${state.surname}');
+                      print('Name 2 : ${nameController.text}');
+                      print('Surname 2 : ${surnameController.text}');
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainScreen()));
+                    }
+                  },
+                  child: const Text('Set Name')),
             )
           ],
         ),

@@ -39,7 +39,7 @@ class Greetings extends StatelessWidget {
                   builder: (context, state,child) => Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: _welcomeText(
-                          '${state.name}', 40, FontWeight.bold, Colors.black, 15),
+                          state.name, 40, FontWeight.bold, Colors.black, 15),
                     ),
                 ),
               ],

@@ -6,15 +6,13 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
-import 'info_image.dart';
-
 class InfoWidget extends StatelessWidget {
   const InfoWidget({Key? key}) : super(key: key);
 
   Widget _circularProgressBar(double percent) {
     return CircularPercentIndicator(
-      radius: 60.0,
-      lineWidth: 8.0,
+      radius: 48.0,
+      lineWidth: 6.0,
       animation: true,
       percent:  percent.isNaN ? 0 : percent,
       center: Text(
@@ -34,16 +32,16 @@ class InfoWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Stack(
-          alignment: Alignment.topRight,
+          alignment: Alignment.bottomRight,
           children: [
             Container(
               width: MediaQuery.of(context).size.width / 1.1,
-              height: MediaQuery.of(context).size.height / 7.5,
+              height: MediaQuery.of(context).size.height / 9,
               decoration: BoxDecoration(
                   color: HexColor('#ff9d73'),
                   borderRadius: BorderRadius.circular(20)),
               child: Padding(
-                padding: const EdgeInsets.only(top: 14, bottom: 14, left: 24),
+                padding: const EdgeInsets.only(top: 14, bottom: 12, left: 24),
                 child: Row(
                   children: [
                     Column(children: [
@@ -74,12 +72,10 @@ class InfoWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Spacer()
                   ],
                 ),
               ),
             ),
-            const InfoImage()
           ],
         ),
       ],

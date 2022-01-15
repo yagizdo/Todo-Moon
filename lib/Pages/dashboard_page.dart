@@ -14,7 +14,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DashboardAP(),
+      appBar: dashboardAB(),
       body: Container(
         color: HexColor('#f9f6e8'),
         child: Column(
@@ -28,7 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 }
 
-AppBar DashboardAP() {
+AppBar dashboardAB() {
   return AppBar(
     leading: const Padding(
         padding: EdgeInsets.only(left: 10.0, top: 15.0),

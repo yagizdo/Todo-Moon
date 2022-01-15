@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/custom_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';

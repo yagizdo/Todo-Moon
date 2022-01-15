@@ -8,7 +8,7 @@ class InfoImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: Image.asset('lib/img/star_img.png', width: 104, height: 104)
+        child: Image.asset('lib/img/star_img.png', width: 100, height: 100)
     );
   }
 }
