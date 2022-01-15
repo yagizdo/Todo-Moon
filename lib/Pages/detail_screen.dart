@@ -47,7 +47,7 @@ class DetailScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Image.asset('lib/img/todoImage.jpg',height: 300,),
+                child: Image.asset('lib/img/placeholder.jpg',height: 250,),
               ),
               const Text(
                 'Description',
@@ -55,7 +55,7 @@ class DetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: Text(desc),
+                child: Text(desc.isEmpty ? 'Desc is empty' : desc),
               )
             ],
           )

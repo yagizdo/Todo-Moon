@@ -80,6 +80,7 @@ flutter:
   assets:
     - lib/img/star_img.png
     - lib/img/todoImage.jpg
+    - lib/img/placeholder.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
