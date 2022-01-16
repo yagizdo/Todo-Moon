@@ -10,7 +10,6 @@ class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
   String _name = '';
   String _surname = '';
-  bool isLoading = true;
 
   //initial state
   List<Todo> todos = [];
@@ -84,7 +83,6 @@ class TodosProvider extends ChangeNotifier {
     loadDataFromLocalStorage();
     getName();
     getSurname();
-    isLoading = false;
     notifyListeners();
   }
 
@@ -123,7 +121,6 @@ class TodosProvider extends ChangeNotifier {
 
     } else {
       saveName(userText);
-      isLoading = false;
       notifyListeners();
     }
   }
@@ -132,7 +129,6 @@ class TodosProvider extends ChangeNotifier {
     if (userText.isEmpty) {
       print('Boş bura kardeşş');
     } else {
-      isLoading = false;
       savesurname(userText);
       notifyListeners();
     }
@@ -174,12 +170,12 @@ class TodosProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> nameIsEmpty() async {
+  bool nameIsEmpty()  {
     print('Check name : $_name');
     if (_name.isEmpty) {
-      return Future.delayed(Duration(seconds: 7), () => true);
+      return true;
     } else {
-      return Future.delayed(Duration(seconds: 7), () => false);
+      return false;
     }
 
   }

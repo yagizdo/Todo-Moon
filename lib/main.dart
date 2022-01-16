@@ -29,15 +29,7 @@ class MyApp extends StatelessWidget {
       primaryColor: HexColor('#f9f6e8'),
     ),
     home: Consumer<TodosProvider>(
-      builder: (context, state,child) {
-        if(state.isLoading == true) {
-          print('isLoading 1 : ${state.isLoading}');
-          return SplashScreen();
-
-        } else {
-          return state.nameIsEmpty() == true ? const WelcomeScreen() :const MainScreen();
-        }
-      },
+      builder: (context, state,child) => state.nameIsEmpty() == true ? const WelcomeScreen() :const MainScreen(),
       ),
     );
   }
