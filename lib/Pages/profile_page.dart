@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/settings_page.dart';
+import 'package:todo_app/Widgets/Profile/profile_circle.dart';
 import 'package:todo_app/Widgets/Settings/change_name_btn.dart';
 import 'package:todo_app/Widgets/Settings/change_name_text.dart';
 import 'package:todo_app/Widgets/Settings/clear_todos_btn.dart';
@@ -24,18 +25,9 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: profilePageAB(context),
       body: Center(
         child: Column(
-          children: [
-            Consumer<TodosProvider>(
-              builder: (context, state, child) => CircleAvatar(
-                child: Text(
-                  'YY',
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                ),
-                backgroundColor: HexColor('#ff9d73'),
-                radius: 50,
-              ),
-            ),
-            const NameText(),
+          children: const [
+            ProfileImg(),
+            NameText(),
           ],
         ),
       ),

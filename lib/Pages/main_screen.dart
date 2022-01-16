@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/profile_page.dart';
 import 'package:todo_app/provider/todos_provider.dart';
@@ -50,7 +52,10 @@ class _MainScreenState extends State<MainScreen> {
         child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
-            currentScreen = const AddTodo();
+            showMaterialModalBottomSheet(
+                context: context,
+                builder: (context) => const AddTodo(),
+            );
             currentTab = 5;
           });
         },

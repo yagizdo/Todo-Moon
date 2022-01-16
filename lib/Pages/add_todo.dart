@@ -58,7 +58,7 @@ class _AddTodoState extends State<AddTodo> {
                     controller: categoryController,
                     labelText: 'Category'),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
+                  padding: const EdgeInsets.only(top: 50.0,bottom : 50),
                   child: SizedBox(
                       width: 300,
                       height: 50,
@@ -74,6 +74,7 @@ class _AddTodoState extends State<AddTodo> {
                                   titleController.text = '';
                                   descController.text = '';
                                   categoryController.text = '';
+                                  Navigator.pop(context);
                                   Fluttertoast.showToast(
                                       msg: "Added!",
                                       toastLength: Toast.LENGTH_SHORT,
@@ -88,6 +89,7 @@ class _AddTodoState extends State<AddTodo> {
                                   titleController.text = '';
                                   descController.text = '';
                                   categoryController.text = '';
+                                  Navigator.pop(context);
                                   Fluttertoast.showToast(
                                       msg: "Added!",
                                       toastLength: Toast.LENGTH_SHORT,
