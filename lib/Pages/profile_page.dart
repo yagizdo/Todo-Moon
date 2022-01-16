@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/Widgets/Profile/change_name_btn.dart';
-import 'package:todo_app/Widgets/Profile/change_name_text.dart';
-import 'package:todo_app/Widgets/Profile/clear_todos_btn.dart';
-import 'package:todo_app/Widgets/Profile/delete_todo_text.dart';
+import 'package:todo_app/Pages/settings_page.dart';
+import 'package:todo_app/Widgets/Settings/change_name_btn.dart';
+import 'package:todo_app/Widgets/Settings/change_name_text.dart';
+import 'package:todo_app/Widgets/Settings/clear_todos_btn.dart';
+import 'package:todo_app/Widgets/Settings/delete_todo_text.dart';
 import 'package:todo_app/Widgets/Profile/name_text.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
@@ -20,25 +21,21 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
-      appBar: profilePageAB(),
+      appBar: profilePageAB(context),
       body: Center(
         child: Column(
           children: [
             Consumer<TodosProvider>(
-              builder: (context, state, child) => const CircleAvatar(
+              builder: (context, state, child) => CircleAvatar(
                 child: Text(
-                  'YYD',
+                  'YY',
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
-                backgroundColor: Colors.orange,
+                backgroundColor: HexColor('#ff9d73'),
                 radius: 50,
               ),
             ),
             const NameText(),
-            const DeleteTodoTitle(),
-            const ClearTodosBtn(),
-            const ChangeNameText(),
-            const ChangeNameBTN(),
           ],
         ),
       ),
@@ -46,13 +43,18 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-AppBar profilePageAB() {
+AppBar profilePageAB(BuildContext context) {
   return AppBar(
-    leading: const Padding(
-        padding: EdgeInsets.only(left: 10.0, top: 15.0),
-        child: Icon(Icons.settings, color: Colors.black)),
-    //Icon(Icons.settings),
     backgroundColor: HexColor('#f9f6e8'),
     elevation: 0,
+    leading:  Padding(
+        padding: EdgeInsets.only(left: 10.0, top: 15.0),
+        child: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+              },
+              icon: Icon(Icons.settings, color: Colors.black),
+    ),
+    ),
   );
 }

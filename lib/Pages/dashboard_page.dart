@@ -30,11 +30,10 @@ class _DashboardPageState extends State<DashboardPage> {
 
 AppBar dashboardAB() {
   return AppBar(
-    leading: const Padding(
-        padding: EdgeInsets.only(left: 10.0, top: 15.0),
-        child: Icon(Icons.settings, color: Colors.black)),
-    //Icon(Icons.settings),
+    centerTitle: true,
     backgroundColor: HexColor('#f9f6e8'),
     elevation: 0,
+  title: Text('Dashboard',style: const TextStyle(fontSize: 25,color: Colors.black),
+  ),
   );
 }

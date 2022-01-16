@@ -17,13 +17,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
-      body: Column(
-        children: const [
-          Greetings(),
-          InfoWidget(),
-          TaskInfo(),
-          Expanded(child: TodoWidget())
-        ],
+      body: Padding(
+        padding: const EdgeInsets.only(top : 20.0),
+        child: Column(
+          children: const [
+            Greetings(),
+            InfoWidget(),
+            TaskInfo(),
+            Expanded(child: TodoWidget())
+          ],
+        ),
       ),
     );
   }
