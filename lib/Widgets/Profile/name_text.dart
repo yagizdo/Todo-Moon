@@ -10,7 +10,7 @@ class NameText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top : 20.0),
       child: Consumer<TodosProvider>(
-        builder: (context, state,child) => Text('${state.name} ${state.surname}',style: TextStyle(fontSize: 30,fontWeight: FontWeight.w500),
+        builder: (context, state,child) => Text('${state.name} ${state.surname}',style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w500),
     ),
       ),
     );

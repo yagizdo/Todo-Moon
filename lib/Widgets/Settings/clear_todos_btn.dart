@@ -30,8 +30,8 @@ class ClearTodosBtn extends StatelessWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     backgroundColor: HexColor('#f9f6e8'),
-                    title: Text('Are you sure?'),
-                    content: Text('You do realize that incomplete todos will also be deleted, right?'),
+                    title: const Text('Are you sure?'),
+                    content: const Text('You do realize that incomplete todos will also be deleted, right?'),
                     actions: [
                       ElevatedButton(onPressed: () {
                         Provider.of<TodosProvider>(context,listen: false).removeAllTodos();
@@ -45,7 +45,7 @@ class ClearTodosBtn extends StatelessWidget {
                             textColor: Colors.white,
                             fontSize: 16.0
                         );
-                      }, child: Text('Delete all todos!')),
+                      }, child: const Text('Delete all todos!')),
                       TextButton(onPressed: () {
                         Navigator.of(context).pop();
                         Fluttertoast.showToast(
@@ -57,7 +57,7 @@ class ClearTodosBtn extends StatelessWidget {
                             textColor: Colors.white,
                             fontSize: 16.0
                         );
-                      }, child: Text('Cancel')),
+                      }, child: const Text('Cancel')),
                     ],
                   );
                 }

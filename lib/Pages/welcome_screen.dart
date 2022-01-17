@@ -52,10 +52,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       if (validResult == true) {
                         state.setName(nameController.text);
                         state.setsurName(surnameController.text);
+                        /*
                         print('Name : ${state.name}');
                         print('Surname : ${state.surname}');
                         print('Name 2 : ${nameController.text}');
                         print('Surname 2 : ${surnameController.text}');
+                        */
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

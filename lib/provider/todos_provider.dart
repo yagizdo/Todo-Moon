@@ -89,10 +89,10 @@ class TodosProvider extends ChangeNotifier {
   // Percent Method
   double calcTodoPercent() {
     double percent = (completedTodos.length / allTodos.length);
-    print('Percent : $percent');
-    print('Comp todos : ${completedTodos.length}');
-    print('UnComp todos : ${unCompletedTodos.length}');
-    print(percent.runtimeType);
+    //print('Percent : $percent');
+   // print('Comp todos : ${completedTodos.length}');
+   // print('UnComp todos : ${unCompletedTodos.length}');
+    //print(percent.runtimeType);
     return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
   }
 
@@ -127,7 +127,7 @@ class TodosProvider extends ChangeNotifier {
 
   void setsurName(String userText) {
     if (userText.isEmpty) {
-      print('Boş bura kardeşş');
+      //print('Boş bura kardeşş');
     } else {
       savesurname(userText);
       notifyListeners();
@@ -150,11 +150,11 @@ class TodosProvider extends ChangeNotifier {
     String? spName = sharedPreferences!.getString('userName');
     if (spName != null) {
       _name = spName;
-      print('SP den gelen name : $spName');
-      print('SP den gelen name 2 : $_name');
+      //print('SP den gelen name : $spName');
+     // print('SP den gelen name 2 : $_name');
       notifyListeners();
     } else {
-      print('Name is null');
+      //print('Name is null');
     }
   }
 
@@ -162,16 +162,16 @@ class TodosProvider extends ChangeNotifier {
     String? spName = sharedPreferences!.getString('userSurname');
     if (spName != null) {
       _surname = spName;
-      print('SP den gelen surname : $_surname');
-      print('SP den gelen surname 2 : $_surname');
+      //print('SP den gelen surname : $_surname');
+      //print('SP den gelen surname 2 : $_surname');
       notifyListeners();
     } else {
-      print('Surname is null');
+      //print('Surname is null');
     }
   }
 
   bool nameIsEmpty()  {
-    print('Check name : $_name');
+    //print('Check name : $_name');
     if (_name.isEmpty) {
       return true;
     } else {

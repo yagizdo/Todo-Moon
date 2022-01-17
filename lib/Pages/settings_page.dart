@@ -36,7 +36,7 @@ AppBar settingsPageAB(BuildContext context) {
         onPressed: () { Navigator.pop(context);},
         color: Colors.black),
     //Icon(Icons.settings),
-    title: Text('Settings',style: const TextStyle(fontSize: 30,color: Colors.black),
+    title: const Text('Settings',style: TextStyle(fontSize: 30,color: Colors.black),
     ),
   );
 }

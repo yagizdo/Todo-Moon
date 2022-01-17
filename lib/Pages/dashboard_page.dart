@@ -33,7 +33,7 @@ AppBar dashboardAB() {
     centerTitle: true,
     backgroundColor: HexColor('#f9f6e8'),
     elevation: 0,
-  title: Text('Dashboard',style: const TextStyle(fontSize: 25,color: Colors.black),
+  title: const Text('Dashboard',style: TextStyle(fontSize: 25,color: Colors.black),
   ),
   );
 }

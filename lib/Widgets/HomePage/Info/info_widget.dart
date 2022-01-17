@@ -29,7 +29,7 @@ class InfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percent = Provider.of<TodosProvider>(context).calcTodoPercent();
-    print(percent);
+    //print(percent);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -101,15 +101,17 @@ class InfoWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 14.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'Good Job John!',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
+                            children: [
+                              Consumer<TodosProvider>(
+                                builder: (context, state, child) => Text(
+                                    'Good Job ${state.name}!',
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                               ),
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 6),
                                 child: Text(
                                   'Your life is well-balanced',

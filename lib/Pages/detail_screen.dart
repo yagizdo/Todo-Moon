@@ -16,11 +16,6 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  IconButton(
-            icon : const Icon(Icons.arrow_back_ios),
-            onPressed: () { Navigator.pop(context);},
-            color: Colors.black),
-        //Icon(Icons.settings),
         backgroundColor: HexColor('#f9f6e8'),
         elevation: 0,
       ),
@@ -33,7 +28,7 @@ class DetailScreen extends StatelessWidget {
             child: categoryText(category, context),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 14.0),
             child:
             Column(children: [
               Text(
@@ -46,15 +41,18 @@ class DetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
                 child: Image.asset('lib/img/placeholder.jpg',height: 250,),
               ),
-              const Text(
-                'Description',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.only(left : 10.0),
+                child: Text(
+                  'Description',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0,left: 15),
                 child: Text(desc.isEmpty ? 'Desc is empty' : desc),
               )
             ],

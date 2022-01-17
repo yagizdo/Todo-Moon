@@ -38,7 +38,7 @@ class _CompleteTodoListState extends State<CompleteTodoList> {
                 height: MediaQuery
                     .of(context)
                     .size
-                    .height / 1.59,
+                    .height / 1.5,
                 child: ListView.builder(
                     itemCount: state.completedTodos.length,
                     itemBuilder: (context, index) {

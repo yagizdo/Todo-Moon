@@ -10,7 +10,7 @@ class ChangeNameText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top : 20.0),
       child: Consumer<TodosProvider>(
-        builder: (context, state,child) => Text('Change Name',style: TextStyle(fontSize: 20),
+        builder: (context, state,child) => const Text('Change Name',style: TextStyle(fontSize: 20),
     ),
       ),
     );

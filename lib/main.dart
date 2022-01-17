@@ -1,4 +1,3 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +5,6 @@ import 'package:todo_app/Pages/welcome_screen.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 import 'Pages/main_screen.dart';
-import 'Pages/splash_screen.dart';
 
 void main() {
   runApp(

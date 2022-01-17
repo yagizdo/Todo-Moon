@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Pages/detail_screen.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class TodoCard extends StatelessWidget {
-  const TodoCard({required this.todo});
+  const TodoCard({required this.todo,String? key});
 
   final Todo todo;
 
@@ -17,13 +18,9 @@ class TodoCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Future(() {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => DetailScreen(
-                      title: todo.title,
-                      desc: todo.description,
-                      category: todo.category)));
+          //Navigator.push(context,MaterialPageRoute(builder: (context) => DetailScreen(title: todo.title, desc: todo.description, category: todo.category)));
+          showBarModalBottomSheet(context: context,
+              builder: (context) => DetailScreen(title: todo.title, desc: todo.description, category: todo.category));
         });
       },
       child: Container(
