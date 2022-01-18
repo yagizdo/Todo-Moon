@@ -31,6 +31,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Padding(
         padding: const EdgeInsets.only(top: 100.0),
         child: SingleChildScrollView(
+          reverse: true,
           child: Column(
             children: [
               const welcomeText(),

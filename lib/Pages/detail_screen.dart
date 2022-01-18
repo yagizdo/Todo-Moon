@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -15,20 +16,16 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: HexColor('#f9f6e8'),
-        elevation: 0,
-      ),
       backgroundColor: HexColor('#f9f6e8'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(top : 50, left: 10.0),
             child: categoryText(category, context),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 14.0),
+            padding: const EdgeInsets.only(top : 20, left: 14.0),
             child:
             Column(children: [
               Text(
@@ -37,25 +34,37 @@ class DetailScreen extends StatelessWidget {
                     fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ]),
-          ), Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
-                child: Image.asset('lib/img/placeholder.jpg',height: 250,),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left : 10.0),
-                child: Text(
-                  'Description',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top :30.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: const Padding(
+                        padding: EdgeInsets.only(top : 30,left : 10.0),
+                        child: Text(
+                          'Description',
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0,left: 15),
+                        child: Text(desc.isEmpty ? 'Desc is empty' : desc,style: const TextStyle(fontSize: 18,color: Colors.black),),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0,left: 15),
-                child: Text(desc.isEmpty ? 'Desc is empty' : desc),
-              )
-            ],
+            ),
           )
         ],
       ),

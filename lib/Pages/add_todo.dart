@@ -30,6 +30,7 @@ class _AddTodoState extends State<AddTodo> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      reverse: true,
       child: Form(
         key: formKey,
         child: Center(
