@@ -39,15 +39,15 @@ class DetailScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top :30.0),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
-                      child: const Padding(
+                    const Center(
+                      child: Padding(
                         padding: EdgeInsets.only(top : 30,left : 10.0),
                         child: Text(
                           'Description',
