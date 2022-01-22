@@ -2,7 +2,7 @@
 
 Todo App I made with Flutter.
 
-When the project is finished, I will share the features, the libs I use, etc.
+Desing : https://dribbble.com/shots/8935948-Work-life-Balance-app
 
 ## What will be add :question:
 
@@ -11,7 +11,7 @@ When the project is finished, I will share the features, the libs I use, etc.
 - [X] Add Todo Page
 - [x] Shared Preferences for Add Todo Page
 - [x] State Management (Provider)
-- [ ] Settings Page (40% complete now)
+- [ ] Settings Page (80% complete now)
 - [ ] Dark Mode
 - [ ] Splash Screen
 
@@ -25,11 +25,29 @@ When the project is finished, I will share the features, the libs I use, etc.
 - Percent Indicator : https://pub.dev/packages/percent_indicator
 - Flutter Toast : https://pub.dev/packages/fluttertoast
 - Flutter Launcher Icons : https://pub.dev/packages/flutter_launcher_icons
+- Modal Bottom Sheet : https://pub.dev/packages/modal_bottom_sheet
 
 
 ## Screenshots
 
-- To be added at the end of the project.
+### Homepage
+<img align="left" width="400" height="700" src="lib/screenshots/homepage1.png">
+<img align="center" width="400" height="700" src="lib/screenshots/homepage2.png">
+<img align="center" width="400" height="700" src="lib/screenshots/description.png">
+
+### Add Todo
+<img align="center" width="400" height="700" src="lib/screenshots/addtodo.png">
+
+
+### Dashboard
+<img align="center" width="400" height="700" src="lib/screenshots/dashboard.png">
+
+
+### Profile
+<img align="center" width="400" height="700" src="lib/screenshots/profile.png">
+
+### Settings
+<img align="center" width="400" height="700" src="lib/screenshots/settings.png">
 
 ## Contributing
 
