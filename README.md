@@ -4,6 +4,34 @@ Todo App I made with Flutter.
 
 Desing : https://dribbble.com/shots/8935948-Work-life-Balance-app
 
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/yagizdo/Todo-Moon
+```
+
+Go to the project directory
+
+```bash
+  cd Todo-Moon
+```
+
+Install dependencies
+
+```bash
+  flutter pub get
+```
+
+Run App
+
+```bash
+  flutter run
+```
+
+
 ## What will be add :question:
 
 - [x] Dynamic Todos
