@@ -59,23 +59,23 @@ Run App
 ## Screenshots
 
 ### Homepage
-<img align="left" width="400" height="700" src="lib/screenshots/homepage1.png">
-<img align="center" width="400" height="700" src="lib/screenshots/homepage2.png">
-<img align="center" width="400" height="700" src="lib/screenshots/description.png">
+<img align="left" width="300" height="600" src="lib/screenshots/homepage1.png">
+<img align="center" width="300" height="600" src="lib/screenshots/homepage2.png">
+<img align="center" width="300" height="600" src="lib/screenshots/description.png">
 
 ### Add Todo
-<img align="center" width="400" height="700" src="lib/screenshots/addtodo.png">
+<img align="center" width="300" height="600" src="lib/screenshots/addtodo.png">
 
 
 ### Dashboard
-<img align="center" width="400" height="700" src="lib/screenshots/dashboard.png">
+<img align="center" width="300" height="600" src="lib/screenshots/dashboard.png">
 
 
 ### Profile
-<img align="center" width="400" height="700" src="lib/screenshots/profile.png">
+<img align="center" width="300" height="600" src="lib/screenshots/profile.png">
 
 ### Settings
-<img align="center" width="400" height="700" src="lib/screenshots/settings.png">
+<img align="center" width="300" height="600" src="lib/screenshots/settings.png">
 
 ## Contributing
 
