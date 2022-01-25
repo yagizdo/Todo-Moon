@@ -4,9 +4,9 @@ Todo App I made with Flutter.
 
 Desing : https://dribbble.com/shots/8935948-Work-life-Balance-app
 
-#### Google Play 
-<a href="yagizdokumaci.com"> 
-   <img align="center" width="400" height="400" src="lib/screenshots/googleplay.png"/> 
+#### Google Play
+<a href="https://play.google.com/store/apps/details?id=com.yagizdokumaci.todo_app">
+   <img align="center" width="200" height="200" src="lib\screenshots\googleplaypnglogo.png"/>
    </a>
 
 ## Run Locally
