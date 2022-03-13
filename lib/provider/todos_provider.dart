@@ -15,6 +15,14 @@ class TodosProvider extends ChangeNotifier {
   List<Todo> todos = [];
   List<Todo> dayOfTodos = [];
 
+  List<Todo> todosList = [];
+
+  List<Todo> getTodos(DateTime day) {
+    todosList = unCompletedTodos
+        .where((Todo) => Todo.dateTime == day.day.toString())
+        .toList();
+    return todosList;
+  }
   //  getter
 
   String get name => _name;
@@ -172,10 +180,6 @@ class TodosProvider extends ChangeNotifier {
     } else {
       //print('Surname is null');
     }
-  }
-
-  List<Todo> getTodos(DateTime day) {
-    return todos.reversed.where((todo) => todo.dateTime == day).toList();
   }
 
   Future<dynamic> readName(String key) async {

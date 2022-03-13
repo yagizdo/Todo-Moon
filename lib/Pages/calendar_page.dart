@@ -33,6 +33,8 @@ class _CalendarPageState extends State<CalendarPage> {
             TableCalendar(
               firstDay: DateTime.utc(2010),
               lastDay: DateTime.utc(2050),
+              eventLoader:
+                  Provider.of<TodosProvider>(context, listen: false).getTodos,
               focusedDay: _focusedDay,
               selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
               calendarFormat: CalendarFormat.month,
