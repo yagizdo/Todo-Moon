@@ -20,14 +20,15 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  late DateTime _datetime;
+  DateTime? _selectedDatetime;
 
   void saveTodo() {
     Todo todo = Todo(
         title: titleController.text,
         description: descController.text,
         category: categoryController.text,
-        dateTime: _datetime.day.toString());
+        dateTime:
+            _selectedDatetime?.day.toString() ?? DateTime.now().day.toString());
 
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
@@ -72,7 +73,7 @@ class _AddTodoState extends State<AddTodo> {
                           child: CupertinoDatePicker(
                               onDateTimeChanged: (DateTime datetime) {
                             setState(() {
-                              _datetime = datetime;
+                              _selectedDatetime = datetime;
                               print(datetime);
                             });
                           }),
