@@ -90,8 +90,8 @@ class TodosProvider extends ChangeNotifier {
   double calcTodoPercent() {
     double percent = (completedTodos.length / allTodos.length);
     //print('Percent : $percent');
-   // print('Comp todos : ${completedTodos.length}');
-   // print('UnComp todos : ${unCompletedTodos.length}');
+    // print('Comp todos : ${completedTodos.length}');
+    // print('UnComp todos : ${unCompletedTodos.length}');
     //print(percent.runtimeType);
     return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
   }
@@ -118,7 +118,6 @@ class TodosProvider extends ChangeNotifier {
 
   void setName(String userText) {
     if (userText.isEmpty) {
-
     } else {
       saveName(userText);
       notifyListeners();
@@ -146,15 +145,16 @@ class TodosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getName() {
-    String? spName = sharedPreferences!.getString('userName');
+  String? getName() {
+    String? spName = sharedPreferences?.getString('userName');
     if (spName != null) {
       _name = spName;
-      //print('SP den gelen name : $spName');
-     // print('SP den gelen name 2 : $_name');
+      print('name $spName');
       notifyListeners();
+      return spName;
     } else {
       //print('Name is null');
+      return null;
     }
   }
 
@@ -170,13 +170,9 @@ class TodosProvider extends ChangeNotifier {
     }
   }
 
-  bool nameIsEmpty()  {
-    //print('Check name : $_name');
-    if (_name.isEmpty) {
-      return true;
-    } else {
-      return false;
-    }
-
+  Future<dynamic> readName(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    dynamic obj = prefs.get(key);
+    return obj;
   }
 }
