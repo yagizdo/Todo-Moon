@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/custom_tf.dart';
@@ -18,11 +20,14 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
+  late DateTime _datetime;
+
   void saveTodo() {
     Todo todo = Todo(
         title: titleController.text,
         description: descController.text,
-        category: categoryController.text);
+        category: categoryController.text,
+        dateTime: _datetime.day.toString());
 
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
@@ -58,8 +63,25 @@ class _AddTodoState extends State<AddTodo> {
                     hint: 'Category',
                     controller: categoryController,
                     labelText: 'Category'),
+                ElevatedButton(
+                    onPressed: () {
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        builder: (context) => SizedBox(
+                          height: MediaQuery.of(context).size.height / 3,
+                          child: CupertinoDatePicker(
+                              onDateTimeChanged: (DateTime datetime) {
+                            setState(() {
+                              _datetime = datetime;
+                              print(datetime);
+                            });
+                          }),
+                        ),
+                      );
+                    },
+                    child: Text('Pick Time')),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0,bottom : 50),
+                  padding: const EdgeInsets.only(top: 50.0, bottom: 50),
                   child: SizedBox(
                       width: 300,
                       height: 50,
@@ -83,8 +105,7 @@ class _AddTodoState extends State<AddTodo> {
                                       timeInSecForIosWeb: 1,
                                       backgroundColor: Colors.black,
                                       textColor: Colors.white,
-                                      fontSize: 16.0
-                                  );
+                                      fontSize: 16.0);
                                 } else {
                                   saveTodo();
                                   titleController.text = '';
@@ -98,8 +119,7 @@ class _AddTodoState extends State<AddTodo> {
                                       timeInSecForIosWeb: 1,
                                       backgroundColor: Colors.black,
                                       textColor: Colors.white,
-                                      fontSize: 16.0
-                                  );
+                                      fontSize: 16.0);
                                 }
                               }
                             });

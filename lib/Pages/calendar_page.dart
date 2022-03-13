@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:todo_app/Widgets/Todo/todo_card.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -9,23 +13,55 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedDay = _focusedDay;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top : 100.0),
-          child: Column(
-            children: [
-              Image.asset('lib/img/Todo Moon Logo.png',width: 150,height: 150,),
-              const Padding(
-                padding: EdgeInsets.all(30.0),
-                child: Text('Calendar Page',style: TextStyle(fontSize: 30),),
-              ),
-              const Text('In Progress..',style: TextStyle(fontSize: 20)),
-            ],
-          ),
+        child: Column(
+          children: [
+            TableCalendar(
+              firstDay: DateTime.utc(2010),
+              lastDay: DateTime.utc(2050),
+              focusedDay: _focusedDay,
+              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+              calendarFormat: CalendarFormat.month,
+              calendarStyle: const CalendarStyle(
+                  todayDecoration: BoxDecoration(
+                      color: Colors.amber, shape: BoxShape.circle)),
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  _selectedDay = selectedDay;
+                  _focusedDay = focusedDay; // update `_focusedDay` here as well
+                });
+              },
+            ),
+            Expanded(
+              child: Consumer<TodosProvider>(builder: (context, state, child) {
+                return ListView.builder(
+                  itemCount: state.unCompletedTodos
+                      .where((Todo) =>
+                          Todo.dateTime == _selectedDay?.day.toString())
+                      .length,
+                  itemBuilder: (context, index) => TodoCard(
+                      todo: state.unCompletedTodos
+                          .where((Todo) =>
+                              Todo.dateTime == _selectedDay?.day.toString())
+                          .toList()[index]),
+                );
+              }),
+            ),
+          ],
         ),
       ),
     );

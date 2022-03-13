@@ -13,7 +13,7 @@ class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left : 20,right: 20,top: 30),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,7 +30,7 @@ class _Task_InfoState extends State<TaskInfo> {
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
-                        'You have ${state.unCompletedTodos.length} tasks for today',
+                        'You have ${state.dayOfTodos.length} tasks for today',
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,

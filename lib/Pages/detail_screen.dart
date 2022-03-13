@@ -1,17 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:todo_app/Models/todo.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen(
-      {Key? key,
-      required this.title,
-      required this.desc,
-      required this.category})
-      : super(key: key);
-  final String title;
-  final String desc;
-  final String category;
+  const DetailScreen({Key? key, required this.todo}) : super(key: key);
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
@@ -21,44 +15,57 @@ class DetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top : 50, left: 10.0),
-            child: categoryText(category, context),
+            padding: const EdgeInsets.only(top: 50, left: 10.0),
+            child: categoryText(todo.category, context),
           ),
           Padding(
-            padding: const EdgeInsets.only(top : 20, left: 14.0),
-            child:
-            Column(children: [
+            padding: const EdgeInsets.only(top: 20, left: 14.0),
+            child: Column(children: [
               Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold),
+                todo.title,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                todo.dateTime,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ]),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top :30.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Center(
                       child: Padding(
-                        padding: EdgeInsets.only(top : 30,left : 10.0),
+                        padding: EdgeInsets.only(top: 30, left: 10.0),
                         child: Text(
                           'Description',
-                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 10.0,left: 15),
-                        child: Text(desc.isEmpty ? 'Desc is empty' : desc,style: const TextStyle(fontSize: 18,color: Colors.black),),
+                        padding: const EdgeInsets.only(top: 10.0, left: 15),
+                        child: Text(
+                          todo.description.isEmpty
+                              ? 'Desc is empty'
+                              : todo.description,
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.black),
+                        ),
                       ),
                     )
                   ],
@@ -71,6 +78,7 @@ class DetailScreen extends StatelessWidget {
     );
   }
 }
+
 Widget categoryText(String categoryName, BuildContext context) {
   return Container(
     height: MediaQuery.of(context).size.height / 30,

@@ -13,6 +13,7 @@ class TodosProvider extends ChangeNotifier {
 
   //initial state
   List<Todo> todos = [];
+  List<Todo> dayOfTodos = [];
 
   //  getter
 
@@ -87,8 +88,11 @@ class TodosProvider extends ChangeNotifier {
   }
 
   // Percent Method
-  double calcTodoPercent() {
-    double percent = (completedTodos.length / allTodos.length);
+  double calcTodoPercent(DateTime day) {
+    double percent = (unCompletedTodos
+            .where((Todo) => Todo.dateTime == day.day.toString())
+            .length /
+        allTodos.where((Todo) => Todo.dateTime == day.day.toString()).length);
     //print('Percent : $percent');
     // print('Comp todos : ${completedTodos.length}');
     // print('UnComp todos : ${unCompletedTodos.length}');
@@ -168,6 +172,10 @@ class TodosProvider extends ChangeNotifier {
     } else {
       //print('Surname is null');
     }
+  }
+
+  List<Todo> getTodos(DateTime day) {
+    return todos.reversed.where((todo) => todo.dateTime == day).toList();
   }
 
   Future<dynamic> readName(String key) async {

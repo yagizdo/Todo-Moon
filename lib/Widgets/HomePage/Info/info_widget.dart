@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 // External Libs
 import 'package:hexcolor/hexcolor.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -28,7 +27,8 @@ class InfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double percent = Provider.of<TodosProvider>(context).calcTodoPercent();
+    double percent =
+        Provider.of<TodosProvider>(context).calcTodoPercent(DateTime.now());
     //print(percent);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,7 @@ class InfoWidget extends StatelessWidget {
               if (constraints.maxWidth < 350) {
                 return Container(
                   width: MediaQuery.of(context).size.width / 1.1,
-                  height: MediaQuery.of(context).size.height / 7.8,
+                  height: MediaQuery.of(context).size.height / 7.7,
                   decoration: BoxDecoration(
                       color: HexColor('#ff9d73'),
                       borderRadius: BorderRadius.circular(20)),
@@ -85,13 +85,13 @@ class InfoWidget extends StatelessWidget {
               } else {
                 return Container(
                   width: MediaQuery.of(context).size.width / 1.1,
-                  height: MediaQuery.of(context).size.height / 7.8,
+                  height: MediaQuery.of(context).size.height / 7.5,
                   decoration: BoxDecoration(
                       color: HexColor('#ff9d73'),
                       borderRadius: BorderRadius.circular(20)),
                   child: Padding(
                     padding:
-                    const EdgeInsets.only(top: 14, bottom: 12, left: 24),
+                        const EdgeInsets.only(top: 14, bottom: 12, left: 24),
                     child: Row(
                       children: [
                         Column(children: [
@@ -104,12 +104,12 @@ class InfoWidget extends StatelessWidget {
                             children: [
                               Consumer<TodosProvider>(
                                 builder: (context, state, child) => Text(
-                                    'Good Job ${state.name}!',
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  'Good Job ${state.name}!',
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 6),

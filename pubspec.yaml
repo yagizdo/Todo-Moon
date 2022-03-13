@@ -44,6 +44,7 @@ dependencies:
   fluttertoast: ^8.0.8
   modal_bottom_sheet: ^2.0.0
   animated_splash_screen: ^1.1.0
+  table_calendar: ^3.0.4
 
 
 dev_dependencies:

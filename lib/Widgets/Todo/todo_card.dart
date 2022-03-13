@@ -9,7 +9,7 @@ import 'package:todo_app/Pages/detail_screen.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class TodoCard extends StatelessWidget {
-  const TodoCard({required this.todo,String? key});
+  const TodoCard({required this.todo, String? key});
 
   final Todo todo;
 
@@ -19,8 +19,11 @@ class TodoCard extends StatelessWidget {
       onTap: () {
         Future(() {
           //Navigator.push(context,MaterialPageRoute(builder: (context) => DetailScreen(title: todo.title, desc: todo.description, category: todo.category)));
-          showBarModalBottomSheet(context: context,
-              builder: (context) => DetailScreen(title: todo.title, desc: todo.description, category: todo.category));
+          showBarModalBottomSheet(
+              context: context,
+              builder: (context) => DetailScreen(
+                    todo: todo,
+                  ));
         });
       },
       child: Container(
@@ -40,8 +43,7 @@ class TodoCard extends StatelessWidget {
                     timeInSecForIosWeb: 1,
                     backgroundColor: Colors.green,
                     textColor: Colors.white,
-                    fontSize: 16.0
-                );
+                    fontSize: 16.0);
               },
             ),
             children: [
@@ -56,8 +58,7 @@ class TodoCard extends StatelessWidget {
                       timeInSecForIosWeb: 1,
                       backgroundColor: Colors.green,
                       textColor: Colors.white,
-                      fontSize: 16.0
-                  );
+                      fontSize: 16.0);
                 },
                 backgroundColor: Colors.green,
                 label: 'Done!',
@@ -77,8 +78,7 @@ class TodoCard extends StatelessWidget {
                     timeInSecForIosWeb: 1,
                     backgroundColor: Colors.red,
                     textColor: Colors.white,
-                    fontSize: 16.0
-                );
+                    fontSize: 16.0);
               },
             ),
             children: [
@@ -93,8 +93,7 @@ class TodoCard extends StatelessWidget {
                       timeInSecForIosWeb: 1,
                       backgroundColor: Colors.red,
                       textColor: Colors.white,
-                      fontSize: 16.0
-                  );
+                      fontSize: 16.0);
                 },
                 backgroundColor: Colors.red,
                 label: 'Remove!',
@@ -132,8 +131,7 @@ class TodoCard extends StatelessWidget {
                                 timeInSecForIosWeb: 1,
                                 backgroundColor: Colors.green,
                                 textColor: Colors.white,
-                                fontSize: 16.0
-                            );
+                                fontSize: 16.0);
                           },
                         ),
                       ),
