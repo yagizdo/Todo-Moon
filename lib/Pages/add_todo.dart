@@ -27,9 +27,8 @@ class _AddTodoState extends State<AddTodo> {
         title: titleController.text,
         description: descController.text,
         category: categoryController.text,
-        dateTime:
-            _selectedDatetime?.day.toString() ?? DateTime.now().day.toString());
-
+        dateMilliseconds: _selectedDatetime?.millisecondsSinceEpoch ??
+            DateTime.now().millisecondsSinceEpoch);
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
 
@@ -64,23 +63,39 @@ class _AddTodoState extends State<AddTodo> {
                     hint: 'Category',
                     controller: categoryController,
                     labelText: 'Category'),
-                ElevatedButton(
-                    onPressed: () {
-                      showMaterialModalBottomSheet(
-                        context: context,
-                        builder: (context) => SizedBox(
-                          height: MediaQuery.of(context).size.height / 3,
-                          child: CupertinoDatePicker(
-                              onDateTimeChanged: (DateTime datetime) {
-                            setState(() {
-                              _selectedDatetime = datetime;
-                              print(datetime);
-                            });
-                          }),
-                        ),
-                      );
-                    },
-                    child: Text('Pick Time')),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1,
+                    height: MediaQuery.of(context).size.height / 14,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => SizedBox(
+                              height: MediaQuery.of(context).size.height / 3,
+                              child: CupertinoDatePicker(
+                                  onDateTimeChanged: (DateTime datetime) {
+                                setState(() {
+                                  _selectedDatetime = datetime;
+                                  print(datetime);
+                                });
+                              }),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Pick Time'),
+                            Text('(Default date : Today)')
+                          ],
+                        )),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50.0, bottom: 50),
                   child: SizedBox(

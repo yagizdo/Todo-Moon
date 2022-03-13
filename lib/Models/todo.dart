@@ -3,15 +3,14 @@ class Todo {
   String description;
   bool complete = false;
   String category;
-  final now = DateTime.now().day.toString();
-  String dateTime;
+  int dateMilliseconds;
 
   Todo(
       {required this.title,
       this.description = '',
       this.complete = false,
-      this.category = 'Uncategorized',
-      required this.dateTime});
+      required this.dateMilliseconds,
+      this.category = 'Uncategorized'});
 
   //toObject
   Todo.fromMap(Map map)
@@ -19,7 +18,7 @@ class Todo {
         description = map['description'] as String,
         complete = map['complete'] as bool,
         category = map['category'] as String,
-        dateTime = map['datetime'] as String;
+        dateMilliseconds = map['dateMilliseconds'] as int;
 
   //toJson
   Map<String, dynamic> toJson() {
@@ -28,7 +27,7 @@ class Todo {
     data['description'] = description;
     data['complete'] = complete;
     data['category'] = category;
-    data['datetime'] = dateTime;
+    data['dateMilliseconds'] = dateMilliseconds;
     return data;
   }
 

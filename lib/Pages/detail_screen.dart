@@ -9,6 +9,8 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime todoDate =
+        DateTime.fromMillisecondsSinceEpoch(todo.dateMilliseconds);
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Column(
@@ -27,7 +29,7 @@ class DetailScreen extends StatelessWidget {
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                todo.dateTime,
+                todoDate.toString(),
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),

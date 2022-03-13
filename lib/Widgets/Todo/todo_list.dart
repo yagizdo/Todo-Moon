@@ -24,13 +24,19 @@ class _TodoWidgetState extends State<TodoWidget> {
         height: MediaQuery.of(context).size.height / 2.68,
         child: ListView.builder(
             itemCount: state.unCompletedTodos
-                .where((Todo) => Todo.dateTime == DateTime.now().day.toString())
+                .where((Todo) =>
+                    DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                        .day ==
+                    DateTime.now().day)
                 .length,
             itemBuilder: (context, index) {
               return TodoCard(
                 todo: state.unCompletedTodos
                     .where((Todo) =>
-                        Todo.dateTime == DateTime.now().day.toString())
+                        DateTime.fromMillisecondsSinceEpoch(
+                                Todo.dateMilliseconds)
+                            .day ==
+                        DateTime.now().day)
                     .toList()[index],
               );
             }),

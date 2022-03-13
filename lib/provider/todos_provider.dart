@@ -18,9 +18,12 @@ class TodosProvider extends ChangeNotifier {
   List<Todo> todosList = [];
 
   List<Todo> getTodos(DateTime day) {
-    todosList = unCompletedTodos
-        .where((Todo) => Todo.dateTime == day.day.toString())
-        .toList();
+    todosList = unCompletedTodos.where((Todo) {
+      return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day ==
+              day.day &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).month ==
+              day.month;
+    }).toList();
     return todosList;
   }
   //  getter
@@ -98,9 +101,13 @@ class TodosProvider extends ChangeNotifier {
   // Percent Method
   double calcTodoPercent(DateTime day) {
     double percent = (unCompletedTodos
-            .where((Todo) => Todo.dateTime == day.day.toString())
+            .where(
+                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
             .length /
-        allTodos.where((Todo) => Todo.dateTime == day.day.toString()).length);
+        allTodos
+            .where(
+                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
+            .length);
     //print('Percent : $percent');
     // print('Comp todos : ${completedTodos.length}');
     // print('UnComp todos : ${unCompletedTodos.length}');

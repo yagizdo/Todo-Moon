@@ -51,15 +51,26 @@ class _CalendarPageState extends State<CalendarPage> {
             Expanded(
               child: Consumer<TodosProvider>(builder: (context, state, child) {
                 return ListView.builder(
-                  itemCount: state.unCompletedTodos
-                      .where((Todo) =>
-                          Todo.dateTime == _selectedDay?.day.toString())
-                      .length,
+                  itemCount: state.unCompletedTodos.where((Todo) {
+                    return DateTime.fromMillisecondsSinceEpoch(
+                                    Todo.dateMilliseconds)
+                                .day ==
+                            _selectedDay?.day &&
+                        DateTime.fromMillisecondsSinceEpoch(
+                                    Todo.dateMilliseconds)
+                                .month ==
+                            _selectedDay?.month;
+                  }).length,
                   itemBuilder: (context, index) => TodoCard(
-                      todo: state.unCompletedTodos
-                          .where((Todo) =>
-                              Todo.dateTime == _selectedDay?.day.toString())
-                          .toList()[index]),
+                      todo: state.unCompletedTodos.where((Todo) {
+                    var todoTime = DateTime.fromMillisecondsSinceEpoch(
+                        Todo.dateMilliseconds);
+                    return todoTime.day == _selectedDay?.day &&
+                        DateTime.fromMillisecondsSinceEpoch(
+                                    Todo.dateMilliseconds)
+                                .month ==
+                            _selectedDay?.month;
+                  }).toList()[index]),
                 );
               }),
             ),
