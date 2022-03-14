@@ -11,7 +11,7 @@ class ProfileImg extends StatelessWidget {
     return Consumer<TodosProvider>(
       builder: (context, state, child) => CircleAvatar(
         child: Text(
-          '${state.name[0]}${state.surname[0]}',
+          '${state.name[0].toUpperCase()}${state.surname[0].toUpperCase()}',
           style: const TextStyle(fontSize: 30, color: Colors.white),
         ),
         backgroundColor: HexColor('#ff9d73'),
