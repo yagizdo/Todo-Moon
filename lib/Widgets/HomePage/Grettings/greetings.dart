@@ -34,13 +34,13 @@ class Greetings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _welcomeText('Hello', 40, FontWeight.normal, Colors.black, 15),
+                _welcomeText('Hello', 34, FontWeight.normal, Colors.black, 15),
                 Consumer<TodosProvider>(
-                  builder: (context, state,child) => Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: _welcomeText(
-                          state.name, 40, FontWeight.bold, Colors.black, 15),
-                    ),
+                  builder: (context, state, child) => Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: _welcomeText(
+                        state.name, 34, FontWeight.bold, Colors.black, 15),
+                  ),
                 ),
               ],
             ),
@@ -48,13 +48,14 @@ class Greetings extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: _welcomeText(
-                        'How is your work life balance this week?',
-                        15.5,
-                        FontWeight.normal,
-                        Colors.black,
-                        15)),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: _welcomeText(
+                      'How is your work life balance this week?',
+                      15,
+                      FontWeight.normal,
+                      Colors.black,
+                      14),
+                ),
               ],
             ),
           ]),

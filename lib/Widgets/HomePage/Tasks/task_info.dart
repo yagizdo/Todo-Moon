@@ -13,7 +13,7 @@ class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -24,7 +24,7 @@ class _Task_InfoState extends State<TaskInfo> {
               children: [
                 const Text(
                   'Your tasks',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 5.0),
@@ -32,7 +32,7 @@ class _Task_InfoState extends State<TaskInfo> {
                       builder: (context, state, child) => Text(
                         'You have ${state.dayOfTodos.length} tasks for today',
                         style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                       ),
@@ -41,9 +41,11 @@ class _Task_InfoState extends State<TaskInfo> {
             ),
           ),
           Container(
-            width: 30,
-            height: 30,
-            color: Colors.white,
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             child: const Icon(Icons.calendar_today),
           ),
         ],
