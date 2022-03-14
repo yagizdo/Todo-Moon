@@ -24,7 +24,7 @@ class SettingsSection extends StatelessWidget {
             trailing: ChangeNameBTN(),
           ),
           CupertinoListTile(
-            title: Text('Delete All Todos'),
+            title: Text('Delete All Completed Todos'),
             trailing: ClearTodosBtn(),
           ),
         ],
