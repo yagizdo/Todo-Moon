@@ -17,6 +17,8 @@ class TodosProvider extends ChangeNotifier {
 
   List<Todo> todosList = [];
 
+  List<Todo> completedTodosList = [];
+
   List<Todo> getTodos(DateTime day) {
     todosList = unCompletedTodos.where((Todo) {
       return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day ==
@@ -26,8 +28,8 @@ class TodosProvider extends ChangeNotifier {
     }).toList();
     return todosList;
   }
-  //  getter
 
+  //  getter
   String get name => _name;
   String get surname => _surname;
   UnmodifiableListView<Todo> get allTodos =>
@@ -49,12 +51,20 @@ class TodosProvider extends ChangeNotifier {
   void removeTodo(Todo todo) {
     todos.remove(todo);
     updateDataToLocalStorage();
-    checkAllTodos();
+    checkCompletedTodos();
     notifyListeners();
   }
 
-  bool checkAllTodos() {
-    if (allTodos.isEmpty) {
+  void toggleTodo(Todo todo) {
+    var index = todos.indexOf(todo);
+    todos[index].toggleCompleted();
+    updateDataToLocalStorage();
+    notifyListeners();
+  }
+
+  // For delete completed todos
+  bool checkCompletedTodos() {
+    if (completedTodos.isEmpty) {
       notifyListeners();
       return true;
     }
@@ -62,15 +72,15 @@ class TodosProvider extends ChangeNotifier {
     return false;
   }
 
-  void removeAllTodos() {
-    todos.clear();
-    updateDataToLocalStorage();
-    notifyListeners();
-  }
-
-  void toggleTodo(Todo todo) {
-    var index = todos.indexOf(todo);
-    todos[index].toggleCompleted();
+  void removeCompletedTodos() {
+    todos.forEach((todo) {
+      if (todo.complete) {
+        var index = todos.indexOf(todo);
+        completedTodosList.add(todo);
+        notifyListeners();
+      }
+    });
+    todos.removeWhere((todo) => completedTodosList.contains(todo));
     updateDataToLocalStorage();
     notifyListeners();
   }
@@ -84,23 +94,6 @@ class TodosProvider extends ChangeNotifier {
     getName();
     getSurname();
     notifyListeners();
-  }
-
-  // Percent Method
-  double calcTodoPercent(DateTime day) {
-    double percent = (unCompletedTodos
-            .where(
-                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
-            .length /
-        allTodos
-            .where(
-                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
-            .length);
-    //print('Percent : $percent');
-    // print('Comp todos : ${completedTodos.length}');
-    // print('UnComp todos : ${unCompletedTodos.length}');
-    //print(percent.runtimeType);
-    return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
   }
 
   void saveDataToLocalStorage() {
@@ -123,23 +116,6 @@ class TodosProvider extends ChangeNotifier {
     sharedPreferences!.setStringList('list', spList);
   }
 
-  void setName(String userText) {
-    if (userText.isEmpty) {
-    } else {
-      saveName(userText);
-      notifyListeners();
-    }
-  }
-
-  void setsurName(String userText) {
-    if (userText.isEmpty) {
-      //print('Boş bura kardeşş');
-    } else {
-      savesurname(userText);
-      notifyListeners();
-    }
-  }
-
   void saveName(String userText) {
     _name = userText;
     sharedPreferences!.setString('userName', userText);
@@ -152,6 +128,36 @@ class TodosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // To-do Percent Method
+  double calcTodoPercent(DateTime day) {
+    double percent = (unCompletedTodos
+            .where(
+                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
+            .length /
+        allTodos
+            .where(
+                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
+            .length);
+    return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
+  }
+
+  // Name and Surname Methods
+  void setName(String userText) {
+    if (userText.isEmpty) {
+    } else {
+      saveName(userText);
+      notifyListeners();
+    }
+  }
+
+  void setsurName(String userText) {
+    if (userText.isEmpty) {
+    } else {
+      savesurname(userText);
+      notifyListeners();
+    }
+  }
+
   String? getName() {
     String? spName = sharedPreferences?.getString('userName');
     if (spName != null) {
@@ -159,7 +165,6 @@ class TodosProvider extends ChangeNotifier {
       notifyListeners();
       return spName;
     } else {
-      //print('Name is null');
       return null;
     }
   }
@@ -168,14 +173,11 @@ class TodosProvider extends ChangeNotifier {
     String? spName = sharedPreferences!.getString('userSurname');
     if (spName != null) {
       _surname = spName;
-      //print('SP den gelen surname : $_surname');
-      //print('SP den gelen surname 2 : $_surname');
       notifyListeners();
-    } else {
-      //print('Surname is null');
-    }
+    } else {}
   }
 
+  // Check Name
   Future<dynamic> readName(String key) async {
     final prefs = await SharedPreferences.getInstance();
     dynamic obj = prefs.get(key);

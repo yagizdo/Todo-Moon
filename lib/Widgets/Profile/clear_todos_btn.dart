@@ -14,10 +14,10 @@ class ClearTodosBtn extends StatelessWidget {
       child: IconButton(
         onPressed: () {
           if (Provider.of<TodosProvider>(context, listen: false)
-                  .checkAllTodos() ==
+                  .checkCompletedTodos() ==
               true) {
             Fluttertoast.showToast(
-                msg: "Todo List is Empty",
+                msg: "You do not have any completed todo.",
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.BOTTOM,
                 timeInSecForIosWeb: 1,
@@ -37,7 +37,7 @@ class ClearTodosBtn extends StatelessWidget {
                       ElevatedButton(
                           onPressed: () {
                             Provider.of<TodosProvider>(context, listen: false)
-                                .removeAllTodos();
+                                .removeCompletedTodos();
                             Navigator.of(context).pop();
                             Fluttertoast.showToast(
                                 msg: "Deleted!",
