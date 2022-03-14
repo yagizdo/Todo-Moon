@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/main_screen.dart';
@@ -10,6 +11,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   TodosProvider().initSharedPreferences();
   var userName = await TodosProvider().readName('userName');
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(
     ChangeNotifierProvider<TodosProvider>(
       create: (BuildContext context) => TodosProvider(),

@@ -27,53 +27,59 @@ class _CalendarPageState extends State<CalendarPage> {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Center(
-        child: Column(
-          children: [
-            TableCalendar(
-              firstDay: DateTime.utc(2010),
-              lastDay: DateTime.utc(2050),
-              eventLoader:
-                  Provider.of<TodosProvider>(context, listen: false).getTodos,
-              focusedDay: _focusedDay,
-              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-              calendarFormat: CalendarFormat.month,
-              calendarStyle: const CalendarStyle(
-                  todayDecoration: BoxDecoration(
-                      color: Colors.amber, shape: BoxShape.circle)),
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay; // update `_focusedDay` here as well
-                });
-              },
-            ),
-            Expanded(
-              child: Consumer<TodosProvider>(builder: (context, state, child) {
-                return ListView.builder(
-                  itemCount: state.unCompletedTodos.where((Todo) {
-                    return DateTime.fromMillisecondsSinceEpoch(
-                                    Todo.dateMilliseconds)
-                                .day ==
-                            _selectedDay?.day &&
-                        DateTime.fromMillisecondsSinceEpoch(
-                                    Todo.dateMilliseconds)
-                                .month ==
-                            _selectedDay?.month;
-                  }).length,
-                  itemBuilder: (context, index) => TodoCard(
-                      todo: state.unCompletedTodos.where((Todo) {
-                    var todoTime = DateTime.fromMillisecondsSinceEpoch(
-                        Todo.dateMilliseconds);
-                    return todoTime.day == _selectedDay?.day &&
-                        DateTime.fromMillisecondsSinceEpoch(
-                                    Todo.dateMilliseconds)
-                                .month ==
-                            _selectedDay?.month;
-                  }).toList()[index]),
-                );
-              }),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 25.0),
+          child: Column(
+            children: [
+              TableCalendar(
+                rowHeight: 45,
+                firstDay: DateTime.utc(2010),
+                lastDay: DateTime.utc(2050),
+                eventLoader:
+                    Provider.of<TodosProvider>(context, listen: false).getTodos,
+                focusedDay: _focusedDay,
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                calendarFormat: CalendarFormat.month,
+                calendarStyle: const CalendarStyle(
+                    todayDecoration: BoxDecoration(
+                        color: Colors.amber, shape: BoxShape.circle)),
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay =
+                        focusedDay; // update `_focusedDay` here as well
+                  });
+                },
+              ),
+              Expanded(
+                child:
+                    Consumer<TodosProvider>(builder: (context, state, child) {
+                  return ListView.builder(
+                    itemCount: state.unCompletedTodos.where((Todo) {
+                      return DateTime.fromMillisecondsSinceEpoch(
+                                      Todo.dateMilliseconds)
+                                  .day ==
+                              _selectedDay?.day &&
+                          DateTime.fromMillisecondsSinceEpoch(
+                                      Todo.dateMilliseconds)
+                                  .month ==
+                              _selectedDay?.month;
+                    }).length,
+                    itemBuilder: (context, index) => TodoCard(
+                        todo: state.unCompletedTodos.where((Todo) {
+                      var todoTime = DateTime.fromMillisecondsSinceEpoch(
+                          Todo.dateMilliseconds);
+                      return todoTime.day == _selectedDay?.day &&
+                          DateTime.fromMillisecondsSinceEpoch(
+                                      Todo.dateMilliseconds)
+                                  .month ==
+                              _selectedDay?.month;
+                    }).toList()[index]),
+                  );
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );

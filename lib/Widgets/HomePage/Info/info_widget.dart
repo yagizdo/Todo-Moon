@@ -85,7 +85,7 @@ class InfoWidget extends StatelessWidget {
               } else {
                 return Container(
                   width: MediaQuery.of(context).size.width / 1.1,
-                  height: MediaQuery.of(context).size.height / 7.8,
+                  height: MediaQuery.of(context).size.height / 7.4,
                   decoration: BoxDecoration(
                       color: HexColor('#ff9d73'),
                       borderRadius: BorderRadius.circular(20)),
