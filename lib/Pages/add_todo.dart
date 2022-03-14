@@ -107,9 +107,9 @@ class _AddTodoState extends State<AddTodo> {
                   decoration: BoxDecoration(color: Colors.grey[200]),
                   child: _selectedDatetime == null
                       ? Text(
-                          'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}')
+                          'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
                       : Text(
-                          'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}:${_selectedDatetime?.month.toString().padLeft(2, '0')}:${_selectedDatetime?.year}'),
+                          'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
                 ),
               ),
               Padding(

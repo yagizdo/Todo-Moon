@@ -178,6 +178,8 @@ Widget titleText(String titleName) {
     child: Center(
         child: Text(
       titleName,
+      maxLines: 2,
+      overflow: TextOverflow.fade,
       style: const TextStyle(
           color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
     )),

@@ -21,15 +21,16 @@ class DetailScreen extends StatelessWidget {
             child: categoryText(todo.category, context),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 14.0),
-            child: Column(children: [
+            padding: const EdgeInsets.only(top: 20, left: 10),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
                 todo.title,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                todoDate.toString(),
+                '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}',
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
@@ -84,7 +85,7 @@ class DetailScreen extends StatelessWidget {
 Widget categoryText(String categoryName, BuildContext context) {
   return Container(
     height: MediaQuery.of(context).size.height / 30,
-    width: MediaQuery.of(context).size.width / 4,
+    width: MediaQuery.of(context).size.width / 2.7,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20.0),
       color: HexColor('#d3e3f2'),
@@ -95,7 +96,7 @@ Widget categoryText(String categoryName, BuildContext context) {
           child: Text(
         categoryName,
         style: const TextStyle(
-            color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 10),
+            color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 12),
       )),
     ),
   );

@@ -32,7 +32,7 @@ class ClearTodosBtn extends StatelessWidget {
                     backgroundColor: HexColor('#f9f6e8'),
                     title: const Text('Are you sure?'),
                     content: const Text(
-                        'You do realize that incomplete todos will also be deleted, right?'),
+                        'You do realize that all todos you complete will be deleted, right?'),
                     actions: [
                       ElevatedButton(
                           onPressed: () {
