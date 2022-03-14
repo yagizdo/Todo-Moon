@@ -30,7 +30,7 @@ class _Task_InfoState extends State<TaskInfo> {
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
-                        'You have ${state.dayOfTodos.length} tasks for today',
+                        'You have ${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length} tasks for today',
                         style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

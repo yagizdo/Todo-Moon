@@ -20,8 +20,8 @@ class InfoWidget extends StatelessWidget {
             : '${(percent * 100).round()}%',
         style: const TextStyle(color: Colors.white, fontSize: 10),
       ),
-      backgroundColor: Colors.orangeAccent,
-      progressColor: Colors.white,
+      backgroundColor: Colors.white,
+      progressColor: Colors.orangeAccent,
     );
   }
 

@@ -13,7 +13,6 @@ class TodosProvider extends ChangeNotifier {
 
   //initial state
   List<Todo> todos = [];
-  List<Todo> dayOfTodos = [];
 
   List<Todo> todosList = [];
 
@@ -130,13 +129,17 @@ class TodosProvider extends ChangeNotifier {
 
   // To-do Percent Method
   double calcTodoPercent(DateTime day) {
-    double percent = (unCompletedTodos
-            .where(
-                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
+    double percent = (completedTodos
+            .where((Todo) =>
+                DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                    .day ==
+                DateTime.now().day)
             .length /
         allTodos
-            .where(
-                (Todo) => Todo.dateMilliseconds == day.millisecondsSinceEpoch)
+            .where((Todo) =>
+                DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                    .day ==
+                DateTime.now().day)
             .length);
     return (completedTodos == 0 && unCompletedTodos == 0) ? 0 : percent;
   }
