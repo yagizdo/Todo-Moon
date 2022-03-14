@@ -13,7 +13,6 @@ class TodoWidget extends StatefulWidget {
 class _TodoWidgetState extends State<TodoWidget> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

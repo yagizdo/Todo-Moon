@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
@@ -21,6 +22,8 @@ class _AddTodoState extends State<AddTodo> {
   var categoryController = TextEditingController();
 
   DateTime? _selectedDatetime;
+  String dateTextValue =
+      '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
   void saveTodo() {
     Todo todo = Todo(
@@ -39,111 +42,123 @@ class _AddTodoState extends State<AddTodo> {
       child: Form(
         key: formKey,
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 50.0),
-                  child: Text(
-                    'Add Task',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: Text(
+                  'Add Task',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                CustomTF(
-                    hint: 'Title',
-                    controller: titleController,
-                    labelText: 'Title'),
-                CustomTF(
-                    hint: 'Description',
-                    controller: descController,
-                    labelText: 'Description'),
-                CustomTF(
-                    hint: 'Category',
-                    controller: categoryController,
-                    labelText: 'Category'),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 1,
-                    height: MediaQuery.of(context).size.height / 14,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          showCupertinoModalBottomSheet(
-                            context: context,
-                            builder: (context) => SizedBox(
-                              height: MediaQuery.of(context).size.height / 3,
-                              child: CupertinoDatePicker(
-                                  onDateTimeChanged: (DateTime datetime) {
-                                setState(() {
-                                  _selectedDatetime = datetime;
-                                  print(datetime);
-                                });
-                              }),
-                            ),
-                          );
-                        },
+              ),
+              CustomTF(
+                  hint: 'Title',
+                  controller: titleController,
+                  labelText: 'Title'),
+              CustomTF(
+                  hint: 'Description',
+                  controller: descController,
+                  labelText: 'Description'),
+              CustomTF(
+                  hint: 'Category',
+                  controller: categoryController,
+                  labelText: 'Category'),
+
+              // Cupertino DatwTime Picker
+              GestureDetector(
+                onTap: () {
+                  showCupertinoModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                        color: HexColor('#f9f6e8'),
+                        height: MediaQuery.of(context).size.height / 1.4,
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text('Pick Time'),
-                            Text('(Default date : Today)')
+                            Expanded(
+                                flex: 7,
+                                child: CupertinoDatePicker(
+                                    minimumYear: 2022,
+                                    maximumYear: (DateTime.now().year + 30),
+                                    minimumDate: DateTime.now(),
+                                    mode: CupertinoDatePickerMode.date,
+                                    onDateTimeChanged: (datetime) {
+                                      setState(() {
+                                        _selectedDatetime = datetime;
+                                      });
+                                    })),
+                            Expanded(
+                              flex: 1,
+                              child: CupertinoButton(
+                                  child: const Text('Ok'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  }),
+                            )
                           ],
                         )),
-                  ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  height: MediaQuery.of(context).size.height / 12,
+                  margin: const EdgeInsets.only(top: 30),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  child: _selectedDatetime == null
+                      ? Text(
+                          'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}')
+                      : Text(
+                          'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}:${_selectedDatetime?.month.toString().padLeft(2, '0')}:${_selectedDatetime?.year}'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50.0, bottom: 50),
-                  child: SizedBox(
-                      width: 300,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.orangeAccent),
-                          onPressed: () {
-                            setState(() {
-                              if (formKey.currentState!.validate()) {
-                                if (categoryController.text.isEmpty) {
-                                  categoryController.text = 'Uncategorized';
-                                  saveTodo();
-                                  titleController.text = '';
-                                  descController.text = '';
-                                  categoryController.text = '';
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(
-                                      msg: "Added!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                } else {
-                                  saveTodo();
-                                  titleController.text = '';
-                                  descController.text = '';
-                                  categoryController.text = '';
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(
-                                      msg: "Added!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                }
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0, bottom: 50),
+                child: SizedBox(
+                    width: 300,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.orangeAccent),
+                        onPressed: () {
+                          setState(() {
+                            if (formKey.currentState!.validate()) {
+                              if (categoryController.text.isEmpty) {
+                                categoryController.text = 'Uncategorized';
+                                saveTodo();
+                                titleController.text = '';
+                                descController.text = '';
+                                categoryController.text = '';
+                                Navigator.pop(context);
+                                Fluttertoast.showToast(
+                                    msg: "Added!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.black,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              } else {
+                                saveTodo();
+                                titleController.text = '';
+                                descController.text = '';
+                                categoryController.text = '';
+                                Navigator.pop(context);
+                                Fluttertoast.showToast(
+                                    msg: "Added!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.black,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
                               }
-                            });
-                          },
-                          child: const Text('Add Todo'))),
-                )
-              ],
-            ),
+                            }
+                          });
+                        },
+                        child: const Text('Add Todo'))),
+              )
+            ],
           ),
         ),
       ),

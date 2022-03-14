@@ -9,25 +9,23 @@ import 'package:todo_app/provider/todos_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   TodosProvider().initSharedPreferences();
-  var name = await TodosProvider().readName('userName');
-  print('name $name');
+  var userName = await TodosProvider().readName('userName');
   runApp(
     ChangeNotifierProvider<TodosProvider>(
       create: (BuildContext context) => TodosProvider(),
       child: MyApp(
-        name: name.toString(),
+        userName: userName.toString(),
       ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key, required this.name}) : super(key: key);
-  var name;
+  const MyApp({Key? key, required this.userName}) : super(key: key);
+  final userName;
 
   @override
   Widget build(BuildContext context) {
-    print('name 2 : $name');
     return MaterialApp(
         title: 'Todo Moon',
         debugShowCheckedModeBanner: false,
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         home: AnimatedSplashScreen(
           splash: Image.asset('lib/img/Todo Moon Logo.png'),
-          nextScreen: name.toString().contains('null')
+          nextScreen: userName.toString().contains('null')
               ? const WelcomeScreen()
               : const MainScreen(),
           duration: 2000,

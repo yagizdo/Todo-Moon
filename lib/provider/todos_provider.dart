@@ -39,7 +39,7 @@ class TodosProvider extends ChangeNotifier {
   UnmodifiableListView<Todo> get unCompletedTodos =>
       UnmodifiableListView(todos.reversed.where((todo) => !todo.complete));
 
-//  methods for Todo
+//  methods for To-do
   void addTodo(Todo todo) {
     todos.add(todo);
     saveDataToLocalStorage();
@@ -67,18 +67,6 @@ class TodosProvider extends ChangeNotifier {
     updateDataToLocalStorage();
     notifyListeners();
   }
-  /* Not working rn
-  void removeCompletedTodos() {
-    List<Todo> compTodos = (todos.where((todo) => todo.complete).toList());
-    print('length before delete : ${compTodos.length}');
-    compTodos.clear();
-    todos.where((todo) => todo.complete) == compTodos;
-    print('length after clear: ${compTodos.length}');
-    todos.addAll(compTodos);
-    updateDataToLocalStorage();
-    print('List deleted');
-    notifyListeners();
-  }*/
 
   void toggleTodo(Todo todo) {
     var index = todos.indexOf(todo);
@@ -168,7 +156,6 @@ class TodosProvider extends ChangeNotifier {
     String? spName = sharedPreferences?.getString('userName');
     if (spName != null) {
       _name = spName;
-      print('name $spName');
       notifyListeners();
       return spName;
     } else {

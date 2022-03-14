@@ -18,7 +18,6 @@ class CompleteTodoCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Future(() {
-          //Navigator.push(context,MaterialPageRoute(builder: (context) => DetailScreen(title: todo.title, desc: todo.description, category: todo.category)));
           showBarModalBottomSheet(
               context: context,
               builder: (context) => DetailScreen(
