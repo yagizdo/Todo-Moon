@@ -17,9 +17,10 @@ class ChangeNameBTN extends StatelessWidget {
               /*Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChangeNameScreen()));*/
               showMaterialModalBottomSheet(
+                  enableDrag: false,
                   context: context,
                   builder: (context) => SizedBox(
-                      height: MediaQuery.of(context).size.height / 1.3,
+                      height: MediaQuery.of(context).size.height / 1.2,
                       child: ChangeNameScreen()));
             },
             child: const Text('Change'),
