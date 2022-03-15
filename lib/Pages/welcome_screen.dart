@@ -14,6 +14,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  // ignore: prefer_typing_uninitialized_variables
   late var userName;
 
   @override

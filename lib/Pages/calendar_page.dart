@@ -55,6 +55,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 child:
                     Consumer<TodosProvider>(builder: (context, state, child) {
                   return ListView.builder(
+                    // ignore: non_constant_identifier_names
                     itemCount: state.unCompletedTodos.where((Todo) {
                       return DateTime.fromMillisecondsSinceEpoch(
                                       Todo.dateMilliseconds)
@@ -66,6 +67,7 @@ class _CalendarPageState extends State<CalendarPage> {
                               _selectedDay?.month;
                     }).length,
                     itemBuilder: (context, index) => TodoCard(
+                        // ignore: non_constant_identifier_names
                         todo: state.unCompletedTodos.where((Todo) {
                       var todoTime = DateTime.fromMillisecondsSinceEpoch(
                           Todo.dateMilliseconds);

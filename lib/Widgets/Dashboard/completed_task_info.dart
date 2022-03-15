@@ -9,6 +9,7 @@ class CompletedTaskInfo extends StatefulWidget {
   _Task_InfoState createState() => _Task_InfoState();
 }
 
+// ignore: camel_case_types
 class _Task_InfoState extends State<CompletedTaskInfo> {
   @override
   Widget build(BuildContext context) {

@@ -8,27 +8,25 @@ class SettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Padding(
-            padding: EdgeInsets.only(top: 40, left: 15.0),
-            child: Text(
-              'Settings',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(top: 40, left: 15.0),
+          child: Text(
+            'Settings',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
           ),
-          CupertinoListTile(
-            title: Text('Change Name'),
-            trailing: ChangeNameBTN(),
-          ),
-          CupertinoListTile(
-            title: Text('Delete All Completed Todos'),
-            trailing: ClearTodosBtn(),
-          ),
-        ],
-      ),
+        ),
+        CupertinoListTile(
+          title: Text('Change Name'),
+          trailing: ChangeNameBTN(),
+        ),
+        CupertinoListTile(
+          title: Text('Delete All Completed Todos'),
+          trailing: ClearTodosBtn(),
+        ),
+      ],
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:todo_app/Pages/detail_screen.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class CompleteTodoCard extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const CompleteTodoCard({required this.todo});
 
   final Todo todo;

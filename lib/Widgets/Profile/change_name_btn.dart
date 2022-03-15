@@ -12,22 +12,28 @@ class ChangeNameBTN extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10.0, left: 10.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width / 3,
+        height: MediaQuery.of(context).size.height / 18,
         child: ElevatedButton(
-            onPressed: () {
-              /*Navigator.push(context,
+          onPressed: () {
+            /*Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChangeNameScreen()));*/
-              showMaterialModalBottomSheet(
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) => SizedBox(
-                      height: MediaQuery.of(context).size.height / 1.2,
-                      child: ChangeNameScreen()));
-            },
-            child: const Text('Change'),
-            style: ElevatedButton.styleFrom(
-              primary: HexColor('#ff9d73'),
-              shape: const StadiumBorder(),
-            )),
+            showMaterialModalBottomSheet(
+                context: context,
+                builder: (context) => SizedBox(
+                    height: MediaQuery.of(context).size.height / 1.1,
+                    child: const ChangeNameScreen()));
+          },
+          child: const Text('Change'),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(HexColor('#ff9d73')),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(13.0),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

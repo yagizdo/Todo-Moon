@@ -18,6 +18,7 @@ Widget _welcomeText(String text, double size, FontWeight fontWeight,
   );
 }
 
+// ignore: must_be_immutable
 class Greetings extends StatelessWidget {
   Greetings({Key? key, required this.customFontSize}) : super(key: key);
   double customFontSize;

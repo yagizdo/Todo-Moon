@@ -1,4 +1,3 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -32,17 +31,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Todo Moon',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: HexColor('#f9f6e8'),
-        ),
-        home: AnimatedSplashScreen(
-          splash: Image.asset('lib/img/Todo Moon Logo.png'),
-          nextScreen: userName.toString().contains('null')
-              ? const WelcomeScreen()
-              : const MainScreen(),
-          duration: 2000,
-        ));
+      title: 'Todo Moon',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: HexColor('#f9f6e8'),
+      ),
+      home: userName.toString().contains('null')
+          ? const WelcomeScreen()
+          : const MainScreen(),
+    );
   }
 }

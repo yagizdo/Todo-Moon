@@ -14,6 +14,7 @@ class ChangeNameScreen extends StatefulWidget {
 }
 
 class _ChangeNameScreenState extends State<ChangeNameScreen> {
+  // ignore: prefer_typing_uninitialized_variables
   late final formKey;
   @override
   void initState() {
@@ -29,16 +30,17 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           reverse: true,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              IconButton(
+              TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.cancel)),
-              Center(child: const ChangeNameText()),
+                  child: const Text('Close')),
+              const Center(child: ChangeNameText()),
               Form(
                 key: formKey,
                 child: Padding(

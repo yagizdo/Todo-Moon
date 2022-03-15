@@ -46,10 +46,17 @@ dependencies:
   animated_splash_screen: ^1.1.0
   table_calendar: ^3.0.4
   cupertino_list_tile: ^0.2.1
+  flutter_native_splash: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "lib/img/logo_350.png"
+  android: true
+  ios: true
 
   flutter_launcher_icons: ^0.9.2
   flutter_lints: ^1.0.4
@@ -84,7 +91,7 @@ flutter:
     - lib/img/star_img.png
     - lib/img/todoImage.jpg
     - lib/img/placeholder.jpg
-    - lib/img/Todo Moon Logo.png
+    - lib/img/logo_350.png
     - lib/img/businessman.png
   #   - images/a_dot_ham.jpeg
 

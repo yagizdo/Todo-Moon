@@ -67,7 +67,7 @@ class ClearTodosBtn extends StatelessWidget {
                 });
           }
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.delete,
           color: Colors.red,
           size: 25,

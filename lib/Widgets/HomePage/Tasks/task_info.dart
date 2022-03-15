@@ -9,11 +9,12 @@ class TaskInfo extends StatefulWidget {
   _Task_InfoState createState() => _Task_InfoState();
 }
 
+// ignore: camel_case_types
 class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: const EdgeInsets.only(left: 15, right: 20, top: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -40,13 +41,16 @@ class _Task_InfoState extends State<TaskInfo> {
               ],
             ),
           ),
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: const Icon(Icons.calendar_today),
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(14))),
+              child: const Icon(Icons.calendar_today),
+            ),
           ),
         ],
       ),

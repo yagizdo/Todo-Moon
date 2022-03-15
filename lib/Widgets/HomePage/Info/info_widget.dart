@@ -74,7 +74,7 @@ class InfoWidget extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             );
                           }),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.symmetric(vertical: 6),
                             child: Text(
                               'Your life is well-balanced',
