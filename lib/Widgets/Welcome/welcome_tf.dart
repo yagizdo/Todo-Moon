@@ -12,6 +12,7 @@ class WelcomCustomTF extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 2.0, right: 2.0, top: 20.0),
       child: TextFormField(
+        maxLength: 15,
         controller: controller,
         validator: (value) {
           if (value!.isEmpty) {

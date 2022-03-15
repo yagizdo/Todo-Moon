@@ -46,25 +46,26 @@ class _MainScreenState extends State<MainScreen> {
         child: currentScreen,
         bucket: bucket,
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: HexColor('#000000'),
-        child: const Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            showMaterialModalBottomSheet(
-              context: context,
-              builder: (context) => const AddTodo(),
-            );
-            currentTab = 5;
-          });
-        },
+      floatingActionButton: SizedBox(
+        height: 50,
+        child: FloatingActionButton(
+          backgroundColor: HexColor('#000000'),
+          child: const Icon(Icons.add),
+          onPressed: () {
+            setState(() {
+              showMaterialModalBottomSheet(
+                context: context,
+                builder: (context) => const AddTodo(),
+              );
+              currentTab = 5;
+            });
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 4,
         child: SizedBox(
-          height: 60,
+          height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
