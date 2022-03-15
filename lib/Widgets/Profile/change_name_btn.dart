@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../../Pages/welcome_screen.dart';
+import '../../Pages/change_name_page.dart';
 
 class ChangeNameBTN extends StatelessWidget {
   const ChangeNameBTN({Key? key}) : super(key: key);
@@ -15,8 +14,8 @@ class ChangeNameBTN extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 3,
         child: ElevatedButton(
             onPressed: () {
-              showCupertinoModalBottomSheet(
-                  context: context, builder: (context) => WelcomeScreen());
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ChangeNameScreen()));
             },
             child: const Text('Change'),
             style: ElevatedButton.styleFrom(
