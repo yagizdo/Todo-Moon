@@ -18,7 +18,7 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10.0),
+            padding: const EdgeInsets.only(top: 5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,4 +45,3 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
     );
   }
 }
-
