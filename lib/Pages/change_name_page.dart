@@ -31,8 +31,14 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
       body: SingleChildScrollView(
           reverse: true,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const ChangeNameText(),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.cancel)),
+              Center(child: const ChangeNameText()),
               Form(
                 key: formKey,
                 child: Padding(
@@ -46,34 +52,36 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                   ]),
                 ),
               ),
-              Consumer<TodosProvider>(
-                builder: (context, state, child) => Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 13,
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.amber.shade600),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(13.0),
-                          )),
-                        ),
-                        onPressed: () {
-                          bool validResult = formKey.currentState!.validate();
-                          if (validResult == true) {
-                            state.setName(nameController.text);
-                            state.setsurName(surnameController.text);
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const MainScreen()));
-                          }
-                        },
-                        child: const Text('Done')),
+              Center(
+                child: Consumer<TodosProvider>(
+                  builder: (context, state, child) => Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height / 13,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.amber.shade600),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13.0),
+                            )),
+                          ),
+                          onPressed: () {
+                            bool validResult = formKey.currentState!.validate();
+                            if (validResult == true) {
+                              state.setName(nameController.text);
+                              state.setsurName(surnameController.text);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MainScreen()));
+                            }
+                          },
+                          child: const Text('Done')),
+                    ),
                   ),
                 ),
               )
