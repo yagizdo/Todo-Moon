@@ -48,7 +48,7 @@ class ClearTodosBtn extends StatelessWidget {
                                 textColor: Colors.white,
                                 fontSize: 16.0);
                           },
-                          child: const Text('Delete completedaa todos!')),
+                          child: const Text('Delete completed todos!')),
                       TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
