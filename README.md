@@ -42,9 +42,8 @@ Run App
 - [X] Add Todo Page
 - [x] Shared Preferences for Add Todo Page
 - [x] State Management (Provider)
-- [ ] Settings Page (80% complete now)
 - [ ] Dark Mode
-- [ ] Splash Screen
+- [x] Splash Screen
 
 
 ##  Libraries I use in the application:
@@ -57,13 +56,19 @@ Run App
 - Flutter Toast : https://pub.dev/packages/fluttertoast
 - Flutter Launcher Icons : https://pub.dev/packages/flutter_launcher_icons
 - Modal Bottom Sheet : https://pub.dev/packages/modal_bottom_sheet
+- Flutter Native Splash : https://pub.dev/packages/flutter_native_splash
 
 
 ## Screenshots
 
+### Splash Screen
+<img align="center" width="300" height="600" src="lib/screenshots/splashscreen.png">
+
 ### Homepage
 <img align="left" width="300" height="600" src="lib/screenshots/homepage1.png">
 <img align="center" width="300" height="600" src="lib/screenshots/homepage2.png">
+
+### Description
 <img align="center" width="300" height="600" src="lib/screenshots/description.png">
 
 ### Add Todo
@@ -77,8 +82,6 @@ Run App
 ### Profile
 <img align="center" width="300" height="600" src="lib/screenshots/profile.png">
 
-### Settings
-<img align="center" width="300" height="600" src="lib/screenshots/settings.png">
 
 ## Contributing
 
