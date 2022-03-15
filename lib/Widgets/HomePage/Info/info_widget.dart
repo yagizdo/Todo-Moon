@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 // External Libs
 import 'package:hexcolor/hexcolor.dart';
@@ -6,10 +7,15 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class InfoWidget extends StatelessWidget {
-  InfoWidget({Key? key, required this.height, required this.width})
+  InfoWidget(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.customFontSize})
       : super(key: key);
   double width;
   double height;
+  double customFontSize;
 
   Widget _circularProgressBar(double percent) {
     return CircularPercentIndicator(
@@ -39,51 +45,52 @@ class InfoWidget extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-            LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              return Container(
-                width: MediaQuery.of(context).size.width / width,
-                height: MediaQuery.of(context).size.height / height,
-                decoration: BoxDecoration(
-                    color: HexColor('#ff9d73'),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 14, bottom: 12, left: 24),
-                  child: Row(
-                    children: [
-                      Column(children: [
-                        _circularProgressBar(percent),
-                      ]),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 14.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Good Job John!',
+            Container(
+              width: MediaQuery.of(context).size.width / width,
+              height: MediaQuery.of(context).size.height / height,
+              decoration: BoxDecoration(
+                  color: HexColor('#ff9d73'),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 14, bottom: 12, left: 24),
+                child: Row(
+                  children: [
+                    Column(children: [
+                      _circularProgressBar(percent),
+                    ]),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 14.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Consumer<TodosProvider>(
+                              builder: (context, state, child) {
+                            return AutoSizeText(
+                              'Good Job ${state.name}!',
+                              maxLines: 2,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: customFontSize,
                                   fontWeight: FontWeight.bold),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 6),
-                              child: Text(
-                                'Your life is well-balanced',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
+                            );
+                          }),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 6),
+                            child: Text(
+                              'Your life is well-balanced',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              );
-            }),
+              ),
+            )
           ],
         ),
       ],

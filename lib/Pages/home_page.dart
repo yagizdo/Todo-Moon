@@ -19,14 +19,26 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: HexColor('#f9f6e8'),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: Column(
-          children: [
-            Greetings(),
-            InfoWidget(height: 7.7, width: 1.1),
-            TaskInfo(),
-            Expanded(child: TodoWidget())
-          ],
-        ),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Column(
+            children: [
+              const Greetings(),
+              constraints.maxWidth < 350
+                  ? InfoWidget(
+                      height: 7.4,
+                      width: 1.1,
+                      customFontSize: 16,
+                    )
+                  : InfoWidget(
+                      height: 8,
+                      width: 1.1,
+                      customFontSize: 18,
+                    ),
+              const TaskInfo(),
+              const Expanded(child: TodoWidget())
+            ],
+          );
+        }),
       ),
     );
   }
