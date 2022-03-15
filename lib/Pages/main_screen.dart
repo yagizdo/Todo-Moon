@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        notchMargin: 5,
+        notchMargin: 4,
         child: SizedBox(
           height: 60,
           child: Row(
@@ -90,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 35.0),
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: MaterialButton(
                       minWidth: 40,
                       onPressed: () {
@@ -135,7 +135,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 35.0),
+                    padding: const EdgeInsets.only(left: 25.0),
                     child: MaterialButton(
                       minWidth: 40,
                       onPressed: () {
