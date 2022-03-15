@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage> {
                     width: 1.1,
                     customFontSize: 16,
                   )
-                : constraints.maxHeight.toString().contains('703')
+                : constraints.maxHeight.toString().contains('703') ||
+                        constraints.maxHeight == 812
                     ? InfoWidget(height: 10, width: 1.1, customFontSize: 18)
                     : InfoWidget(height: 8, width: 1.1, customFontSize: 18),
             const TaskInfo(),
