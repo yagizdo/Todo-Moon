@@ -17,29 +17,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: LayoutBuilder(builder: (context, constraints) {
-          return Column(
-            children: [
-              const Greetings(),
-              constraints.maxWidth < 350
-                  ? InfoWidget(
-                      height: 7.4,
-                      width: 1.1,
-                      customFontSize: 16,
-                    )
-                  : InfoWidget(
-                      height: 8,
-                      width: 1.1,
-                      customFontSize: 18,
-                    ),
-              const TaskInfo(),
-              const Expanded(child: TodoWidget())
-            ],
-          );
-        }),
-      ),
+      body: LayoutBuilder(builder: (context, constraints) {
+        print('ddd : ${constraints.maxHeight}');
+        return Column(
+          children: [
+            constraints.maxWidth < 350
+                ? Greetings(customFontSize: 28)
+                : Greetings(
+                    customFontSize: 34,
+                  ),
+            constraints.maxWidth < 350
+                ? InfoWidget(
+                    height: 7.4,
+                    width: 1.1,
+                    customFontSize: 16,
+                  )
+                : constraints.maxHeight.toString().contains('703')
+                    ? InfoWidget(height: 10, width: 1.1, customFontSize: 18)
+                    : InfoWidget(height: 8, width: 1.1, customFontSize: 18),
+            const TaskInfo(),
+            const Expanded(child: TodoWidget())
+          ],
+        );
+      }),
     );
   }
 }

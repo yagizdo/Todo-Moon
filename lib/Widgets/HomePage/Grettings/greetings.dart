@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
+// Welcome Text Widget
 Widget _welcomeText(String text, double size, FontWeight fontWeight,
     Color color, double minFont) {
   return AutoSizeText(
@@ -18,8 +19,8 @@ Widget _welcomeText(String text, double size, FontWeight fontWeight,
 }
 
 class Greetings extends StatelessWidget {
-  const Greetings({Key? key}) : super(key: key);
-
+  Greetings({Key? key, required this.customFontSize}) : super(key: key);
+  double customFontSize;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,12 +35,13 @@ class Greetings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _welcomeText('Hello', 34, FontWeight.normal, Colors.black, 15),
+                _welcomeText('Hello', customFontSize, FontWeight.normal,
+                    Colors.black, 15),
                 Consumer<TodosProvider>(
                   builder: (context, state, child) => Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: _welcomeText(
-                        state.name, 34, FontWeight.bold, Colors.black, 15),
+                    child: _welcomeText(state.name, customFontSize,
+                        FontWeight.bold, Colors.black, 15),
                   ),
                 ),
               ],

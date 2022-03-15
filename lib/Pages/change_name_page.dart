@@ -35,7 +35,7 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context);
                   },
                   icon: Icon(Icons.cancel)),
               Center(child: const ChangeNameText()),
