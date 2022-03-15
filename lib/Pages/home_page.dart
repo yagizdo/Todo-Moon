@@ -18,11 +18,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: Padding(
-        padding: const EdgeInsets.only(top : 20.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: Column(
-          children: const [
+          children: [
             Greetings(),
-            InfoWidget(),
+            InfoWidget(height: 7.7, width: 1.1),
             TaskInfo(),
             Expanded(child: TodoWidget())
           ],

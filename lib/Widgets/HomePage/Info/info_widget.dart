@@ -6,7 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 class InfoWidget extends StatelessWidget {
-  const InfoWidget({Key? key}) : super(key: key);
+  InfoWidget({Key? key, required this.height, required this.width})
+      : super(key: key);
+  double width;
+  double height;
 
   Widget _circularProgressBar(double percent) {
     return CircularPercentIndicator(
@@ -39,8 +42,8 @@ class InfoWidget extends StatelessWidget {
             LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
               return Container(
-                width: MediaQuery.of(context).size.width / 1.1,
-                height: MediaQuery.of(context).size.height / 7.7,
+                width: MediaQuery.of(context).size.width / width,
+                height: MediaQuery.of(context).size.height / height,
                 decoration: BoxDecoration(
                     color: HexColor('#ff9d73'),
                     borderRadius: BorderRadius.circular(20)),

@@ -102,7 +102,7 @@ class _AddTodoState extends State<AddTodo> {
                 child: Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   height: MediaQuery.of(context).size.height / 12,
-                  margin: const EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 10),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(color: Colors.grey[200]),
                   child: _selectedDatetime == null
@@ -113,7 +113,7 @@ class _AddTodoState extends State<AddTodo> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50.0, bottom: 50),
+                padding: const EdgeInsets.only(top: 20.0, bottom: 40),
                 child: SizedBox(
                     width: 300,
                     height: 50,
