@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_text.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
@@ -16,6 +15,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   late var userName;
+
   @override
   void initState() {
     super.initState();
@@ -29,65 +29,59 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     var surnameController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: HexColor('#f9f6e8'),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
         child: SingleChildScrollView(
-          reverse: true,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              userName == null
-                  ? SizedBox(
-                      height: 10,
-                    )
-                  : IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(Icons.close)),
-              Column(
-                children: [
-                  const welcomeText(),
-                  Form(
-                    key: formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(children: [
-                        WelcomCustomTF(
-                            controller: nameController, labelText: 'name'),
-                        WelcomCustomTF(
-                            controller: surnameController,
-                            labelText: 'Surname'),
-                      ]),
+            reverse: true,
+            child: Column(
+              children: [
+                const welcomeText(),
+                Form(
+                  key: formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15.0, right: 15, bottom: 10),
+                    child: Column(children: [
+                      WelcomCustomTF(
+                          controller: nameController, labelText: 'Name'),
+                      WelcomCustomTF(
+                          controller: surnameController, labelText: 'Surname'),
+                    ]),
+                  ),
+                ),
+                Consumer<TodosProvider>(
+                  builder: (context, state, child) => Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height / 13,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.amber.shade600),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13.0),
+                            )),
+                          ),
+                          onPressed: () {
+                            bool validResult = formKey.currentState!.validate();
+                            if (validResult == true) {
+                              state.setName(nameController.text);
+                              state.setsurName(surnameController.text);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MainScreen()));
+                            }
+                          },
+                          child: const Text('Done')),
                     ),
                   ),
-                  Consumer<TodosProvider>(
-                    builder: (context, state, child) => ElevatedButton(
-                        onPressed: () {
-                          bool validResult = formKey.currentState!.validate();
-                          if (validResult == true) {
-                            state.setName(nameController.text);
-                            state.setsurName(surnameController.text);
-                            /*
-                        print('Name : ${state.name}');
-                        print('Surname : ${state.surname}');
-                        print('Name 2 : ${nameController.text}');
-                        print('Surname 2 : ${surnameController.text}');
-                        */
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const MainScreen()));
-                          }
-                        },
-                        child: const Text('Set Name')),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
+                )
+              ],
+            )),
       ),
     );
   }
