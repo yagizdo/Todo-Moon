@@ -22,7 +22,7 @@ class welcomeText extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Image.asset(
-                'lib/img/businessman.png',
+                'lib/img/businessman-min.png',
                 width: 170,
               ),
             ),

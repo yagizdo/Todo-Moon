@@ -92,6 +92,7 @@ flutter:
     - lib/img/placeholder.jpg
     - lib/img/logo_350.png
     - lib/img/businessman.png
+    - lib/img/businessman-min.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
