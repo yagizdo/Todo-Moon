@@ -152,7 +152,8 @@ class _EditTodoState extends State<EditTodo> {
                                     titleController.text = '';
                                     descController.text = '';
                                     categoryController.text = '';
-                                    Navigator.of(context).pop();
+                                    Navigator.of(context)
+                                        .popUntil((route) => route.isFirst);
                                     Fluttertoast.showToast(
                                         msg: "Done!",
                                         toastLength: Toast.LENGTH_SHORT,

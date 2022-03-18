@@ -22,7 +22,7 @@ class EditTF extends StatelessWidget {
                 ? TextInputAction.next
                 : TextInputAction.done,
         maxLength: labelText.contains('Title')
-            ? 25
+            ? 15
             : labelText.contains('Category')
                 ? 15
                 : 250,
