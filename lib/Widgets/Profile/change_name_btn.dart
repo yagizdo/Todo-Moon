@@ -4,15 +4,19 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:todo_app/Pages/change_name_page.dart';
 
 class ChangeNameBTN extends StatelessWidget {
-  const ChangeNameBTN({Key? key}) : super(key: key);
+  ChangeNameBTN({Key? key, required this.width, required this.height})
+      : super(key: key);
+
+  double width;
+  double height;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0, left: 10.0),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width / 3,
-        height: MediaQuery.of(context).size.height / 18,
+        width: MediaQuery.of(context).size.width / width,
+        height: MediaQuery.of(context).size.height / height,
         child: ElevatedButton(
           onPressed: () {
             /*Navigator.push(context,

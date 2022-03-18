@@ -27,7 +27,7 @@ class Greetings extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 15,
+          height: MediaQuery.of(context).size.height / 18,
         ),
         Container(
           height: MediaQuery.of(context).size.height / 7.5,
