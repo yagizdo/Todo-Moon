@@ -64,7 +64,11 @@ class _CalendarPageState extends State<CalendarPage> {
                           DateTime.fromMillisecondsSinceEpoch(
                                       Todo.dateMilliseconds)
                                   .month ==
-                              _selectedDay?.month;
+                              _selectedDay?.month &&
+                          DateTime.fromMillisecondsSinceEpoch(
+                                      Todo.dateMilliseconds)
+                                  .year ==
+                              _selectedDay?.year;
                     }).length,
                     itemBuilder: (context, index) => TodoCard(
                         // ignore: non_constant_identifier_names
@@ -75,7 +79,11 @@ class _CalendarPageState extends State<CalendarPage> {
                           DateTime.fromMillisecondsSinceEpoch(
                                       Todo.dateMilliseconds)
                                   .month ==
-                              _selectedDay?.month;
+                              _selectedDay?.month &&
+                          DateTime.fromMillisecondsSinceEpoch(
+                                      Todo.dateMilliseconds)
+                                  .year ==
+                              _selectedDay?.year;
                     }).toList()[index]),
                   );
                 }),

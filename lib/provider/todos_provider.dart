@@ -23,7 +23,9 @@ class TodosProvider extends ChangeNotifier {
       return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day ==
               day.day &&
           DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).month ==
-              day.month;
+              day.month &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).year ==
+              day.year;
     }).toList();
     return todosList;
   }
