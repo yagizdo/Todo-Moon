@@ -17,6 +17,10 @@ class CustomTF extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 15.0),
       child: TextFormField(
+        textInputAction:
+            labelText.contains('Description') || labelText.contains('Title')
+                ? TextInputAction.next
+                : TextInputAction.done,
         maxLength: labelText.contains('Title')
             ? 25
             : labelText.contains('Category')
