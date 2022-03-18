@@ -23,19 +23,17 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Padding(
           padding: const EdgeInsets.only(top: 50.0),
           child: LayoutBuilder(builder: (context, constraints) {
-            print('width : ${constraints.maxWidth}');
-            print('height : ${constraints.maxHeight}');
             return Column(
               children: [
-                ProfileImg(),
-                NameText(),
-                SizedBox(
+                const ProfileImg(),
+                const NameText(),
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(top: 40, left: 15.0),
                       child: Text(
                         'Settings',
@@ -44,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     CupertinoListTile(
-                      title: Text('Change Name'),
+                      title: const Text('Change Name'),
                       trailing:
                           // for iphone 7,iphone se - height 567 | iphone 8 plus - height 636
                           constraints.maxHeight == 567 ||
@@ -71,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           height: 18,
                                         ),
                     ),
-                    CupertinoListTile(
+                    const CupertinoListTile(
                       title: Text('Delete All Completed Todos'),
                       trailing: ClearTodosBtn(),
                     ),

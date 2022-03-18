@@ -86,7 +86,6 @@ class TodosProvider extends ChangeNotifier {
   void removeCompletedTodos() {
     todos.forEach((todo) {
       if (todo.complete) {
-        var index = todos.indexOf(todo);
         completedTodosList.add(todo);
         notifyListeners();
       }

@@ -89,8 +89,8 @@ class _EditTodoState extends State<EditTodo> {
                                           minimumYear: 2022,
                                           maximumYear:
                                               (DateTime.now().year + 30),
-                                          minimumDate: DateTime.now()
-                                              .subtract(Duration(hours: 1)),
+                                          minimumDate: DateTime.now().subtract(
+                                              const Duration(hours: 1)),
                                           mode: CupertinoDatePickerMode.date,
                                           onDateTimeChanged: (datetime) {
                                             setState(() {

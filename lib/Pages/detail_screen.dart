@@ -36,7 +36,7 @@ class DetailScreen extends StatelessWidget {
                   )),
             );
           },
-          child: Icon(Icons.edit),
+          child: const Icon(Icons.edit),
           backgroundColor: Colors.orangeAccent,
         ),
         backgroundColor: HexColor('#f9f6e8'),

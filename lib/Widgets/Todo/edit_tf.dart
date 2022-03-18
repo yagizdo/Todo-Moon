@@ -53,7 +53,7 @@ class EditTF extends StatelessWidget {
               },
             ),
             hintText: labelText,
-            hintStyle: TextStyle(color: Colors.black)),
+            hintStyle: const TextStyle(color: Colors.black)),
       ),
     );
   }
