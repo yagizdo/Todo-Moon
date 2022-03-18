@@ -59,6 +59,12 @@ Run App
 - Flutter Native Splash : https://pub.dev/packages/flutter_native_splash
 
 
+
+## App Video
+
+Uploading Simulator Screen Recording - iPhone 7 - 2022-03-16 at 02.12.43.mp4…
+
+
 ## Screenshots
 
 ### Splash Screen
