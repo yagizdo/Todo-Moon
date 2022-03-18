@@ -48,7 +48,7 @@ class _AddTodoState extends State<AddTodo> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(top: 20.0),
+                  padding: EdgeInsets.only(top: 100.0),
                   child: Text(
                     'Add Task',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

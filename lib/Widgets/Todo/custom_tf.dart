@@ -36,9 +36,24 @@ class CustomTF extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelText: labelText,
-        ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            fillColor: Colors.amber.shade50,
+            filled: true,
+            suffixIcon: IconButton(
+              icon: const Icon(
+                Icons.clear_outlined,
+                size: 20,
+                color: Colors.red,
+              ),
+              onPressed: () {
+                controller.text = '';
+              },
+            ),
+            hintText: labelText,
+            hintStyle: TextStyle(color: Colors.black)),
       ),
     );
   }

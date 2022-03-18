@@ -40,130 +40,145 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: HexColor('#f3f0e5'),
-      body: PageStorage(
-        child: currentScreen,
-        bucket: bucket,
-      ),
-      floatingActionButton: SizedBox(
-        height: 50,
-        child: FloatingActionButton(
-          backgroundColor: HexColor('#000000'),
-          child: const Icon(Icons.add),
-          onPressed: () {
-            setState(() {
-              showMaterialModalBottomSheet(
-                context: context,
-                builder: (context) => SizedBox(
-                    height: MediaQuery.of(context).size.height / 1.3,
-                    child: const AddTodo()),
-              );
-              currentTab = 5;
-            });
-          },
+    return LayoutBuilder(builder: (context, constraints) {
+      print('width 2: ${constraints.maxWidth}');
+      print('height 2: ${constraints.maxHeight}');
+      return Scaffold(
+        backgroundColor: HexColor('#f3f0e5'),
+        body: PageStorage(
+          child: currentScreen,
+          bucket: bucket,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        child: SizedBox(
+        floatingActionButton: SizedBox(
           height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen = const HomePage();
-                        currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.home,
-                          color: currentTab == 0 ? Colors.black : Colors.grey,
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: MaterialButton(
-                      minWidth: 40,
-                      onPressed: () {
-                        setState(() {
-                          currentScreen = const CalendarPage();
-                          currentTab = 1;
-                        });
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.calendar,
-                            color: currentTab == 1 ? Colors.black : Colors.grey,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              // Right Tab Icons
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen = const DashboardPage();
-                        currentTab = 3;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.clipboardCheck,
-                          color: currentTab == 3 ? Colors.black : Colors.grey,
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25.0),
-                    child: MaterialButton(
-                      minWidth: 40,
-                      onPressed: () {
-                        setState(() {
-                          currentScreen = const ProfilePage();
-                          currentTab = 4;
-                        });
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.user,
-                            color: currentTab == 4 ? Colors.black : Colors.grey,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          child: FloatingActionButton(
+            backgroundColor: HexColor('#000000'),
+            child: const Icon(Icons.add),
+            onPressed: () {
+              setState(() {
+                showMaterialModalBottomSheet(
+                  context: context,
+                  builder: (context) => SizedBox(
+                      height:
+                          // for iphone 11
+                          constraints.maxHeight == 896 ||
+                                  constraints.maxHeight == 926
+                              ? MediaQuery.of(context).size.height / 1.6
+                              :
+                              // For iphone 11 pro, 12 mini
+                              constraints.maxHeight == 812
+                                  ? MediaQuery.of(context).size.height / 1.5
+                                  : MediaQuery.of(context).size.height / 1.3,
+                      child: const AddTodo()),
+                );
+                currentTab = 5;
+              });
+            },
           ),
         ),
-      ),
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          child: SizedBox(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = const HomePage();
+                          currentTab = 0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.home,
+                            color: currentTab == 0 ? Colors.black : Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: MaterialButton(
+                        minWidth: 40,
+                        onPressed: () {
+                          setState(() {
+                            currentScreen = const CalendarPage();
+                            currentTab = 1;
+                          });
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.calendar,
+                              color:
+                                  currentTab == 1 ? Colors.black : Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // Right Tab Icons
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = const DashboardPage();
+                          currentTab = 3;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.clipboardCheck,
+                            color: currentTab == 3 ? Colors.black : Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0),
+                      child: MaterialButton(
+                        minWidth: 40,
+                        onPressed: () {
+                          setState(() {
+                            currentScreen = const ProfilePage();
+                            currentTab = 4;
+                          });
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.user,
+                              color:
+                                  currentTab == 4 ? Colors.black : Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    });
   }
 }
