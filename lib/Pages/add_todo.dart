@@ -37,129 +37,131 @@ class _AddTodoState extends State<AddTodo> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      reverse: true,
-      child: Form(
-        key: formKey,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: Text(
-                  'Add Task',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Scaffold(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        reverse: true,
+        child: Form(
+          key: formKey,
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    'Add Task',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              CustomTF(
-                  hint: 'Title',
-                  controller: titleController,
-                  labelText: 'Title'),
-              CustomTF(
-                  hint: 'Description',
-                  controller: descController,
-                  labelText: 'Description'),
-              CustomTF(
-                  hint: 'Category',
-                  controller: categoryController,
-                  labelText: 'Category'),
+                CustomTF(
+                    hint: 'Title',
+                    controller: titleController,
+                    labelText: 'Title'),
+                CustomTF(
+                    hint: 'Description',
+                    controller: descController,
+                    labelText: 'Description'),
+                CustomTF(
+                    hint: 'Category',
+                    controller: categoryController,
+                    labelText: 'Category'),
 
-              // Cupertino DatwTime Picker
-              GestureDetector(
-                onTap: () {
-                  showCupertinoModalBottomSheet(
-                    context: context,
-                    builder: (context) => Container(
-                        color: HexColor('#f9f6e8'),
-                        height: MediaQuery.of(context).size.height / 1.4,
-                        child: Column(
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: CupertinoDatePicker(
-                                    minimumYear: 2022,
-                                    maximumYear: (DateTime.now().year + 30),
-                                    minimumDate: DateTime.now(),
-                                    mode: CupertinoDatePickerMode.date,
-                                    onDateTimeChanged: (datetime) {
-                                      setState(() {
-                                        _selectedDatetime = datetime;
-                                      });
-                                    })),
-                            Expanded(
-                              flex: 1,
-                              child: CupertinoButton(
-                                  child: const Text('Ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                            )
-                          ],
-                        )),
-                  );
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1.1,
-                  height: MediaQuery.of(context).size.height / 12,
-                  margin: const EdgeInsets.only(top: 10),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(color: Colors.grey[200]),
-                  child: _selectedDatetime == null
-                      ? Text(
-                          'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
-                      : Text(
-                          'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
+                // Cupertino DatwTime Picker
+                GestureDetector(
+                  onTap: () {
+                    showCupertinoModalBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                          color: HexColor('#f9f6e8'),
+                          height: MediaQuery.of(context).size.height / 1.4,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: CupertinoDatePicker(
+                                      minimumYear: 2022,
+                                      maximumYear: (DateTime.now().year + 30),
+                                      minimumDate: DateTime.now(),
+                                      mode: CupertinoDatePickerMode.date,
+                                      onDateTimeChanged: (datetime) {
+                                        setState(() {
+                                          _selectedDatetime = datetime;
+                                        });
+                                      })),
+                              Expanded(
+                                flex: 1,
+                                child: CupertinoButton(
+                                    child: const Text('Ok'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    }),
+                              )
+                            ],
+                          )),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height / 12,
+                    margin: const EdgeInsets.only(top: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(color: Colors.grey[200]),
+                    child: _selectedDatetime == null
+                        ? Text(
+                            'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
+                        : Text(
+                            'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 40),
-                child: SizedBox(
-                    width: 300,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.orangeAccent),
-                        onPressed: () {
-                          setState(() {
-                            if (formKey.currentState!.validate()) {
-                              if (categoryController.text.isEmpty) {
-                                categoryController.text = 'Uncategorized';
-                                saveTodo();
-                                titleController.text = '';
-                                descController.text = '';
-                                categoryController.text = '';
-                                Navigator.pop(context);
-                                Fluttertoast.showToast(
-                                    msg: "Added!",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                              } else {
-                                saveTodo();
-                                titleController.text = '';
-                                descController.text = '';
-                                categoryController.text = '';
-                                Navigator.pop(context);
-                                Fluttertoast.showToast(
-                                    msg: "Added!",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 40),
+                  child: SizedBox(
+                      width: 300,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.orangeAccent),
+                          onPressed: () {
+                            setState(() {
+                              if (formKey.currentState!.validate()) {
+                                if (categoryController.text.isEmpty) {
+                                  categoryController.text = 'Uncategorized';
+                                  saveTodo();
+                                  titleController.text = '';
+                                  descController.text = '';
+                                  categoryController.text = '';
+                                  Navigator.pop(context);
+                                  Fluttertoast.showToast(
+                                      msg: "Added!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                } else {
+                                  saveTodo();
+                                  titleController.text = '';
+                                  descController.text = '';
+                                  categoryController.text = '';
+                                  Navigator.pop(context);
+                                  Fluttertoast.showToast(
+                                      msg: "Added!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                }
                               }
-                            }
-                          });
-                        },
-                        child: const Text('Add Todo'))),
-              )
-            ],
+                            });
+                          },
+                          child: const Text('Add Todo'))),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -55,7 +55,9 @@ class _MainScreenState extends State<MainScreen> {
             setState(() {
               showMaterialModalBottomSheet(
                 context: context,
-                builder: (context) => const AddTodo(),
+                builder: (context) => SizedBox(
+                    height: MediaQuery.of(context).size.height / 1.3,
+                    child: const AddTodo()),
               );
               currentTab = 5;
             });
