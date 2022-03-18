@@ -5,34 +5,33 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
-import 'package:todo_app/Widgets/Todo/custom_tf.dart';
+import 'package:todo_app/Widgets/Todo/edit_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
-class AddTodo extends StatefulWidget {
-  const AddTodo({Key? key}) : super(key: key);
+class EditTodo extends StatefulWidget {
+  EditTodo({Key? key, required this.todo}) : super(key: key);
+  Todo todo;
 
   @override
-  _AddTodoState createState() => _AddTodoState();
+  _EditTodoState createState() => _EditTodoState();
 }
 
-class _AddTodoState extends State<AddTodo> {
+class _EditTodoState extends State<EditTodo> {
   var formKey = GlobalKey<FormState>();
-  var titleController = TextEditingController();
-  var descController = TextEditingController();
-  var categoryController = TextEditingController();
+  var titleController;
+  var descController;
+  var categoryController;
 
   DateTime? _selectedDatetime;
   String dateTextValue =
       '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
-  void saveTodo() {
-    Todo todo = Todo(
-        title: titleController.text,
-        description: descController.text,
-        category: categoryController.text,
-        dateMilliseconds: _selectedDatetime?.millisecondsSinceEpoch ??
-            DateTime.now().millisecondsSinceEpoch);
-    Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.todo.title);
+    descController = TextEditingController(text: widget.todo.description);
+    categoryController = TextEditingController(text: widget.todo.category);
   }
 
   @override
@@ -53,20 +52,20 @@ class _AddTodoState extends State<AddTodo> {
                     const Padding(
                       padding: EdgeInsets.only(top: 100.0),
                       child: Text(
-                        'Add Task',
+                        'Edit Todo',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    CustomTF(
+                    EditTF(
                         hint: 'Title',
                         controller: titleController,
                         labelText: 'Title'),
-                    CustomTF(
+                    EditTF(
                         hint: 'Description',
                         controller: descController,
                         labelText: 'Description'),
-                    CustomTF(
+                    EditTF(
                         hint: 'Category',
                         controller: categoryController,
                         labelText: 'Category'),
@@ -84,10 +83,14 @@ class _AddTodoState extends State<AddTodo> {
                                   Expanded(
                                       flex: 7,
                                       child: CupertinoDatePicker(
+                                          initialDateTime: DateTime
+                                              .fromMillisecondsSinceEpoch(
+                                                  widget.todo.dateMilliseconds),
                                           minimumYear: 2022,
                                           maximumYear:
                                               (DateTime.now().year + 30),
-                                          minimumDate: DateTime.now(),
+                                          minimumDate: DateTime.now()
+                                              .subtract(Duration(hours: 1)),
                                           mode: CupertinoDatePickerMode.date,
                                           onDateTimeChanged: (datetime) {
                                             setState(() {
@@ -119,6 +122,8 @@ class _AddTodoState extends State<AddTodo> {
                                 'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
                       ),
                     ),
+
+                    // Edit button
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 40),
                       child: SizedBox(
@@ -130,40 +135,36 @@ class _AddTodoState extends State<AddTodo> {
                               onPressed: () {
                                 setState(() {
                                   if (formKey.currentState!.validate()) {
-                                    if (categoryController.text.isEmpty) {
-                                      categoryController.text = 'Uncategorized';
-                                      saveTodo();
-                                      titleController.text = '';
-                                      descController.text = '';
-                                      categoryController.text = '';
-                                      Navigator.pop(context);
-                                      Fluttertoast.showToast(
-                                          msg: "Added!",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.BOTTOM,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.black,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0);
-                                    } else {
-                                      saveTodo();
-                                      titleController.text = '';
-                                      descController.text = '';
-                                      categoryController.text = '';
-                                      Navigator.pop(context);
-                                      Fluttertoast.showToast(
-                                          msg: "Added!",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.BOTTOM,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.black,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0);
-                                    }
+                                    Provider.of<TodosProvider>(context,
+                                            listen: false)
+                                        .editTodo(
+                                            widget.todo,
+                                            titleController.text,
+                                            descController.text,
+                                            categoryController.text,
+                                            _selectedDatetime
+                                                        ?.millisecondsSinceEpoch ==
+                                                    null
+                                                ? widget.todo.dateMilliseconds
+                                                : _selectedDatetime!
+                                                    .millisecondsSinceEpoch);
+
+                                    titleController.text = '';
+                                    descController.text = '';
+                                    categoryController.text = '';
+                                    Navigator.of(context).pop();
+                                    Fluttertoast.showToast(
+                                        msg: "Done!",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.black,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
                                   }
                                 });
                               },
-                              child: const Text('Add Todo'))),
+                              child: const Text('Edit Todo'))),
                     )
                   ],
                 ),

@@ -61,6 +61,16 @@ class TodosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void editTodo(Todo todo, String titleText, String description,
+      String category, int dateMilliseconds) {
+    todo.title = titleText;
+    todo.description = description;
+    todo.category = category;
+    todo.dateMilliseconds = dateMilliseconds;
+    updateDataToLocalStorage();
+    notifyListeners();
+  }
+
   // For delete completed todos
   bool checkCompletedTodos() {
     if (completedTodos.isEmpty) {
