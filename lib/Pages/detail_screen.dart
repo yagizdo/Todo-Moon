@@ -47,7 +47,7 @@ class DetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 15),
+                  padding: const EdgeInsets.only(top: 50),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,7 +71,7 @@ class DetailScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(left: 95, right: 10, top: 10),
+                          const EdgeInsets.only(left: 90, right: 20, top: 10),
                       child: AutoSizeText(
                         '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}',
                         style: const TextStyle(
