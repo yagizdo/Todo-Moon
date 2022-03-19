@@ -89,7 +89,6 @@ class _EditTodoState extends State<EditTodo> {
                               child: Column(
                                 children: [
                                   Expanded(
-                                      //TODO fix ilk tarih bugunu
                                       flex: 10,
                                       child: CupertinoDatePicker(
                                           initialDateTime: DateTime

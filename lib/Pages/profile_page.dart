@@ -52,6 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? ChangeNameBTN(
                                   width: 3,
                                   height: 21,
+                                  changeNameHeight: constraints.maxHeight == 636
+                                      ? 1.25
+                                      : 1.15,
                                 )
                               // for iphone xs, iphone 11 pro, iphone 13 mini - height 678,
                               // and iphone 13 pro - height 710
@@ -60,6 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? ChangeNameBTN(
                                       width: 3,
                                       height: 24,
+                                      changeNameHeight: 1.35,
                                     )
                                   // for iphone 11, iphone 13 pro max - height 762
                                   : constraints.maxHeight == 762 ||
@@ -67,10 +71,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ? ChangeNameBTN(
                                           width: 3,
                                           height: 26,
+                                          changeNameHeight:
+                                              constraints.maxHeight == 792
+                                                  ? 1.45
+                                                  : 1.4,
                                         )
                                       : ChangeNameBTN(
                                           width: 3,
                                           height: 18,
+                                          changeNameHeight: 2,
                                         ),
                     ),
                     const CupertinoListTile(

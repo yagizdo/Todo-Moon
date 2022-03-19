@@ -66,8 +66,9 @@ class _MainScreenState extends State<MainScreen> {
                                   constraints.maxHeight == 926
                               ? MediaQuery.of(context).size.height / 1.6
                               :
-                              // For iphone 11 pro, 12 mini
-                              constraints.maxHeight == 812
+                              // For iphone 11 pro, 12 mini, 12 pro
+                              constraints.maxHeight == 812 ||
+                                      constraints.maxHeight == 844
                                   ? MediaQuery.of(context).size.height / 1.5
                                   : MediaQuery.of(context).size.height / 1.3,
                       child: const AddTodo()),

@@ -35,11 +35,6 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Close')),
               const Center(child: ChangeNameText()),
               Form(
                 key: formKey,
@@ -55,38 +50,73 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                 ),
               ),
               Center(
-                child: Consumer<TodosProvider>(
-                  builder: (context, state, child) => Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: SizedBox(
+                child: Column(
+                  children: [
+                    Consumer<TodosProvider>(
+                      builder: (context, state, child) => Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 13,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.amber.shade600),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(13.0),
+                                )),
+                              ),
+                              onPressed: () {
+                                bool validResult =
+                                    formKey.currentState!.validate();
+                                if (validResult == true) {
+                                  state.setName(nameController.text);
+                                  state.setsurName(surnameController.text);
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MainScreen()));
+                                }
+                              },
+                              child: const Text('Done')),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
                       height: MediaQuery.of(context).size.height / 13,
                       width: MediaQuery.of(context).size.width / 1.2,
                       child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.amber.shade600),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.amber, width: 3),
                               borderRadius: BorderRadius.circular(13.0),
-                            )),
+                            ),
                           ),
-                          onPressed: () {
-                            bool validResult = formKey.currentState!.validate();
-                            if (validResult == true) {
-                              state.setName(nameController.text);
-                              state.setsurName(surnameController.text);
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MainScreen()));
-                            }
-                          },
-                          child: const Text('Done')),
-                    ),
-                  ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                              color: Colors.amber, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
+              ),
             ],
           )),
     );

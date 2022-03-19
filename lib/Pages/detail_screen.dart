@@ -15,6 +15,8 @@ class DetailScreen extends StatelessWidget {
     DateTime todoDate =
         DateTime.fromMillisecondsSinceEpoch(todo.dateMilliseconds);
     return LayoutBuilder(builder: (context, constraints) {
+      print('width : ${constraints.maxWidth}');
+      print('height : ${constraints.maxHeight}');
       return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -24,19 +26,20 @@ class DetailScreen extends StatelessWidget {
               ),
               context: context,
               builder: (context) => SizedBox(
-                  height:
-                      // for iphone 11
-                      constraints.maxHeight == 896 ||
-                              constraints.maxHeight == 926
-                          ? MediaQuery.of(context).size.height / 1.6
-                          :
-                          // For iphone 11 pro, 12 mini
-                          constraints.maxHeight == 812
-                              ? MediaQuery.of(context).size.height / 1.5
-                              : MediaQuery.of(context).size.height / 1.3,
-                  child: EditTodo(
-                    todo: todo,
-                  )),
+                height:
+                    // for iphone 11
+                    constraints.maxHeight == 896 || constraints.maxHeight == 926
+                        ? MediaQuery.of(context).size.height / 1.6
+                        :
+                        // For iphone 11 pro, 12 mini, 12 pro(height 771)
+                        constraints.maxHeight == 812 ||
+                                constraints.maxHeight == 771
+                            ? MediaQuery.of(context).size.height / 1.5
+                            : MediaQuery.of(context).size.height / 1.3,
+                child: EditTodo(
+                  todo: todo,
+                ),
+              ),
             );
           },
           child: const Icon(Icons.edit),

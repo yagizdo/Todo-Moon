@@ -4,11 +4,16 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:todo_app/Pages/change_name_page.dart';
 
 class ChangeNameBTN extends StatelessWidget {
-  ChangeNameBTN({Key? key, required this.width, required this.height})
+  ChangeNameBTN(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.changeNameHeight})
       : super(key: key);
 
   double width;
   double height;
+  double changeNameHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +26,15 @@ class ChangeNameBTN extends StatelessWidget {
           onPressed: () {
             /*Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChangeNameScreen()));*/
-            showMaterialModalBottomSheet(
+            showCupertinoModalBottomSheet(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
                 context: context,
                 builder: (context) => SizedBox(
-                    height: MediaQuery.of(context).size.height / 1.1,
+                    height:
+                        MediaQuery.of(context).size.height / changeNameHeight,
                     child: const ChangeNameScreen()));
           },
           child: const Text('Change'),
