@@ -75,14 +75,17 @@ class _AddTodoState extends State<AddTodo> {
                     GestureDetector(
                       onTap: () {
                         showCupertinoModalBottomSheet(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           context: context,
                           builder: (context) => Container(
                               color: HexColor('#f9f6e8'),
-                              height: MediaQuery.of(context).size.height / 1.4,
+                              height: MediaQuery.of(context).size.height / 1.8,
                               child: Column(
                                 children: [
                                   Expanded(
-                                      flex: 7,
+                                      flex: 10,
                                       child: CupertinoDatePicker(
                                           minimumYear: 2022,
                                           maximumYear:
@@ -95,13 +98,15 @@ class _AddTodoState extends State<AddTodo> {
                                             });
                                           })),
                                   Expanded(
-                                    flex: 1,
-                                    child: CupertinoButton(
-                                        child: const Text('Ok'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        }),
-                                  )
+                                      flex: 2,
+                                      child: CupertinoButton(
+                                          child: const Text(
+                                            'Ok',
+                                            style: TextStyle(fontSize: 25),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          }))
                                 ],
                               )),
                         );

@@ -54,7 +54,10 @@ class _MainScreenState extends State<MainScreen> {
             child: const Icon(Icons.add),
             onPressed: () {
               setState(() {
-                showMaterialModalBottomSheet(
+                showCupertinoModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
                   context: context,
                   builder: (context) => SizedBox(
                       height:

@@ -23,6 +23,8 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Padding(
           padding: const EdgeInsets.only(top: 50.0),
           child: LayoutBuilder(builder: (context, constraints) {
+            print('width : ${constraints.maxWidth}');
+            print('height : ${constraints.maxHeight}');
             return Column(
               children: [
                 const ProfileImg(),
@@ -51,8 +53,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   width: 3,
                                   height: 21,
                                 )
-                              // for iphone xs, iphone 11 pro, iphone 13 mini - height 678
-                              : constraints.maxHeight == 678
+                              // for iphone xs, iphone 11 pro, iphone 13 mini - height 678,
+                              // and iphone 13 pro - height 710
+                              : constraints.maxHeight == 678 ||
+                                      constraints.maxHeight == 710
                                   ? ChangeNameBTN(
                                       width: 3,
                                       height: 24,

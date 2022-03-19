@@ -18,7 +18,10 @@ class DetailScreen extends StatelessWidget {
       return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showMaterialModalBottomSheet(
+            showCupertinoModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               context: context,
               builder: (context) => SizedBox(
                   height:

@@ -26,12 +26,17 @@ class _EditTodoState extends State<EditTodo> {
   String dateTextValue =
       '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
+  var todoDatetime;
+
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.todo.title);
     descController = TextEditingController(text: widget.todo.description);
     categoryController = TextEditingController(text: widget.todo.category);
+
+    todoDatetime =
+        DateTime.fromMillisecondsSinceEpoch(widget.todo.dateMilliseconds);
   }
 
   @override
@@ -74,14 +79,18 @@ class _EditTodoState extends State<EditTodo> {
                     GestureDetector(
                       onTap: () {
                         showCupertinoModalBottomSheet(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           context: context,
                           builder: (context) => Container(
                               color: HexColor('#f9f6e8'),
-                              height: MediaQuery.of(context).size.height / 1.4,
+                              height: MediaQuery.of(context).size.height / 1.8,
                               child: Column(
                                 children: [
                                   Expanded(
-                                      flex: 7,
+                                      //TODO fix ilk tarih bugunu
+                                      flex: 10,
                                       child: CupertinoDatePicker(
                                           initialDateTime: DateTime
                                               .fromMillisecondsSinceEpoch(
@@ -89,8 +98,21 @@ class _EditTodoState extends State<EditTodo> {
                                           minimumYear: 2022,
                                           maximumYear:
                                               (DateTime.now().year + 30),
-                                          minimumDate: DateTime.now().subtract(
-                                              const Duration(hours: 1)),
+                                          minimumDate: DateTime
+                                                              .fromMillisecondsSinceEpoch(
+                                                                  // 18
+                                                                  widget.todo
+                                                                      .dateMilliseconds)
+                                                          .day !=
+                                                      DateTime.now().day // 19
+                                                  &&
+                                                  DateTime.fromMillisecondsSinceEpoch(
+                                                              widget.todo
+                                                                  .dateMilliseconds)
+                                                          .day >=
+                                                      DateTime.now().day
+                                              ? DateTime.now()
+                                              : todoDatetime,
                                           mode: CupertinoDatePickerMode.date,
                                           onDateTimeChanged: (datetime) {
                                             setState(() {
@@ -98,9 +120,12 @@ class _EditTodoState extends State<EditTodo> {
                                             });
                                           })),
                                   Expanded(
-                                    flex: 1,
+                                    flex: 2,
                                     child: CupertinoButton(
-                                        child: const Text('Ok'),
+                                        child: const Text(
+                                          'Ok',
+                                          style: TextStyle(fontSize: 25),
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         }),
@@ -117,7 +142,7 @@ class _EditTodoState extends State<EditTodo> {
                         decoration: BoxDecoration(color: Colors.grey[200]),
                         child: _selectedDatetime == null
                             ? Text(
-                                'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
+                                'Selected Date : ${todoDatetime.day.toString().padLeft(2, '0')}.${todoDatetime.month.toString().padLeft(2, '0')}.${todoDatetime.year}')
                             : Text(
                                 'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
                       ),

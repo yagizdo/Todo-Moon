@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
                     width: 1.1,
                     customFontSize: 16,
                   )
-                // For iphone 11 - height 812
-                : constraints.maxHeight == 812
+                // For iphone 11 - height 812  || iphone 13 pro - height 760
+                : constraints.maxHeight == 812 || constraints.maxHeight == 760
                     ? InfoWidget(height: 11, width: 1.1, customFontSize: 18)
                     // For iphone 11 pro, 13 mini, iphone xs - height 728
                     : constraints.maxHeight == 728
