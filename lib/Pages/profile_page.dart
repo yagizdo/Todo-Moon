@@ -76,11 +76,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   ? 1.45
                                                   : 1.4,
                                         )
-                                      : ChangeNameBTN(
-                                          width: 3,
-                                          height: 18,
-                                          changeNameHeight: 2,
-                                        ),
+                                      :
+                                      // for iphone 5s and iphone se 1. gen
+                                      constraints.maxHeight == 468
+                                          ? ChangeNameBTN(
+                                              width: 3,
+                                              height: 18,
+                                              changeNameHeight: 1,
+                                            )
+                                          : ChangeNameBTN(
+                                              width: 3,
+                                              height: 18,
+                                              changeNameHeight: 2,
+                                            ),
                     ),
                     const CupertinoListTile(
                       title: Text('Delete All Completed Todos'),
