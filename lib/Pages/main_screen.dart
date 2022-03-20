@@ -41,6 +41,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
+      print('width : ${constraints.maxWidth}');
+      print('height : ${constraints.maxHeight}');
       return Scaffold(
         backgroundColor: HexColor('#f3f0e5'),
         body: PageStorage(
@@ -64,13 +66,38 @@ class _MainScreenState extends State<MainScreen> {
                           // for iphone 11
                           constraints.maxHeight == 896 ||
                                   constraints.maxHeight == 926
-                              ? MediaQuery.of(context).size.height / 1.6
+                              ? MediaQuery.of(context).size.height / 1.45
                               :
                               // For iphone 11 pro, 12 mini, 12 pro
-                              constraints.maxHeight == 812 ||
-                                      constraints.maxHeight == 844
-                                  ? MediaQuery.of(context).size.height / 1.5
-                                  : MediaQuery.of(context).size.height / 1.3,
+                              constraints.maxHeight == 812
+                                  ? MediaQuery.of(context).size.height / 1.35
+                                  :
+                                  // for iphone 12
+                                  constraints.maxHeight == 844
+                                      ? MediaQuery.of(context).size.height / 1.4
+                                      :
+                                      // for iphone 8 plus
+                                      constraints.maxHeight == 736
+                                          ? MediaQuery.of(context).size.height /
+                                              1.3
+                                          :
+                                          // for iphone 7
+                                          constraints.maxHeight == 667
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  1.22
+                                              :
+                                              // for iphone 5S and iPhone SE 1. Gen
+                                              constraints.maxHeight == 568
+                                                  ? MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      1.1
+                                                  : MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      1.5,
                       child: const AddTodo()),
                 );
                 currentTab = 5;
