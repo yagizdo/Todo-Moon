@@ -47,6 +47,7 @@ dependencies:
   cupertino_list_tile: ^0.2.1
   flutter_native_splash: ^2.1.1
   flutter_screenutil: ^5.3.1
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -93,8 +94,8 @@ flutter:
     - lib/img/todoImage.jpg
     - lib/img/placeholder.jpg
     - lib/img/logo_350.png
-    - lib/img/businessman.png
     - lib/img/businessman-min.png
+    - lib/img/cnameicon.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

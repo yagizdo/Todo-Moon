@@ -4,7 +4,6 @@ import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 import '../Widgets/Profile/change_name_text.dart';
-import 'main_screen.dart';
 
 class ChangeNameScreen extends StatefulWidget {
   const ChangeNameScreen({Key? key}) : super(key: key);
@@ -75,11 +74,7 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                                 if (validResult == true) {
                                   state.setName(nameController.text);
                                   state.setsurName(surnameController.text);
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MainScreen()));
+                                  Navigator.of(context).pop();
                                 }
                               },
                               child: const Text('Done')),
