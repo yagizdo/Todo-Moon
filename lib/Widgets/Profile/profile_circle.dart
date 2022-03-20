@@ -15,7 +15,7 @@ class ProfileImg extends StatelessWidget {
           style: const TextStyle(fontSize: 30, color: Colors.white),
         ),
         backgroundColor: HexColor('#ff9d73'),
-        radius: 50,
+        radius: 45,
       ),
     );
   }

@@ -1,104 +1,73 @@
-import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Profile/name_text.dart';
-import 'package:todo_app/Widgets/Profile/profile_circle.dart';
 
-import '../Widgets/Profile/change_name_btn.dart';
-import '../Widgets/Profile/clear_todos_btn.dart';
+import '../Widgets/Profile/profile_circle.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: HexColor('#f9f6e8'),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
-          child: LayoutBuilder(builder: (context, constraints) {
-            print('width : ${constraints.maxWidth}');
-            print('height : ${constraints.maxHeight}');
-            return Column(
+    ScreenUtil.setContext(context);
+    return ScreenUtilInit(
+      designSize: Size(391, 850),
+      builder: () => Scaffold(
+        backgroundColor: HexColor('#F9F6E9'),
+        appBar: AppBar(
+          backgroundColor: HexColor('#F9F6E9'),
+          title: const Text(
+            'Profile',
+            style: TextStyle(color: Colors.black),
+          ),
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+        ),
+        body: Stack(
+          children: [
+            Column(
               children: [
-                const ProfileImg(),
-                const NameText(),
-                const SizedBox(
-                  height: 10,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: HexColor('#F9F6E9'),
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 40, left: 15.0),
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w600),
+                Expanded(
+                  flex: 6,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.0),
+                        topLeft: Radius.circular(30.0),
                       ),
                     ),
-                    CupertinoListTile(
-                      title: const Text('Change Name'),
-                      trailing:
-                          // for iphone 7,iphone se - height 567 | iphone 8 plus - height 636
-                          constraints.maxHeight == 567 ||
-                                  constraints.maxHeight == 636
-                              ? ChangeNameBTN(
-                                  width: 3,
-                                  height: 21,
-                                  changeNameHeight: constraints.maxHeight == 636
-                                      ? 1.25
-                                      : 1.15,
-                                )
-                              // for iphone xs, iphone 11 pro, iphone 13 mini - height 678,
-                              // and iphone 13 pro - height 710
-                              : constraints.maxHeight == 678 ||
-                                      constraints.maxHeight == 710
-                                  ? ChangeNameBTN(
-                                      width: 3,
-                                      height: 24,
-                                      changeNameHeight: 1.35,
-                                    )
-                                  // for iphone 11, iphone 13 pro max - height 762
-                                  : constraints.maxHeight == 762 ||
-                                          constraints.maxHeight == 792
-                                      ? ChangeNameBTN(
-                                          width: 3,
-                                          height: 26,
-                                          changeNameHeight:
-                                              constraints.maxHeight == 792
-                                                  ? 1.45
-                                                  : 1.4,
-                                        )
-                                      :
-                                      // for iphone 5s and iphone se 1. gen
-                                      constraints.maxHeight == 468
-                                          ? ChangeNameBTN(
-                                              width: 3,
-                                              height: 18,
-                                              changeNameHeight: 1,
-                                            )
-                                          : ChangeNameBTN(
-                                              width: 3,
-                                              height: 18,
-                                              changeNameHeight: 2,
-                                            ),
-                    ),
-                    const CupertinoListTile(
-                      title: Text('Delete All Completed Todos'),
-                      trailing: ClearTodosBtn(),
-                    ),
+                  ),
+                )
+              ],
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height / 20.w,
+              left: MediaQuery.of(context).size.width / 90.w,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: const [
+                    ProfileImg(),
+                    NameText(),
                   ],
                 ),
-              ],
-            );
-          }),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -10,15 +10,19 @@ class NameText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0, left: 10, right: 10),
-      child: Consumer<TodosProvider>(
-        builder: (context, state, child) => AutoSizeText(
-          '${state.name.toTitleCase()} ${state.surname.toTitleCase()}',
-          maxLines: 1,
-          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+    return Column(
+      children: [
+        const SizedBox(
+          height: 10,
         ),
-      ),
+        Consumer<TodosProvider>(
+          builder: (context, state, child) => AutoSizeText(
+            '${state.name.toTitleCase()} ${state.surname.toTitleCase()}',
+            maxLines: 1,
+            style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
+          ),
+        ),
+      ],
     );
   }
 }
