@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Models/todo.dart';
+import 'package:todo_app/Widgets/DetailPage/todo_description.dart';
 
 import '../Widgets/DetailPage/todo_info_section.dart';
 
@@ -35,6 +36,9 @@ class DetailScreen extends StatelessWidget {
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30),
                       ),
+                    ),
+                    child: TodoDescription(
+                      todo: todo,
                     ),
                   ),
                 ),
