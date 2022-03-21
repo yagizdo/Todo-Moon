@@ -1,106 +1,128 @@
-import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:todo_app/Widgets/Profile/name_text.dart';
 import 'package:todo_app/Widgets/Profile/profile_circle.dart';
 
-import '../Widgets/Profile/change_name_btn.dart';
-import '../Widgets/Profile/clear_todos_btn.dart';
+import '../Widgets/Profile/todos_big_container.dart';
+import '../Widgets/Profile/todos_container.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: HexColor('#f9f6e8'),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
-          child: LayoutBuilder(builder: (context, constraints) {
-            print('width : ${constraints.maxWidth}');
-            print('height : ${constraints.maxHeight}');
-            return Column(
-              children: [
-                const ProfileImg(),
-                const NameText(),
-                const SizedBox(
-                  height: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 40, left: 15.0),
-                      child: Text(
-                        'Settings',
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w600),
+    return ScreenUtilInit(
+      designSize: const Size(391, 850),
+      builder: () => LayoutBuilder(builder: (context, constraints) {
+        return Scaffold(
+          backgroundColor: HexColor('#F9F6E9'),
+          // App Bar
+          appBar: AppBar(
+            backgroundColor: HexColor('#F9F6E9'),
+            title: const Text(
+              'Profile',
+              style: TextStyle(color: Colors.black),
+            ),
+            elevation: 0,
+          ),
+          body: Stack(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: HexColor('#F9F6E9'),
+                    ),
+                  ),
+                  // White Container
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.0),
+                          topLeft: Radius.circular(30.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: constraints.maxHeight == 617 ? 120.h : 100.h),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 18.w),
+                              child: Text(
+                                'Statistics',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.w,
+                                  color: HexColor('#393939'),
+                                ),
+                              ),
+                            ),
+                            // Completed Todos
+                            Positioned(
+                              top: 50.h,
+                              left: 20.w,
+                              child: TodosContainer(
+                                containerHeight: 160.h,
+                                containerWidth: 160.w,
+                                numberfontSize: 45.w,
+                                textfontSize: 22.w,
+                                backgroundColor: '#FF9D78',
+                                text: 'Completed',
+                              ),
+                            ),
+
+                            // Uncompleted Todos
+                            Positioned(
+                              top: 50.h,
+                              left: 205.w,
+                              child: TodosContainer(
+                                containerHeight: 160.h,
+                                containerWidth: 160.w,
+                                numberfontSize: 45.w,
+                                textfontSize: 22.w,
+                                backgroundColor: '#FFC8B4',
+                                text: 'Uncompleted',
+                              ),
+                            ),
+
+                            // All Todos
+                            Positioned(
+                              top: 240.h,
+                              left: 20.w,
+                              child: TodosBigContainer(
+                                containerHeight: 160.h,
+                                containerWidth: 345.w,
+                                numberfontSize: 45.w,
+                                textfontSize: 22.w,
+                                backgroundColor: '#F9F6E9',
+                                text: 'All Todos',
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    CupertinoListTile(
-                      title: const Text('Change Name'),
-                      trailing:
-                          // for iphone 7,iphone se - height 567 | iphone 8 plus - height 636
-                          constraints.maxHeight == 567 ||
-                                  constraints.maxHeight == 636
-                              ? ChangeNameBTN(
-                                  width: 3,
-                                  height: 21,
-                                  changeNameHeight: constraints.maxHeight == 636
-                                      ? 1.25
-                                      : 1.15,
-                                )
-                              // for iphone xs, iphone 11 pro, iphone 13 mini - height 678,
-                              // and iphone 13 pro - height 710
-                              : constraints.maxHeight == 678 ||
-                                      constraints.maxHeight == 710
-                                  ? ChangeNameBTN(
-                                      width: 3,
-                                      height: 24,
-                                      changeNameHeight: 1.35,
-                                    )
-                                  // for iphone 11, iphone 13 pro max - height 762
-                                  : constraints.maxHeight == 762 ||
-                                          constraints.maxHeight == 792
-                                      ? ChangeNameBTN(
-                                          width: 3,
-                                          height: 26,
-                                          changeNameHeight:
-                                              constraints.maxHeight == 792
-                                                  ? 1.45
-                                                  : 1.4,
-                                        )
-                                      :
-                                      // for iphone 5s and iphone se 1. gen
-                                      constraints.maxHeight == 468
-                                          ? ChangeNameBTN(
-                                              width: 3,
-                                              height: 18,
-                                              changeNameHeight: 1,
-                                            )
-                                          : ChangeNameBTN(
-                                              width: 3,
-                                              height: 18,
-                                              changeNameHeight: 2,
-                                            ),
-                    ),
-                    const CupertinoListTile(
-                      title: Text('Delete All Completed Todos'),
-                      trailing: ClearTodosBtn(),
-                    ),
-                  ],
+                  )
+                ],
+              ),
+
+              // Profile Avatar
+              Positioned(
+                top: constraints.maxHeight == 617 ? 25.w : 40.w,
+                child: ProfileImg(
+                  avatarSize: 45.w,
                 ),
-              ],
-            );
-          }),
-        ),
-      ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }
