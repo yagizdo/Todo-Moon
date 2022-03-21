@@ -15,12 +15,10 @@ class NameText extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO circle avatar ve kalem iconunun size larini responsive ver
     return LayoutBuilder(builder: (context, constraints) {
-      print('width : ${constraints.maxWidth}');
-      print('height : ${constraints.maxHeight}');
       return Column(
         children: [
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
