@@ -13,6 +13,8 @@ class ProfilePage extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(391, 850),
       builder: () => LayoutBuilder(builder: (context, constraints) {
+        print('width : ${constraints.maxWidth}');
+        print('height : ${constraints.maxHeight}');
         return Scaffold(
           backgroundColor: HexColor('#F9F6E9'),
           // App Bar
@@ -47,7 +49,10 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: constraints.maxHeight == 617 ? 120.h : 100.h),
+                            top: constraints.maxHeight == 617 ||
+                                    constraints.maxHeight == 518
+                                ? 120.h
+                                : 100.h),
                         child: const TodosStats(),
                       ),
                     ),
