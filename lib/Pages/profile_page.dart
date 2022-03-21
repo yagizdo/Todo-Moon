@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Profile/profile_circle.dart';
 
+import '../Widgets/Profile/todos_big_container.dart';
 import '../Widgets/Profile/todos_container.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,8 +14,6 @@ class ProfilePage extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(391, 850),
       builder: () => LayoutBuilder(builder: (context, constraints) {
-        print('width : ${constraints.maxWidth}');
-        print('height : ${constraints.maxHeight}');
         return Scaffold(
           backgroundColor: HexColor('#F9F6E9'),
           appBar: AppBar(
@@ -42,6 +41,7 @@ class ProfilePage extends StatelessWidget {
                       color: HexColor('#F9F6E9'),
                     ),
                   ),
+                  // White Container
                   Expanded(
                     flex: 6,
                     child: Container(
@@ -63,8 +63,10 @@ class ProfilePage extends StatelessWidget {
                               child: Text(
                                 'Statistics',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.w),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.w,
+                                  color: HexColor('#393939'),
+                                ),
                               ),
                             ),
                             Positioned(
@@ -92,9 +94,9 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              top: 250.h,
+                              top: 240.h,
                               left: 20.w,
-                              child: TodosContainer(
+                              child: TodosBigContainer(
                                 containerHeight: 160.h,
                                 containerWidth: 345.w,
                                 numberfontSize: 45.w,

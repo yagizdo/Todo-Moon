@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
@@ -27,8 +29,10 @@ class NameText extends StatelessWidget {
                 builder: (context, state, child) => AutoSizeText(
                   '${state.name.toTitleCase()} ${state.surname.toTitleCase()} ',
                   maxLines: 1,
-                  style: const TextStyle(
-                      fontSize: 23, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                      color: HexColor('#393939')),
                 ),
               ),
               GestureDetector(
@@ -47,8 +51,8 @@ class NameText extends StatelessWidget {
                 },
                 child: SvgPicture.asset(
                   'lib/img/cnameicon.svg',
-                  color: Colors.black,
-                  width: 18,
+                  color: HexColor('#393939'),
+                  width: 15.w,
                 ),
               ),
             ],

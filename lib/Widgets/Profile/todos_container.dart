@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/provider/todos_provider.dart';
 
 class TodosContainer extends StatelessWidget {
   TodosContainer(
@@ -21,68 +23,60 @@ class TodosContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return text.contains('All Todos')
-        ? Container(
-            height: containerHeight,
-            width: containerWidth,
-            decoration: BoxDecoration(
-              color: HexColor(backgroundColor),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(14.0),
+    return Consumer<TodosProvider>(builder: (context, state, child) {
+      return Container(
+        height: containerHeight,
+        width: containerWidth,
+        decoration: BoxDecoration(
+          color: HexColor(backgroundColor),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(14.0),
+          ),
+        ),
+        child: text.contains('Completed')
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${state.completedTodos.length}',
+                    style: TextStyle(
+                        color: HexColor('#F9F6E9'),
+                        fontSize: numberfontSize,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    text,
+                    style: TextStyle(
+                        color: HexColor('#F9F6E9'),
+                        fontSize: textfontSize,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${state.unCompletedTodos.length}',
+                    style: TextStyle(
+                        color: HexColor('#F9F6E9'),
+                        fontSize: numberfontSize,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    text,
+                    style: TextStyle(
+                        color: HexColor('#F9F6E9'),
+                        fontSize: textfontSize,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  text,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: textfontSize,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  '12',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: numberfontSize,
-                      fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-          )
-        : Container(
-            height: containerHeight,
-            width: containerWidth,
-            decoration: BoxDecoration(
-              color: HexColor(backgroundColor),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(14.0),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  '12',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: numberfontSize,
-                      fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  text,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: textfontSize,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          );
+      );
+    });
   }
 }
