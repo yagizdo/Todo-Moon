@@ -16,6 +16,7 @@ class ProfilePage extends StatelessWidget {
       builder: () => LayoutBuilder(builder: (context, constraints) {
         return Scaffold(
           backgroundColor: HexColor('#F9F6E9'),
+          // App Bar
           appBar: AppBar(
             backgroundColor: HexColor('#F9F6E9'),
             title: const Text(
@@ -23,13 +24,6 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(color: Colors.black),
             ),
             elevation: 0,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            ),
           ),
           body: Stack(
             children: [
@@ -43,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   // White Container
                   Expanded(
-                    flex: 6,
+                    flex: 7,
                     child: Container(
                       decoration: const BoxDecoration(
                         color: Colors.white,
@@ -69,6 +63,7 @@ class ProfilePage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            // Completed Todos
                             Positioned(
                               top: 50.h,
                               left: 20.w,
@@ -81,6 +76,8 @@ class ProfilePage extends StatelessWidget {
                                 text: 'Completed',
                               ),
                             ),
+
+                            // Uncompleted Todos
                             Positioned(
                               top: 50.h,
                               left: 205.w,
@@ -93,6 +90,8 @@ class ProfilePage extends StatelessWidget {
                                 text: 'Uncompleted',
                               ),
                             ),
+
+                            // All Todos
                             Positioned(
                               top: 240.h,
                               left: 20.w,
@@ -112,8 +111,10 @@ class ProfilePage extends StatelessWidget {
                   )
                 ],
               ),
+
+              // Profile Avatar
               Positioned(
-                top: 40.w,
+                top: constraints.maxHeight == 617 ? 25.w : 40.w,
                 child: ProfileImg(
                   avatarSize: 45.w,
                 ),

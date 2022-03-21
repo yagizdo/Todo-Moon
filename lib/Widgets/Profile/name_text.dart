@@ -15,10 +15,10 @@ class NameText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO circle avatar ve kalem iconunun size larini responsive ver
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         children: [
+          // Name text top padding
           const SizedBox(
             height: 5,
           ),
