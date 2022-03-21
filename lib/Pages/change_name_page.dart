@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
-import '../Widgets/Profile/change_name_text.dart';
+import '../Widgets/ChangeName/change_name_text.dart';
 
 class ChangeNameScreen extends StatefulWidget {
   const ChangeNameScreen({Key? key}) : super(key: key);
