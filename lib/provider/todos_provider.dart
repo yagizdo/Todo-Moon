@@ -223,7 +223,7 @@ class TodosProvider extends ChangeNotifier {
 
   Uint8List? base64ToImage() {
     var data = sharedPreferences!.getString(imageKey);
-    profileImage = base64.decode(data!);
+    data == null ? null : profileImage = base64.decode(data);
     return profileImage;
   }
 }

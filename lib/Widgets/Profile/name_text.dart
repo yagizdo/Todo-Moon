@@ -30,7 +30,7 @@ class NameText extends StatelessWidget {
                   '${state.name.toTitleCase()} ${state.surname.toTitleCase()} ',
                   maxLines: 1,
                   style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 20.w,
                       fontWeight: FontWeight.w500,
                       color: HexColor('#393939')),
                 ),

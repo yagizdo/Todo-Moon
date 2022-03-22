@@ -22,17 +22,18 @@ class _ProfileImgState extends State<ProfileImg> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          Provider.of<TodosProvider>(context, listen: false).pickImage(context);
-        });
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Consumer<TodosProvider>(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                Provider.of<TodosProvider>(context, listen: false)
+                    .pickImage(context);
+              });
+            },
+            child: Consumer<TodosProvider>(
               builder: (context, state, child) => state.profileImage != null
                   ? CircleAvatar(
                       backgroundImage: MemoryImage(state.profileImage!),
@@ -48,9 +49,9 @@ class _ProfileImgState extends State<ProfileImg> {
                       radius: widget.avatarSize,
                     ),
             ),
-            const NameText(),
-          ],
-        ),
+          ),
+          const NameText(),
+        ],
       ),
     );
   }
