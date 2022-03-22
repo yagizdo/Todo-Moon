@@ -45,17 +45,16 @@ class TodoInfoSection extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                // For left padding
-                SizedBox(
-                  width: 150.w,
-                ),
 
                 // Todos time part
-                const Icon(
-                  Icons.access_time_outlined,
+                Padding(
+                  padding: EdgeInsets.only(left: 135.w),
+                  child: const Icon(
+                    Icons.access_time_outlined,
+                  ),
                 ),
                 Text(
-                  ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute}',
+                  ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2,'0')}',
                   style: TextStyle(
                     fontSize: 15,
                     color: HexColor('#393939'),

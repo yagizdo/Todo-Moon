@@ -28,7 +28,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 7,
+                  flex: constraints.maxHeight == 621 ? 6 : 7,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -39,6 +39,7 @@ class DetailScreen extends StatelessWidget {
                     ),
                     child: TodoDescription(
                       todo: todo,
+                      textFontSize: constraints.maxHeight == 621 ? 18.h : 14.h,
                     ),
                   ),
                 ),

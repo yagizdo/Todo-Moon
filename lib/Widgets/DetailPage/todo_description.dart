@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo_app/Models/todo.dart';
 
 class TodoDescription extends StatelessWidget {
-  TodoDescription({Key? key, required this.todo}) : super(key: key);
+  TodoDescription({Key? key, required this.todo, required this.textFontSize})
+      : super(key: key);
   Todo todo;
+  double textFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class TodoDescription extends StatelessWidget {
         child: AutoSizeText(
           todo.description,
           textAlign: TextAlign.start,
-          style: TextStyle(fontSize: 14.h),
+          style: TextStyle(fontSize: textFontSize),
         ),
       ),
     );
