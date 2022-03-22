@@ -18,8 +18,6 @@ class DetailScreen extends StatelessWidget {
     return ScreenUtilInit(
       builder: () => LayoutBuilder(
         builder: (context, constraints) {
-          print('width : ${constraints.maxWidth}');
-          print('height : ${constraints.maxHeight}');
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               onPressed: () {
@@ -39,7 +37,8 @@ class DetailScreen extends StatelessWidget {
                             constraints.maxHeight == 812 ||
                                     constraints.maxHeight == 771
                                 ? MediaQuery.of(context).size.height / 1.5
-                                : constraints.maxHeight == 522
+                                : //For iphone 5s
+                                constraints.maxHeight == 522
                                     ? MediaQuery.of(context).size.height / 1
                                     : MediaQuery.of(context).size.height / 1.2,
                     child: EditTodo(
