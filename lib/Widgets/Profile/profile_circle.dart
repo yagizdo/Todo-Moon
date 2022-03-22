@@ -5,9 +5,20 @@ import 'package:todo_app/provider/todos_provider.dart';
 
 import 'name_text.dart';
 
-class ProfileImg extends StatelessWidget {
+class ProfileImg extends StatefulWidget {
   ProfileImg({Key? key, required this.avatarSize}) : super(key: key);
   double avatarSize;
+
+  @override
+  State<ProfileImg> createState() => _ProfileImgState();
+}
+
+class _ProfileImgState extends State<ProfileImg> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<TodosProvider>(context, listen: false).base64ToImage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +26,28 @@ class ProfileImg extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          Consumer<TodosProvider>(
-            builder: (context, state, child) => CircleAvatar(
-              child: Text(
-                '${state.name[0].toUpperCase()}${state.surname[0].toUpperCase()}',
-                style: const TextStyle(fontSize: 30, color: Colors.white),
-              ),
-              backgroundColor: HexColor('#ff9d73'),
-              radius: avatarSize,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                Provider.of<TodosProvider>(context, listen: false)
+                    .pickImage(context);
+              });
+            },
+            child: Consumer<TodosProvider>(
+              builder: (context, state, child) => state.profileImage != null
+                  ? CircleAvatar(
+                      backgroundImage: MemoryImage(state.profileImage!),
+                      radius: widget.avatarSize,
+                    )
+                  : CircleAvatar(
+                      child: Text(
+                        '${state.name[0].toUpperCase()}${state.surname[0].toUpperCase()}',
+                        style:
+                            const TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                      backgroundColor: HexColor('#ff9d73'),
+                      radius: widget.avatarSize,
+                    ),
             ),
           ),
           const NameText(),

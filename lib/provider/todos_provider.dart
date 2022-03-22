@@ -1,7 +1,9 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/provider/shared_prefences_helper.dart';
@@ -10,6 +12,9 @@ class TodosProvider extends ChangeNotifier {
   SharedPreferences? sharedPreferences;
   String _name = '';
   String _surname = '';
+  String imageKey = "IMAGE_KEY";
+  Uint8List? imagebytes;
+  Uint8List? profileImage;
 
   //initial state
   List<Todo> todos = [];
@@ -196,5 +201,29 @@ class TodosProvider extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     dynamic obj = prefs.get(key);
     return obj;
+  }
+
+  // For profile picture
+  Future pickImage(BuildContext context) async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      imagebytes = await image.readAsBytes();
+      imageToBase64(imagebytes!);
+      notifyListeners();
+      base64ToImage();
+      notifyListeners();
+    }
+  }
+
+  void imageToBase64(Uint8List imageBytes) {
+    sharedPreferences!.setString(imageKey, base64.encode(imageBytes));
+    notifyListeners();
+  }
+
+  Uint8List? base64ToImage() {
+    var data = sharedPreferences!.getString(imageKey);
+    data == null ? null : profileImage = base64.decode(data);
+    return profileImage;
   }
 }

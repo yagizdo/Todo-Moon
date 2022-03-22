@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
 // Welcome Text Widget
-Widget _welcomeText(String text, double size, FontWeight fontWeight,
-    Color color, double minFont) {
+Widget _welcomeText(
+    String text, double size, FontWeight fontWeight, Color color) {
   return AutoSizeText(
     text,
     style: TextStyle(
@@ -14,7 +14,7 @@ Widget _welcomeText(String text, double size, FontWeight fontWeight,
       fontWeight: fontWeight,
       color: color,
     ),
-    minFontSize: minFont,
+    maxLines: 1,
   );
 }
 
@@ -36,13 +36,13 @@ class Greetings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _welcomeText('Hello', customFontSize, FontWeight.normal,
-                    Colors.black, 15),
+                _welcomeText(
+                    'Hello', customFontSize, FontWeight.normal, Colors.black),
                 Consumer<TodosProvider>(
                   builder: (context, state, child) => Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.only(left: 5.0),
                     child: _welcomeText(state.name, customFontSize,
-                        FontWeight.bold, Colors.black, 15),
+                        FontWeight.bold, Colors.black),
                   ),
                 ),
               ],
@@ -53,11 +53,11 @@ class Greetings extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: _welcomeText(
-                      'How is your work life balance this week?',
-                      15,
-                      FontWeight.normal,
-                      Colors.black,
-                      14),
+                    'How is your work life balance this week?',
+                    15,
+                    FontWeight.normal,
+                    Colors.black,
+                  ),
                 ),
               ],
             ),
