@@ -54,7 +54,7 @@ class TodoInfoSection extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2,'0')}',
+                  ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2, '0')}',
                   style: TextStyle(
                     fontSize: 15,
                     color: HexColor('#393939'),
@@ -73,7 +73,7 @@ class TodoInfoSection extends StatelessWidget {
 Widget categoryText(String categoryName, BuildContext context) {
   return Container(
     height: 25.h,
-    width: 140.w,
+    width: 150.w,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(40.0),
       color: HexColor('#d3e3f2'),
