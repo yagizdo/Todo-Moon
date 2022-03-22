@@ -46,7 +46,7 @@ class NameText extends StatelessWidget {
                       ),
                       context: context,
                       builder: (context) => SizedBox(
-                          height: MediaQuery.of(context).size.height / 2,
+                          height: MediaQuery.of(context).size.height / 1.2,
                           child: const ChangeNameScreen()));
                 },
                 child: SvgPicture.asset(

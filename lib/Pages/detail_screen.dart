@@ -39,7 +39,9 @@ class DetailScreen extends StatelessWidget {
                             constraints.maxHeight == 812 ||
                                     constraints.maxHeight == 771
                                 ? MediaQuery.of(context).size.height / 1.5
-                                : MediaQuery.of(context).size.height / 1.3,
+                                : constraints.maxHeight == 522
+                                    ? MediaQuery.of(context).size.height / 1
+                                    : MediaQuery.of(context).size.height / 1.2,
                     child: EditTodo(
                       todo: todo,
                     ),
