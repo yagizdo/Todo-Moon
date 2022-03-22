@@ -15,6 +15,12 @@ class ProfileImg extends StatefulWidget {
 
 class _ProfileImgState extends State<ProfileImg> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<TodosProvider>(context, listen: false).base64ToImage();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {

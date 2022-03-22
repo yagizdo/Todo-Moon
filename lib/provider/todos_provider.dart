@@ -210,6 +210,7 @@ class TodosProvider extends ChangeNotifier {
     if (image != null) {
       imagebytes = await image.readAsBytes();
       imageToBase64(imagebytes!);
+      notifyListeners();
       base64ToImage();
       notifyListeners();
     }
@@ -223,7 +224,6 @@ class TodosProvider extends ChangeNotifier {
   Uint8List? base64ToImage() {
     var data = sharedPreferences!.getString(imageKey);
     profileImage = base64.decode(data!);
-    notifyListeners();
     return profileImage;
   }
 }
