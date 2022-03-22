@@ -1,9 +1,12 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:todo_app/Models/todo.dart';
+import 'package:todo_app/Widgets/DetailPage/todo_description.dart';
 
+import '../Widgets/DetailPage/todo_info_section.dart';
 import 'edit_todo.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -12,145 +15,87 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime todoDate =
-        DateTime.fromMillisecondsSinceEpoch(todo.dateMilliseconds);
-    return LayoutBuilder(builder: (context, constraints) {
-      print('width : ${constraints.maxWidth}');
-      print('height : ${constraints.maxHeight}');
-      return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showCupertinoModalBottomSheet(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+    return ScreenUtilInit(
+      builder: () => LayoutBuilder(
+        builder: (context, constraints) {
+          print('width : ${constraints.maxWidth}');
+          print('height : ${constraints.maxHeight}');
+          return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                showCupertinoModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  context: context,
+                  builder: (context) => SizedBox(
+                    height:
+                        // for iphone 11
+                        constraints.maxHeight == 896 ||
+                                constraints.maxHeight == 926
+                            ? MediaQuery.of(context).size.height / 1.6
+                            :
+                            // For iphone 11 pro, 12 mini, 12 pro(height 771)
+                            constraints.maxHeight == 812 ||
+                                    constraints.maxHeight == 771
+                                ? MediaQuery.of(context).size.height / 1.5
+                                : constraints.maxHeight == 522
+                                    ? MediaQuery.of(context).size.height / 1
+                                    : MediaQuery.of(context).size.height / 1.2,
+                    child: EditTodo(
+                      todo: todo,
+                    ),
+                  ),
+                );
+              },
+              child: SvgPicture.asset(
+                'lib/img/editicon.svg',
+                width: 26.w,
               ),
-              context: context,
-              builder: (context) => SizedBox(
-                height:
-                    // for iphone 11
-                    constraints.maxHeight == 896 || constraints.maxHeight == 926
-                        ? MediaQuery.of(context).size.height / 1.6
-                        :
-                        // For iphone 11 pro, 12 mini, 12 pro(height 771)
-                        constraints.maxHeight == 812 ||
-                                constraints.maxHeight == 771
-                            ? MediaQuery.of(context).size.height / 1.5
-                            : MediaQuery.of(context).size.height / 1.3,
-                child: EditTodo(
-                  todo: todo,
-                ),
-              ),
-            );
-          },
-          child: const Icon(Icons.edit),
-          backgroundColor: Colors.orangeAccent,
-        ),
-        backgroundColor: HexColor('#f9f6e8'),
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              backgroundColor: Colors.orangeAccent,
+            ),
+            backgroundColor: HexColor('#F9F6E9'),
+            body: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(),
-                        child: categoryText(todo.category, context),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 60,
-                      ),
-                      AutoSizeText(
-                        todo.title,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                Expanded(
+                  flex: 2,
+                  child: TodoInfoSection(
+                    todo: todo,
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 90, right: 20, top: 10),
-                      child: AutoSizeText(
-                        '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}',
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                Expanded(
+                  flex: constraints.maxHeight == 621
+                      ? 6
+                      : constraints.maxHeight == 522
+                          ? 5
+                          : 7,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
                       ),
                     ),
-                  ],
-                )
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 30, left: 10.0),
-                          child: Text(
-                            'Description',
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10.0, left: 15),
-                          child: Text(
-                            todo.description.isEmpty
-                                ? 'Desc is empty'
-                                : todo.description,
-                            style: const TextStyle(
-                                fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                      )
-                    ],
+                    child: TodoDescription(
+                      todo: todo,
+                      textFontSize:
+                          // for iphone 7 - Height 621
+                          constraints.maxHeight == 621
+                              ? 18.h
+                              :
+                              // for iphone 5S - Height 522
+                              constraints.maxHeight == 522
+                                  ? 16.h
+                                  : 14.h,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      );
-    });
+          );
+        },
+      ),
+    );
   }
-}
-
-Widget categoryText(String categoryName, BuildContext context) {
-  return Container(
-    height: MediaQuery.of(context).size.height / 30,
-    width: MediaQuery.of(context).size.width / 2.7,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20.0),
-      color: HexColor('#d3e3f2'),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: Center(
-          child: Text(
-        categoryName,
-        style: const TextStyle(
-            color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 12),
-      )),
-    ),
-  );
 }
