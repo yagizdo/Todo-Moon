@@ -33,34 +33,42 @@ class TodoInfoSection extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 20.w, top: 20.h),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(
-                  Icons.calendar_today,
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.calendar_today,
+                    ),
+                    Text(
+                      ' ${todoDate.day.toString().padLeft(2, '0')}/${todoDate.month.toString().padLeft(2, '0')}/${todoDate.year}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: HexColor('#393939'),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  ' ${todoDate.day.toString().padLeft(2, '0')}/${todoDate.month.toString().padLeft(2, '0')}/${todoDate.year}',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: HexColor('#393939'),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-
-                // Todos time part
                 Padding(
-                  padding: EdgeInsets.only(left: 135.w),
-                  child: const Icon(
-                    Icons.access_time_outlined,
+                  padding: EdgeInsets.only(right: 20.w),
+                  child: Row(
+                    children: [
+                      // Todos time part
+                      const Icon(
+                        Icons.access_time_outlined,
+                      ),
+                      Text(
+                        ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2, '0')}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: HexColor('#393939'),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2, '0')}',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: HexColor('#393939'),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                )
               ],
             ),
           ),
