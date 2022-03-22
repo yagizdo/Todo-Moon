@@ -28,7 +28,11 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: constraints.maxHeight == 621 ? 6 : 7,
+                  flex: constraints.maxHeight == 621
+                      ? 6
+                      : constraints.maxHeight == 522
+                          ? 5
+                          : 7,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -39,7 +43,15 @@ class DetailScreen extends StatelessWidget {
                     ),
                     child: TodoDescription(
                       todo: todo,
-                      textFontSize: constraints.maxHeight == 621 ? 18.h : 14.h,
+                      textFontSize:
+                          // for iphone 7 - Height 621
+                          constraints.maxHeight == 621
+                              ? 18.h
+                              :
+                              // for iphone 5S - Height 522
+                              constraints.maxHeight == 522
+                                  ? 16.h
+                                  : 14.h,
                     ),
                   ),
                 ),
