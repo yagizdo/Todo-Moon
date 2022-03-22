@@ -97,6 +97,7 @@ flutter:
     - lib/img/logo_350.png
     - lib/img/businessman-min.png
     - lib/img/cnameicon.svg
+    - lib/img/editicon.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
