@@ -57,12 +57,12 @@ class _ProfileImgState extends State<ProfileImg> {
             ],
           ),
           Positioned(
-            top: 80.h,
+            top: 70.h,
             left: 215.w,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: const BorderRadius.all(
+                borderRadius: BorderRadius.all(
                   Radius.circular(40),
                 ),
               ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
+import 'clear_todos_btn.dart';
+
 class CompletedTaskInfo extends StatefulWidget {
   const CompletedTaskInfo({Key? key}) : super(key: key);
 
@@ -23,21 +25,28 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Your tasks',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Row(
+                  children: const [
+                    Text(
+                      'Your tasks',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 170.0),
+                      child: ClearTodosBtn(),
+                    ),
+                  ],
                 ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Consumer<TodosProvider>(
-                      builder: (context, state, child) => Text(
-                        'You have ${state.completedTodos.length} tasks completed all time',
-                        style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
-                    ))
+                Consumer<TodosProvider>(
+                  builder: (context, state, child) => Text(
+                    'You have ${state.completedTodos.length} tasks completed all time',
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                )
               ],
             ),
           ),
