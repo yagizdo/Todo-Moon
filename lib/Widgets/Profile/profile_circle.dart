@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
@@ -24,33 +25,45 @@ class _ProfileImgState extends State<ProfileImg> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: Column(
+      child: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                Provider.of<TodosProvider>(context, listen: false)
-                    .pickImage(context);
-              });
-            },
-            child: Consumer<TodosProvider>(
-              builder: (context, state, child) => state.profileImage != null
-                  ? CircleAvatar(
-                      backgroundImage: MemoryImage(state.profileImage!),
-                      radius: widget.avatarSize,
-                    )
-                  : CircleAvatar(
-                      child: Text(
-                        '${state.name[0].toUpperCase()}${state.surname[0].toUpperCase()}',
-                        style:
-                            const TextStyle(fontSize: 30, color: Colors.white),
-                      ),
-                      backgroundColor: HexColor('#ff9d73'),
-                      radius: widget.avatarSize,
-                    ),
-            ),
+          Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    Provider.of<TodosProvider>(context, listen: false)
+                        .pickImage(context);
+                  });
+                },
+                child: Consumer<TodosProvider>(
+                  builder: (context, state, child) => state.profileImage != null
+                      ? CircleAvatar(
+                          backgroundImage: MemoryImage(state.profileImage!),
+                          radius: widget.avatarSize,
+                        )
+                      : CircleAvatar(
+                          child: Text(
+                            '${state.name[0].toUpperCase()}${state.surname[0].toUpperCase()}',
+                            style: const TextStyle(
+                                fontSize: 30, color: Colors.white),
+                          ),
+                          backgroundColor: HexColor('#ff9d73'),
+                          radius: widget.avatarSize,
+                        ),
+                ),
+              ),
+              const NameText(),
+            ],
           ),
-          const NameText(),
+          Positioned(
+            top: 80.h,
+            left: 220.w,
+            child: Icon(
+              Icons.add_circle,
+              color: HexColor('#ff9d73'),
+            ),
+          )
         ],
       ),
     );
