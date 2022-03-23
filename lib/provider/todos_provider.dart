@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -206,7 +207,16 @@ class TodosProvider extends ChangeNotifier {
 
   // For profile picture
   Future pickImage(BuildContext context) async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    XFile? image;
+    try {
+      image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    } catch (e) {
+      showOkAlertDialog(
+          context: context,
+          title: 'Permission Error',
+          message:
+              'You need to give permission to access the gallery in the settings.');
+    }
 
     if (image != null) {
       imagebytes = await image.readAsBytes();

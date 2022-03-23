@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: HexColor('#f9f6e8'),
       ),
+      localizationsDelegates: const [
+        DefaultCupertinoLocalizations.delegate,
+      ],
       home: userName.toString().contains('null')
           ? const WelcomeScreen()
           : const MainScreen(),

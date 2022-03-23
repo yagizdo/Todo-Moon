@@ -58,10 +58,18 @@ class _ProfileImgState extends State<ProfileImg> {
           ),
           Positioned(
             top: 80.h,
-            left: 220.w,
-            child: Icon(
-              Icons.add_circle,
-              color: HexColor('#ff9d73'),
+            left: 215.w,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(40),
+                ),
+              ),
+              child: Icon(
+                Icons.add_circle,
+                color: HexColor('#FFBA9D'),
+              ),
             ),
           )
         ],

@@ -208,8 +208,6 @@ class _EditTodoState extends State<EditTodo> {
                                                 onDateTimeChanged: (datetime) {
                                                   setState(() {
                                                     _selectedTime = datetime;
-                                                    print(
-                                                        'Deneme $_selectedTime');
                                                   });
                                                 })),
                                         Expanded(
