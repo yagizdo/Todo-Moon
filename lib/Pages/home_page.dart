@@ -18,8 +18,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: HexColor('#f9f6e8'),
       body: LayoutBuilder(builder: (context, constraints) {
-        print('width : ${constraints.maxWidth}');
-        print('height : ${constraints.maxHeight}');
         return Column(
           children: [
             constraints.maxWidth < 350
