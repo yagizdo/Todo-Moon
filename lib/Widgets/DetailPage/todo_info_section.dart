@@ -12,6 +12,8 @@ class TodoInfoSection extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime todoDate =
         DateTime.fromMillisecondsSinceEpoch(todo.dateMilliseconds);
+    DateTime todoTime =
+        DateTime.fromMillisecondsSinceEpoch(todo.timeMilliseconds);
     return Container(
       color: Colors.transparent,
       child: Column(
@@ -59,7 +61,7 @@ class TodoInfoSection extends StatelessWidget {
                         Icons.access_time_outlined,
                       ),
                       Text(
-                        ' ${todoDate.hour.toString().padLeft(2, '0')}:${todoDate.minute.toString().padLeft(2, '0')}',
+                        ' ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}',
                         style: TextStyle(
                           fontSize: 15,
                           color: HexColor('#393939'),

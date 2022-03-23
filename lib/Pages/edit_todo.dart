@@ -22,11 +22,13 @@ class _EditTodoState extends State<EditTodo> {
   var descController;
   var categoryController;
 
-  DateTime? _selectedDatetime;
+  DateTime? _selectedDate;
+  DateTime? _selectedTime;
   String dateTextValue =
       '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
-  var todoDatetime;
+  var todoDate;
+  var todoTime;
 
   @override
   void initState() {
@@ -35,8 +37,10 @@ class _EditTodoState extends State<EditTodo> {
     descController = TextEditingController(text: widget.todo.description);
     categoryController = TextEditingController(text: widget.todo.category);
 
-    todoDatetime =
+    todoDate =
         DateTime.fromMillisecondsSinceEpoch(widget.todo.dateMilliseconds);
+    todoTime =
+        DateTime.fromMillisecondsSinceEpoch(widget.todo.timeMilliseconds);
   }
 
   @override
@@ -75,78 +79,174 @@ class _EditTodoState extends State<EditTodo> {
                         controller: categoryController,
                         labelText: 'Category'),
 
-                    // Cupertino DatwTime Picker
-                    GestureDetector(
-                      onTap: () {
-                        showCupertinoModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                    Row(
+                      children: [
+                        // Cupertino DatwTime Picker
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          // DATE
+                          child: GestureDetector(
+                            onTap: () {
+                              showCupertinoModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                context: context,
+                                builder: (context) => Container(
+                                    color: HexColor('#f9f6e8'),
+                                    height: MediaQuery.of(context).size.height /
+                                        1.8,
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                            flex: 10,
+                                            child: CupertinoDatePicker(
+                                                initialDateTime: DateTime
+                                                    .fromMillisecondsSinceEpoch(
+                                                        widget.todo
+                                                            .dateMilliseconds),
+                                                minimumYear: 2022,
+                                                maximumYear:
+                                                    (DateTime.now().year + 30),
+                                                minimumDate: DateTime.fromMillisecondsSinceEpoch(
+                                                                    // 18
+                                                                    widget.todo.dateMilliseconds)
+                                                                .day !=
+                                                            DateTime.now()
+                                                                .day // 19
+                                                        &&
+                                                        DateTime.fromMillisecondsSinceEpoch(
+                                                                    widget.todo
+                                                                        .dateMilliseconds)
+                                                                .day >=
+                                                            DateTime.now().day
+                                                    ? DateTime.now()
+                                                    : todoDate,
+                                                mode: CupertinoDatePickerMode
+                                                    .date,
+                                                onDateTimeChanged: (datetime) {
+                                                  setState(() {
+                                                    _selectedDate = datetime;
+                                                  });
+                                                })),
+                                        Expanded(
+                                          flex: 2,
+                                          child: CupertinoButton(
+                                              child: const Text(
+                                                'Ok',
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }),
+                                        )
+                                      ],
+                                    )),
+                              );
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 1.1,
+                              height: MediaQuery.of(context).size.height / 12,
+                              margin: const EdgeInsets.only(top: 10),
+                              alignment: Alignment.center,
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[200]),
+                              child: _selectedDate == null
+                                  ? Text(
+                                      'Default Date : ${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}')
+                                  : Text(
+                                      'Default Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                            ),
                           ),
-                          context: context,
-                          builder: (context) => Container(
-                              color: HexColor('#f9f6e8'),
-                              height: MediaQuery.of(context).size.height / 1.8,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      flex: 10,
-                                      child: CupertinoDatePicker(
-                                          initialDateTime: DateTime
-                                              .fromMillisecondsSinceEpoch(
-                                                  widget.todo.dateMilliseconds),
-                                          minimumYear: 2022,
-                                          maximumYear:
-                                              (DateTime.now().year + 30),
-                                          minimumDate: DateTime
-                                                              .fromMillisecondsSinceEpoch(
-                                                                  // 18
-                                                                  widget.todo
-                                                                      .dateMilliseconds)
-                                                          .day !=
-                                                      DateTime.now().day // 19
-                                                  &&
-                                                  DateTime.fromMillisecondsSinceEpoch(
-                                                              widget.todo
-                                                                  .dateMilliseconds)
-                                                          .day >=
-                                                      DateTime.now().day
-                                              ? DateTime.now()
-                                              : todoDatetime,
-                                          mode: CupertinoDatePickerMode.date,
-                                          onDateTimeChanged: (datetime) {
-                                            setState(() {
-                                              _selectedDatetime = datetime;
-                                            });
-                                          })),
-                                  Expanded(
-                                    flex: 2,
-                                    child: CupertinoButton(
-                                        child: const Text(
-                                          'Ok',
-                                          style: TextStyle(fontSize: 25),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        }),
-                                  )
-                                ],
-                              )),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 1.1,
-                        height: MediaQuery.of(context).size.height / 12,
-                        margin: const EdgeInsets.only(top: 10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(color: Colors.grey[200]),
-                        child: _selectedDatetime == null
-                            ? Text(
-                                'Selected Date : ${todoDatetime.day.toString().padLeft(2, '0')}.${todoDatetime.month.toString().padLeft(2, '0')}.${todoDatetime.year}')
-                            : Text(
-                                'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
-                      ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          // TIME
+                          child: GestureDetector(
+                            onTap: () {
+                              showCupertinoModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                context: context,
+                                builder: (context) => Container(
+                                    color: HexColor('#f9f6e8'),
+                                    height: MediaQuery.of(context).size.height /
+                                        1.8,
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                            flex: 10,
+                                            child: CupertinoDatePicker(
+                                                initialDateTime: DateTime
+                                                    .fromMillisecondsSinceEpoch(
+                                                        widget.todo
+                                                            .timeMilliseconds),
+                                                minimumDate: DateTime
+                                                                    .fromMillisecondsSinceEpoch(
+                                                                        // 18
+                                                                        widget
+                                                                            .todo
+                                                                            .timeMilliseconds)
+                                                                .hour !=
+                                                            DateTime.now()
+                                                                .hour // 19
+                                                        &&
+                                                        DateTime.fromMillisecondsSinceEpoch(
+                                                                    widget.todo
+                                                                        .timeMilliseconds)
+                                                                .hour >=
+                                                            DateTime.now().hour
+                                                    ? DateTime.now()
+                                                    : todoTime,
+                                                mode: CupertinoDatePickerMode
+                                                    .time,
+                                                onDateTimeChanged: (datetime) {
+                                                  setState(() {
+                                                    _selectedTime = datetime;
+                                                    print(
+                                                        'Deneme $_selectedTime');
+                                                  });
+                                                })),
+                                        Expanded(
+                                          flex: 2,
+                                          child: CupertinoButton(
+                                              child: const Text(
+                                                'Ok',
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }),
+                                        )
+                                      ],
+                                    )),
+                              );
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 1.1,
+                              height: MediaQuery.of(context).size.height / 12,
+                              margin: const EdgeInsets.only(top: 10),
+                              alignment: Alignment.center,
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[200]),
+                              child: _selectedTime == null
+                                  ? Text(
+                                      'Default Time : ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}')
+                                  : Text(
+                                      'Default Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                      ],
                     ),
-
                     // Edit button
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 40),
@@ -166,11 +266,17 @@ class _EditTodoState extends State<EditTodo> {
                                             titleController.text,
                                             descController.text,
                                             categoryController.text,
-                                            _selectedDatetime
+                                            _selectedDate
                                                         ?.millisecondsSinceEpoch ==
                                                     null
                                                 ? widget.todo.dateMilliseconds
-                                                : _selectedDatetime!
+                                                : _selectedDate!
+                                                    .millisecondsSinceEpoch,
+                                            _selectedTime
+                                                        ?.millisecondsSinceEpoch ==
+                                                    null
+                                                ? widget.todo.timeMilliseconds
+                                                : _selectedTime!
                                                     .millisecondsSinceEpoch);
 
                                     titleController.text = '';

@@ -21,7 +21,8 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  DateTime? _selectedDatetime;
+  DateTime? _selectedDate;
+  DateTime? _selectedTime;
   String dateTextValue =
       '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
@@ -30,7 +31,9 @@ class _AddTodoState extends State<AddTodo> {
         title: titleController.text,
         description: descController.text,
         category: categoryController.text,
-        dateMilliseconds: _selectedDatetime?.millisecondsSinceEpoch ??
+        dateMilliseconds: _selectedDate?.millisecondsSinceEpoch ??
+            DateTime.now().millisecondsSinceEpoch,
+        timeMilliseconds: _selectedTime?.millisecondsSinceEpoch ??
             DateTime.now().millisecondsSinceEpoch);
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
@@ -66,58 +69,131 @@ class _AddTodoState extends State<AddTodo> {
                     hint: 'Category',
                     controller: categoryController,
                     labelText: 'Category'),
-
-                // Cupertino DatwTime Picker
-                GestureDetector(
-                  onTap: () {
-                    showCupertinoModalBottomSheet(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                Row(
+                  children: [
+                    // Cupertino DatwTime Picker
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+                          showCupertinoModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            context: context,
+                            builder: (context) => Container(
+                                color: HexColor('#f9f6e8'),
+                                height:
+                                    MediaQuery.of(context).size.height / 1.8,
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                        flex: 10,
+                                        child: CupertinoDatePicker(
+                                            minimumYear: 2022,
+                                            maximumYear:
+                                                (DateTime.now().year + 30),
+                                            minimumDate: DateTime.now(),
+                                            mode: CupertinoDatePickerMode.date,
+                                            onDateTimeChanged: (datetime) {
+                                              setState(() {
+                                                _selectedDate = datetime;
+                                              });
+                                            })),
+                                    Expanded(
+                                        flex: 2,
+                                        child: CupertinoButton(
+                                            child: const Text(
+                                              'Ok',
+                                              style: TextStyle(fontSize: 25),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            }))
+                                  ],
+                                )),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          height: MediaQuery.of(context).size.height / 12,
+                          margin: const EdgeInsets.only(top: 10),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(color: Colors.grey[200]),
+                          child: _selectedDate == null
+                              ? Text(
+                                  'Default Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
+                              : Text(
+                                  'Default Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                        ),
                       ),
-                      context: context,
-                      builder: (context) => Container(
-                          color: HexColor('#f9f6e8'),
-                          height: MediaQuery.of(context).size.height / 1.8,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  flex: 10,
-                                  child: CupertinoDatePicker(
-                                      minimumYear: 2022,
-                                      maximumYear: (DateTime.now().year + 30),
-                                      minimumDate: DateTime.now(),
-                                      mode: CupertinoDatePickerMode.date,
-                                      onDateTimeChanged: (datetime) {
-                                        setState(() {
-                                          _selectedDatetime = datetime;
-                                        });
-                                      })),
-                              Expanded(
-                                  flex: 2,
-                                  child: CupertinoButton(
-                                      child: const Text(
-                                        'Ok',
-                                        style: TextStyle(fontSize: 25),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      }))
-                            ],
-                          )),
-                    );
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1.1,
-                    height: MediaQuery.of(context).size.height / 12,
-                    margin: const EdgeInsets.only(top: 10),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Colors.grey[200]),
-                    child: _selectedDatetime == null
-                        ? Text(
-                            'Selected Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
-                        : Text(
-                            'Selected Date : ${_selectedDatetime?.day.toString().padLeft(2, '0')}.${_selectedDatetime?.month.toString().padLeft(2, '0')}.${_selectedDatetime?.year}'),
-                  ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+                          showCupertinoModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            context: context,
+                            builder: (context) => Container(
+                                color: HexColor('#f9f6e8'),
+                                height:
+                                    MediaQuery.of(context).size.height / 1.8,
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                        flex: 10,
+                                        child: CupertinoDatePicker(
+                                            minimumYear: 2022,
+                                            maximumYear:
+                                                (DateTime.now().year + 30),
+                                            minimumDate: DateTime.now(),
+                                            mode: CupertinoDatePickerMode.time,
+                                            onDateTimeChanged: (datetime) {
+                                              setState(() {
+                                                _selectedTime = datetime;
+                                              });
+                                            })),
+                                    Expanded(
+                                        flex: 2,
+                                        child: CupertinoButton(
+                                            child: const Text(
+                                              'Ok',
+                                              style: TextStyle(fontSize: 25),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            }))
+                                  ],
+                                )),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          height: MediaQuery.of(context).size.height / 12,
+                          margin: const EdgeInsets.only(top: 10),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(color: Colors.grey[200]),
+                          child: _selectedTime == null
+                              ? Text(
+                                  'Default Time : ${DateTime.now().hour.toString().padLeft(2, '0')}.${DateTime.now().minute.toString().padLeft(2, '0')}')
+                              : Text(
+                                  'Default Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 10),

@@ -4,12 +4,14 @@ class Todo {
   bool complete = false;
   String category;
   int dateMilliseconds;
+  int timeMilliseconds;
 
   Todo(
       {required this.title,
       this.description = '',
       this.complete = false,
       required this.dateMilliseconds,
+      required this.timeMilliseconds,
       this.category = 'Uncategorized'});
 
   //toObject
@@ -18,7 +20,8 @@ class Todo {
         description = map['description'] as String,
         complete = map['complete'] as bool,
         category = map['category'] as String,
-        dateMilliseconds = map['dateMilliseconds'] as int;
+        dateMilliseconds = map['dateMilliseconds'] as int,
+        timeMilliseconds = map['timeMilliseconds'] as int;
 
   //toJson
   Map<String, dynamic> toJson() {
@@ -28,6 +31,7 @@ class Todo {
     data['complete'] = complete;
     data['category'] = category;
     data['dateMilliseconds'] = dateMilliseconds;
+    data['timeMilliseconds'] = timeMilliseconds;
     return data;
   }
 
