@@ -72,7 +72,7 @@ class _AddTodoState extends State<AddTodo> {
                 Row(
                   children: [
                     // Cupertino DatwTime Picker
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -127,11 +127,11 @@ class _AddTodoState extends State<AddTodo> {
                               ? Text(
                                   'Default Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
                               : Text(
-                                  'Default Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                                  'Selected Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -152,10 +152,7 @@ class _AddTodoState extends State<AddTodo> {
                                     Expanded(
                                         flex: 10,
                                         child: CupertinoDatePicker(
-                                            minimumYear: 2022,
-                                            maximumYear:
-                                                (DateTime.now().year + 30),
-                                            minimumDate: DateTime.now(),
+                                            use24hFormat: true,
                                             mode: CupertinoDatePickerMode.time,
                                             onDateTimeChanged: (datetime) {
                                               setState(() {
@@ -186,7 +183,7 @@ class _AddTodoState extends State<AddTodo> {
                               ? Text(
                                   'Default Time : ${DateTime.now().hour.toString().padLeft(2, '0')}.${DateTime.now().minute.toString().padLeft(2, '0')}')
                               : Text(
-                                  'Default Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                                  'Selected Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
                         ),
                       ),
                     ),

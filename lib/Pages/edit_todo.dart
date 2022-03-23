@@ -157,7 +157,7 @@ class _EditTodoState extends State<EditTodo> {
                                   ? Text(
                                       'Default Date : ${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}')
                                   : Text(
-                                      'Default Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                                      'Selected Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
                             ),
                           ),
                         ),
@@ -182,27 +182,11 @@ class _EditTodoState extends State<EditTodo> {
                                         Expanded(
                                             flex: 10,
                                             child: CupertinoDatePicker(
+                                                use24hFormat: true,
                                                 initialDateTime: DateTime
                                                     .fromMillisecondsSinceEpoch(
                                                         widget.todo
                                                             .timeMilliseconds),
-                                                minimumDate: DateTime
-                                                                    .fromMillisecondsSinceEpoch(
-                                                                        // 18
-                                                                        widget
-                                                                            .todo
-                                                                            .timeMilliseconds)
-                                                                .hour !=
-                                                            DateTime.now()
-                                                                .hour // 19
-                                                        &&
-                                                        DateTime.fromMillisecondsSinceEpoch(
-                                                                    widget.todo
-                                                                        .timeMilliseconds)
-                                                                .hour >=
-                                                            DateTime.now().hour
-                                                    ? DateTime.now()
-                                                    : todoTime,
                                                 mode: CupertinoDatePickerMode
                                                     .time,
                                                 onDateTimeChanged: (datetime) {
@@ -236,7 +220,7 @@ class _EditTodoState extends State<EditTodo> {
                                   ? Text(
                                       'Default Time : ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}')
                                   : Text(
-                                      'Default Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                                      'Selected Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'),
                             ),
                           ),
                         ),
