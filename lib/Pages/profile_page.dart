@@ -36,7 +36,9 @@ class ProfilePage extends StatelessWidget {
                   ),
                   // White Container
                   Expanded(
-                    flex: 7,
+                    flex:
+                        // For Pixel 2 - height 633.4285714285714
+                        constraints.maxHeight == 633.4285714285714 ? 5 : 7,
                     child: Container(
                       decoration: const BoxDecoration(
                         color: Colors.white,

@@ -41,6 +41,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
+      print('width : ${constraints.maxWidth}');
+      print('height : ${constraints.maxHeight}');
       return Scaffold(
         backgroundColor: HexColor('#f3f0e5'),
         body: PageStorage(
@@ -92,10 +94,18 @@ class _MainScreenState extends State<MainScreen> {
                                                           .size
                                                           .height /
                                                       1.1
-                                                  : MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      1.5,
+                                                  :
+                                                  // For Pixel 2 - height 683.4285714285714
+                                                  constraints.maxHeight ==
+                                                          683.4285714285714
+                                                      ? MediaQuery.of(context)
+                                                              .size
+                                                              .height /
+                                                          1.2
+                                                      : MediaQuery.of(context)
+                                                              .size
+                                                              .height /
+                                                          1.4,
                       child: const AddTodo()),
                 );
                 currentTab = 5;
