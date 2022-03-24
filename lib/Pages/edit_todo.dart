@@ -18,9 +18,9 @@ class EditTodo extends StatefulWidget {
 
 class _EditTodoState extends State<EditTodo> {
   var formKey = GlobalKey<FormState>();
-  var titleController;
-  var descController;
-  var categoryController;
+  TextEditingController? titleController;
+  TextEditingController? descController;
+  TextEditingController? categoryController;
 
   DateTime? _selectedDate;
   DateTime? _selectedTime;
@@ -41,6 +41,14 @@ class _EditTodoState extends State<EditTodo> {
         DateTime.fromMillisecondsSinceEpoch(widget.todo.dateMilliseconds);
     todoTime =
         DateTime.fromMillisecondsSinceEpoch(widget.todo.timeMilliseconds);
+  }
+
+  @override
+  void dispose() {
+    titleController?.dispose();
+    categoryController?.dispose();
+    descController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -68,15 +76,15 @@ class _EditTodoState extends State<EditTodo> {
                     ),
                     EditTF(
                         hint: 'Title',
-                        controller: titleController,
+                        controller: titleController!,
                         labelText: 'Title'),
                     EditTF(
                         hint: 'Description',
-                        controller: descController,
+                        controller: descController!,
                         labelText: 'Description'),
                     EditTF(
                         hint: 'Category',
-                        controller: categoryController,
+                        controller: categoryController!,
                         labelText: 'Category'),
 
                     Row(
@@ -245,9 +253,9 @@ class _EditTodoState extends State<EditTodo> {
                                             listen: false)
                                         .editTodo(
                                             widget.todo,
-                                            titleController.text,
-                                            descController.text,
-                                            categoryController.text,
+                                            titleController!.text,
+                                            descController!.text,
+                                            categoryController!.text,
                                             _selectedDate
                                                         ?.millisecondsSinceEpoch ==
                                                     null
@@ -261,9 +269,9 @@ class _EditTodoState extends State<EditTodo> {
                                                 : _selectedTime!
                                                     .millisecondsSinceEpoch);
 
-                                    titleController.text = '';
-                                    descController.text = '';
-                                    categoryController.text = '';
+                                    titleController?.text = '';
+                                    descController?.text = '';
+                                    categoryController?.text = '';
                                     Navigator.of(context)
                                         .popUntil((route) => route.isFirst);
                                     Fluttertoast.showToast(

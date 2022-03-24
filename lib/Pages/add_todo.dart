@@ -39,6 +39,14 @@ class _AddTodoState extends State<AddTodo> {
   }
 
   @override
+  void dispose() {
+    titleController.dispose();
+    descController.dispose();
+    categoryController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(

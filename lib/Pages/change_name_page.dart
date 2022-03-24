@@ -13,6 +13,8 @@ class ChangeNameScreen extends StatefulWidget {
 }
 
 class _ChangeNameScreenState extends State<ChangeNameScreen> {
+  var nameController = TextEditingController();
+  var surnameController = TextEditingController();
   // ignore: prefer_typing_uninitialized_variables
   late final formKey;
   @override
@@ -23,9 +25,14 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
   }
 
   @override
+  void dispose() {
+    nameController.dispose();
+    surnameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var nameController = TextEditingController();
-    var surnameController = TextEditingController();
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
