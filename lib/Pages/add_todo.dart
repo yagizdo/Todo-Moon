@@ -104,7 +104,14 @@ class _AddTodoState extends State<AddTodo> {
                                             minimumYear: 2022,
                                             maximumYear:
                                                 (DateTime.now().year + 30),
-                                            minimumDate: DateTime.now(),
+                                            minimumDate: _selectedDate == null
+                                                ? DateTime.now()
+                                                : _selectedDate!.day <=
+                                                        DateTime.now().day
+                                                    ? _selectedDate
+                                                    : DateTime.now(),
+                                            initialDateTime:
+                                                _selectedDate ?? DateTime.now(),
                                             mode: CupertinoDatePickerMode.date,
                                             onDateTimeChanged: (datetime) {
                                               setState(() {
