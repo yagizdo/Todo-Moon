@@ -13,6 +13,21 @@ class TaskInfo extends StatefulWidget {
 class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
+    List monthsNames = [
+      '0 index data',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 20, top: 15),
       child: Row(
@@ -31,7 +46,7 @@ class _Task_InfoState extends State<TaskInfo> {
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
-                        'You have ${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length} tasks for today',
+                        'You have ${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length} tasks for ${DateTime.now().day.toString().padLeft(2, '0')} ${monthsNames[DateTime.now().month]}',
                         style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
