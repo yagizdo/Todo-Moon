@@ -79,20 +79,33 @@ class _AddTodoState extends State<AddTodo> {
                     labelText: 'Category'),
                 Row(
                   children: [
-                    // Cupertino DatwTime Picker
+                    // Cupertino DateTime Picker
                     const SizedBox(
                       width: 20,
                     ),
                     Expanded(
                       flex: 1,
-                      child: GestureDetector(
-                        onTap: () {
-                          showCupertinoModalBottomSheet(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 13,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.amber.shade800),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13.0),
+                              ),
                             ),
-                            context: context,
-                            builder: (context) => Container(
+                          ),
+                          onPressed: () {
+                            showCupertinoModalBottomSheet(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              context: context,
+                              builder: (context) => Container(
                                 color: HexColor('#f9f6e8'),
                                 height:
                                     MediaQuery.of(context).size.height / 1.8,
@@ -129,80 +142,91 @@ class _AddTodoState extends State<AddTodo> {
                                               Navigator.of(context).pop();
                                             }))
                                   ],
-                                )),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          height: MediaQuery.of(context).size.height / 12,
-                          margin: const EdgeInsets.only(top: 10),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(color: Colors.grey[200]),
-                          child: _selectedDate == null
-                              ? Text(
-                                  'Default Date : ${DateTime.now().day.toString().padLeft(2, '0')}.${DateTime.now().month.toString().padLeft(2, '0')}.${DateTime.now().year}')
-                              : Text(
-                                  'Selected Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                                ),
+                              ),
+                            );
+                          },
+                          child: FittedBox(
+                            child: _selectedDate == null
+                                ? Text(
+                                    'Select Date \n(Default Date: ${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year})',
+                                    textAlign: TextAlign.center,
+                                  )
+                                : Text(
+                                    'Selected: ${_selectedDate?.day.toString().padLeft(2, '0')}/${_selectedDate?.month.toString().padLeft(2, '0')}/${_selectedDate?.year}'),
+                          ),
                         ),
                       ),
                     ),
                     const SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     Expanded(
                       flex: 1,
-                      child: GestureDetector(
-                        onTap: () {
-                          showCupertinoModalBottomSheet(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        height: MediaQuery.of(context).size.height / 13,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.amber.shade800),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13.0),
+                              ),
                             ),
-                            context: context,
-                            builder: (context) => Container(
-                                color: HexColor('#f9f6e8'),
-                                height:
-                                    MediaQuery.of(context).size.height / 1.8,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                        flex: 10,
-                                        child: CupertinoDatePicker(
-                                            use24hFormat: true,
-                                            mode: CupertinoDatePickerMode.time,
-                                            onDateTimeChanged: (datetime) {
-                                              setState(() {
-                                                _selectedTime = datetime;
-                                              });
-                                            })),
-                                    Expanded(
-                                        flex: 2,
-                                        child: CupertinoButton(
-                                            child: const Text(
-                                              'Ok',
-                                              style: TextStyle(fontSize: 25),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            }))
-                                  ],
-                                )),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          height: MediaQuery.of(context).size.height / 12,
-                          margin: const EdgeInsets.only(top: 10),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(color: Colors.grey[200]),
-                          child: _selectedTime == null
-                              ? Text(
-                                  'Default Time : ${DateTime.now().hour.toString().padLeft(2, '0')}.${DateTime.now().minute.toString().padLeft(2, '0')}')
-                              : Text(
-                                  'Selected Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                          ),
+                          child: FittedBox(
+                            child: _selectedTime == null
+                                ? Text(
+                                    'Select Time \n(Default time : ${DateTime.now().hour.toString().padLeft(2, '0')}:${DateTime.now().minute.toString().padLeft(2, '0')})     ',
+                                    textAlign: TextAlign.center,
+                                  )
+                                : Text(
+                                    'Selected: ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                          ),
+                          onPressed: () {
+                            showCupertinoModalBottomSheet(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              context: context,
+                              builder: (context) => Container(
+                                  color: HexColor('#f9f6e8'),
+                                  height:
+                                      MediaQuery.of(context).size.height / 1.8,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                          flex: 10,
+                                          child: CupertinoDatePicker(
+                                              use24hFormat: true,
+                                              mode:
+                                                  CupertinoDatePickerMode.time,
+                                              onDateTimeChanged: (datetime) {
+                                                setState(() {
+                                                  _selectedTime = datetime;
+                                                });
+                                              })),
+                                      Expanded(
+                                          flex: 2,
+                                          child: CupertinoButton(
+                                              child: const Text(
+                                                'Ok',
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }))
+                                    ],
+                                  )),
+                            );
+                          },
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                   ],
@@ -268,7 +292,7 @@ class _AddTodoState extends State<AddTodo> {
                           MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.amber, width: 3),
+                          side: const BorderSide(color: Colors.amber, width: 3),
                           borderRadius: BorderRadius.circular(13.0),
                         ),
                       ),
@@ -283,7 +307,7 @@ class _AddTodoState extends State<AddTodo> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 )
               ],
