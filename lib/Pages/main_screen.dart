@@ -41,8 +41,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      print('width : ${constraints.maxWidth}');
-      print('height : ${constraints.maxHeight}');
       return Scaffold(
         backgroundColor: HexColor('#f3f0e5'),
         body: PageStorage(
