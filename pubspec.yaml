@@ -51,6 +51,7 @@ dependencies:
   responsive_framework: ^0.1.7
   image_picker: ^0.8.4+11
   adaptive_dialog: ^1.4.0
+  easy_localization: ^3.0.0
 
 dev_dependencies:
   flutter_test:

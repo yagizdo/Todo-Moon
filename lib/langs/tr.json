@@ -1,0 +1,12 @@
+{
+  "hellotext": "Merhaba",
+  "goodjobtext": "İyi iş",
+  "taskstitle": "Bugün ki işleriniz",
+  "taskcount": "{} için {} işiniz var",
+  "lifebalancedtext": "Hayatınız dengeli",
+  "homesubtıtle": "Bu hafta iş yaşam dengeniz nasıl?",
+  "dasboard": {
+    "tasks": "Tamamlanan görevleriniz",
+    "subtitle": "Toplamda {} adet görev bitirdiniz"
+  }
+}

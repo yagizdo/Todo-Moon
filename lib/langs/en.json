@@ -1,0 +1,12 @@
+{
+  "hellotext": "Hello",
+  "goodjobtext": "Good Job",
+  "taskstitle": "Your tasks",
+  "taskcount": "You have {} tasks for {} ",
+  "lifebalancedtext": "Your life is well-balanced",
+  "homesubtıtle": "How is your work life balance this week?",
+  "dasboard": {
+    "tasks": "Your tasks",
+    "subtitle": "You have {} tasks completed all time"
+  }
+}
