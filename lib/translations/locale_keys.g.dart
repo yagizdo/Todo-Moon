@@ -15,6 +15,7 @@ abstract class  LocaleKeys {
   static const dashboard_alertdialog_delete = 'dashboard.alertdialog.delete';
   static const dashboard_alertdialog_cancel = 'dashboard.alertdialog.cancel';
   static const dashboard_alertdialog = 'dashboard.alertdialog';
+  static const dashboard_title = 'dashboard.title';
   static const dashboard = 'dashboard';
   static const profile_completed_text = 'profile.completed_text';
   static const profile_uncompleted_text = 'profile.uncompleted_text';

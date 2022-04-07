@@ -31,7 +31,8 @@ class CodegenLoader extends AssetLoader{
       "subtitle": "Tamamlanmış tüm işleriniz silinecek. Bunun farkındasınız değil mi?",
       "delete": "Tamamlanmış tüm işleri sil!",
       "cancel": "Vazgeç"
-    }
+    },
+    "title": "Panel"
   },
   "profile": {
     "completed_text": "Tamamlanmış",
@@ -58,7 +59,8 @@ static const Map<String,dynamic> en = {
       "subtitle": "You do realize that all todos you complete will be deleted, right?",
       "delete": "Delete completed todos!",
       "cancel": "Cancel"
-    }
+    },
+    "title": "Dashboard"
   },
   "profile": {
     "completed_text": "Completed",

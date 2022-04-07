@@ -15,7 +15,8 @@
       "subtitle": "You do realize that all todos you complete will be deleted, right?",
       "delete": "Delete completed todos!",
       "cancel": "Cancel"
-    }
+    },
+    "title": "Dashboard"
   },
   "profile": {
     "completed_text": "Completed",

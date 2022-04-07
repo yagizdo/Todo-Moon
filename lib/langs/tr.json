@@ -15,7 +15,8 @@
       "subtitle": "Tamamlanmış tüm işleriniz silinecek. Bunun farkındasınız değil mi?",
       "delete": "Tamamlanmış tüm işleri sil!",
       "cancel": "Vazgeç"
-    }
+    },
+    "title": "Panel"
   },
   "profile": {
     "completed_text": "Tamamlanmış",
