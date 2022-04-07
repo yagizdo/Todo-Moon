@@ -42,5 +42,17 @@
     "add_btn": "Add Todo",
     "cancel_btn": "Cancel",
     "selected": "Selected {}"
+  },
+  "edittodo": {
+    "title": "Edit Task",
+    "title_tf": "Title",
+    "category_tf": "Category",
+    "desc_tf": "Description",
+    "selecteddate": "Selected Date : {}",
+    "selectedtime": "Selected Time : {}",
+    "default_date": "Default Date : {}",
+    "default_time": "Default Time : {}",
+    "edit_btn": "Finish editing",
+    "close_btn": "Close"
   }
 }

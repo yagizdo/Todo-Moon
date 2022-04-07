@@ -42,5 +42,17 @@
     "add_btn": "İş Ekle",
     "cancel_btn": "Vazgeç",
     "selected": "Seçilen {}"
+  },
+  "edittodo": {
+    "title": "İşi Düzenle",
+    "title_tf": "Başlık",
+    "category_tf": "Kategori",
+    "desc_tf": "Açıklama",
+    "selecteddate": "Seçilen Tarih : {}",
+    "selectedtime": "Seçilen Saat : {}",
+    "default_date": "Varsayılan Tarih : {}",
+    "default_time": "Varsayılan Saat : {}",
+    "edit_btn": "Düzenlemeyi bitir",
+    "close_btn": "Kapat"
   }
 }
