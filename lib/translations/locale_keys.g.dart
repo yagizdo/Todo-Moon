@@ -8,5 +8,13 @@ abstract class  LocaleKeys {
   static const homescreen_taskstitle = 'homescreen.taskstitle';
   static const homescreen_taskssubtitle = 'homescreen.taskssubtitle';
   static const homescreen = 'homescreen';
+  static const dashboard_tasktitle = 'dashboard.tasktitle';
+  static const dashboard_taskssubtitle = 'dashboard.taskssubtitle';
+  static const dashboard_alertdialog_title = 'dashboard.alertdialog.title';
+  static const dashboard_alertdialog_subtitle = 'dashboard.alertdialog.subtitle';
+  static const dashboard_alertdialog_delete = 'dashboard.alertdialog.delete';
+  static const dashboard_alertdialog_cancel = 'dashboard.alertdialog.cancel';
+  static const dashboard_alertdialog = 'dashboard.alertdialog';
+  static const dashboard = 'dashboard';
 
 }

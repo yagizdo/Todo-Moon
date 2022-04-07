@@ -22,6 +22,16 @@ class CodegenLoader extends AssetLoader{
     "goodjob_subtitle_text": "Hayatınız gayet dengeli",
     "taskstitle": "İşleriniz",
     "taskssubtitle": "{} tarihi için {} işiniz var"
+  },
+  "dashboard": {
+    "tasktitle": "İşleriniz",
+    "taskssubtitle": "Toplamda {} tane iş bitirmişsiniz",
+    "alertdialog": {
+      "title": "Emin misiniz?",
+      "subtitle": "Tamamlanmış tüm işleriniz silinecek. Bunun farkındasınız değil mi?",
+      "delete": "Tamamlanmış tüm işleri sil!",
+      "cancel": "Vazgeç"
+    }
   }
 };
 static const Map<String,dynamic> en = {
@@ -32,6 +42,16 @@ static const Map<String,dynamic> en = {
     "goodjob_subtitle_text": "Your life is well-balanced",
     "taskstitle": "Your tasks",
     "taskssubtitle": "You have {} tasks for {} {}"
+  },
+  "dashboard": {
+    "tasktitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks completed all time",
+    "alertdialog": {
+      "title": "Are you sure?",
+      "subtitle": "You do realize that all todos you complete will be deleted, right?",
+      "delete": "Delete completed todos!",
+      "cancel": "Cancel"
+    }
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};

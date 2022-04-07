@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class ClearTodosBtn extends StatelessWidget {
   const ClearTodosBtn({Key? key}) : super(key: key);
@@ -28,9 +30,8 @@ class ClearTodosBtn extends StatelessWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   backgroundColor: HexColor('#f9f6e8'),
-                  title: const Text('Are you sure?'),
-                  content: const Text(
-                      'You do realize that all todos you complete will be deleted, right?'),
+                  title: Text(LocaleKeys.dashboard_alertdialog_title.tr()),
+                  content: Text(LocaleKeys.dashboard_alertdialog_subtitle.tr()),
                   actions: [
                     ElevatedButton(
                         onPressed: () {
@@ -38,7 +39,9 @@ class ClearTodosBtn extends StatelessWidget {
                               .removeCompletedTodos();
                           Navigator.of(context).pop();
                           Fluttertoast.showToast(
-                              msg: "Deleted!",
+                              msg: context.locale == Locale('en')
+                                  ? 'Deleted!'
+                                  : 'Silindi!',
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
@@ -46,12 +49,15 @@ class ClearTodosBtn extends StatelessWidget {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         },
-                        child: const Text('Delete completed todos!')),
+                        child:
+                            Text(LocaleKeys.dashboard_alertdialog_delete.tr())),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                           Fluttertoast.showToast(
-                              msg: "Canceled!",
+                              msg: context.locale == Locale('en')
+                                  ? 'Cancelled!'
+                                  : 'Vazgeçildi!',
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
@@ -59,7 +65,8 @@ class ClearTodosBtn extends StatelessWidget {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         },
-                        child: const Text('Cancel')),
+                        child:
+                            Text(LocaleKeys.dashboard_alertdialog_cancel.tr())),
                   ],
                 );
               });

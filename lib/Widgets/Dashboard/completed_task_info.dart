@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 import 'clear_todos_btn.dart';
 
@@ -26,9 +28,9 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  children: const [
+                  children: [
                     Text(
-                      'Your tasks',
+                      LocaleKeys.dashboard_tasktitle.tr(),
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -40,7 +42,8 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
                 ),
                 Consumer<TodosProvider>(
                   builder: (context, state, child) => Text(
-                    'You have ${state.completedTodos.length} tasks completed all time',
+                    LocaleKeys.dashboard_taskssubtitle
+                        .tr(args: ['${state.completedTodos.length}']),
                     style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

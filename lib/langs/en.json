@@ -6,5 +6,15 @@
     "goodjob_subtitle_text": "Your life is well-balanced",
     "taskstitle": "Your tasks",
     "taskssubtitle": "You have {} tasks for {} {}"
+  },
+  "dashboard": {
+    "tasktitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks completed all time",
+    "alertdialog": {
+      "title": "Are you sure?",
+      "subtitle": "You do realize that all todos you complete will be deleted, right?",
+      "delete": "Delete completed todos!",
+      "cancel": "Cancel"
+    }
   }
 }
