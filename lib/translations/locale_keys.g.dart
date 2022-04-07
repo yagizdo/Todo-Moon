@@ -1,14 +1,12 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
-  static const hellotext = 'hellotext';
-  static const goodjobtext = 'goodjobtext';
-  static const taskstitle = 'taskstitle';
-  static const taskcount = 'taskcount';
-  static const lifebalancedtext = 'lifebalancedtext';
-  static const dasboard_tasks = 'dasboard.tasks';
-  static const dasboard_subtitle = 'dasboard.subtitle';
-  static const dasboard = 'dasboard';
-  static const homesubtitle = 'homesubtitle';
+  static const homescreen_hello_text = 'homescreen.hello_text';
+  static const homescreen_subtitle_text = 'homescreen.subtitle_text';
+  static const homescreen_goodjob_text = 'homescreen.goodjob_text';
+  static const homescreen_goodjob_subtitle_text = 'homescreen.goodjob_subtitle_text';
+  static const homescreen_taskstitle = 'homescreen.taskstitle';
+  static const homescreen_taskssubtitle = 'homescreen.taskssubtitle';
+  static const homescreen = 'homescreen';
 
 }

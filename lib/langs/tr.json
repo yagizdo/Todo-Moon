@@ -1,12 +1,10 @@
 {
-  "hellotext": "Merhaba",
-  "goodjobtext": "İyi iş",
-  "taskstitle": "Bugün ki işleriniz",
-  "taskcount": "{} için {} işiniz var",
-  "lifebalancedtext": "Hayatınız dengeli",
-  "dasboard": {
-    "tasks": "Tamamlanan görevleriniz",
-    "subtitle": "Toplamda {} adet görev bitirdiniz"
-  },
-  "homesubtitle": "Bu hafta iş yaşam dengeniz nasıl?"
+  "homescreen": {
+    "hello_text": "Merhaba",
+    "subtitle_text": "Bu hafta iş yaşam dengeniz nasıl?",
+    "goodjob_text": "İyi iş {}!",
+    "goodjob_subtitle_text": "Hayatınız gayet dengeli",
+    "taskstitle": "İşleriniz",
+    "taskssubtitle": "{} tarihi için {} işiniz var"
+  }
 }

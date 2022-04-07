@@ -1,12 +1,10 @@
 {
-  "hellotext": "Hello",
-  "goodjobtext": "Good Job",
-  "taskstitle": "Your tasks",
-  "taskcount": "You have {} tasks for {} ",
-  "lifebalancedtext": "Your life is well-balanced",
-  "dasboard": {
-    "tasks": "Your tasks",
-    "subtitle": "You have {} tasks completed all time"
-  },
-  "homesubtitle": "How is your work life balance this week?"
+  "homescreen": {
+    "hello_text": "Hello",
+    "subtitle_text": "How is your work life balance this week?",
+    "goodjob_text": "Good Job {}!",
+    "goodjob_subtitle_text": "Your life is well-balanced",
+    "taskstitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks for {} {}"
+  }
 }

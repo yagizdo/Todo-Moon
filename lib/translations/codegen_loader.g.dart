@@ -15,27 +15,23 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> tr = {
-  "hellotext": "Merhaba",
-  "goodjobtext": "İyi iş",
-  "taskstitle": "Bugün ki işleriniz",
-  "taskcount": "{} için {} işiniz var",
-  "lifebalancedtext": "Hayatınız dengeli",
-  "homesubtıtle": "Bu hafta iş yaşam dengeniz nasıl?",
-  "dasboard": {
-    "tasks": "Tamamlanan görevleriniz",
-    "subtitle": "Toplamda {} adet görev bitirdiniz"
+  "homescreen": {
+    "hello_text": "Merhaba",
+    "subtitle_text": "Bu hafta iş yaşam dengeniz nasıl?",
+    "goodjob_text": "İyi iş {}!",
+    "goodjob_subtitle_text": "Hayatınız gayet dengeli",
+    "taskstitle": "İşleriniz",
+    "taskssubtitle": "{} tarihi için {} işiniz var"
   }
 };
 static const Map<String,dynamic> en = {
-  "hellotext": "Hello",
-  "goodjobtext": "Good Job",
-  "taskstitle": "Your tasks",
-  "taskcount": "You have {} tasks for {} ",
-  "lifebalancedtext": "Your life is well-balanced",
-  "homesubtıtle": "How is your work life balance this week?",
-  "dasboard": {
-    "tasks": "Your tasks",
-    "subtitle": "You have {} tasks completed all time"
+  "homescreen": {
+    "hello_text": "Hello",
+    "subtitle_text": "How is your work life balance this week?",
+    "goodjob_text": "Good Job {}!",
+    "goodjob_subtitle_text": "Your life is well-balanced",
+    "taskstitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks for {} {}"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};

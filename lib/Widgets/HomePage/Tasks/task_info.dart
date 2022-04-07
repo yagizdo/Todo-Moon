@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class TaskInfo extends StatefulWidget {
   const TaskInfo({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class TaskInfo extends StatefulWidget {
 class _Task_InfoState extends State<TaskInfo> {
   @override
   Widget build(BuildContext context) {
-    List monthsNames = [
+    List monthsENNames = [
       '0 index data',
       'January',
       'February',
@@ -28,6 +30,21 @@ class _Task_InfoState extends State<TaskInfo> {
       'November',
       'December',
     ];
+    List monthsTRNames = [
+      '0 index data',
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
+    ];
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 20, top: 15),
       child: Row(
@@ -38,15 +55,23 @@ class _Task_InfoState extends State<TaskInfo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Your tasks',
+                Text(
+                  LocaleKeys.homescreen_taskstitle.tr(),
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Consumer<TodosProvider>(
                       builder: (context, state, child) => Text(
-                        'You have ${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length} tasks for ${DateTime.now().day.toString().padLeft(2, '0')} ${monthsNames[DateTime.now().month]}',
+                        context.locale == Locale('en')
+                            ? LocaleKeys.homescreen_taskssubtitle.tr(args: [
+                                '${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length}',
+                                '${DateTime.now().day.toString().padLeft(2, '0')} ${monthsENNames[DateTime.now().month]}'
+                              ])
+                            : LocaleKeys.homescreen_taskssubtitle.tr(args: [
+                                '${DateTime.now().day.toString().padLeft(2, '0')} ${monthsTRNames[DateTime.now().month]}',
+                                '${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length}'
+                              ]),
                         style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

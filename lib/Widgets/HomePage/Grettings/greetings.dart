@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+
+import '../../../translations/locale_keys.g.dart';
 
 // Welcome Text Widget
 Widget _welcomeText(
@@ -36,8 +39,8 @@ class Greetings extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _welcomeText(
-                    'Hello', customFontSize, FontWeight.normal, Colors.black),
+                _welcomeText(LocaleKeys.homescreen_hello_text.tr(),
+                    customFontSize, FontWeight.normal, Colors.black),
                 Consumer<TodosProvider>(
                   builder: (context, state, child) => Padding(
                     padding: const EdgeInsets.only(left: 5.0),
@@ -53,7 +56,7 @@ class Greetings extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: _welcomeText(
-                    'How is your work life balance this week?',
+                    LocaleKeys.homescreen_subtitle_text.tr(),
                     15,
                     FontWeight.normal,
                     Colors.black,
