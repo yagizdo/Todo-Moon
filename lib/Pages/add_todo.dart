@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/custom_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class AddTodo extends StatefulWidget {
   const AddTodo({Key? key}) : super(key: key);
@@ -58,25 +60,25 @@ class _AddTodoState extends State<AddTodo> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 25.0),
                   child: Text(
-                    'Add Task',
+                    LocaleKeys.addtodo_title.tr(),
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 CustomTF(
-                    hint: 'Title',
+                    hint: LocaleKeys.addtodo_title_tf.tr(),
                     controller: titleController,
-                    labelText: 'Title'),
+                    labelText: LocaleKeys.addtodo_title_tf.tr()),
                 CustomTF(
-                    hint: 'Description',
+                    hint: LocaleKeys.addtodo_desc_tf.tr(),
                     controller: descController,
-                    labelText: 'Description'),
+                    labelText: LocaleKeys.addtodo_desc_tf.tr()),
                 CustomTF(
-                    hint: 'Category',
+                    hint: LocaleKeys.addtodo_category_tf.tr(),
                     controller: categoryController,
-                    labelText: 'Category'),
+                    labelText: LocaleKeys.addtodo_category_tf.tr()),
                 Row(
                   children: [
                     // Cupertino DateTime Picker
@@ -89,73 +91,78 @@ class _AddTodoState extends State<AddTodo> {
                         width: MediaQuery.of(context).size.width / 2.5,
                         height: MediaQuery.of(context).size.height / 13,
                         child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.amber.shade800),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(13.0),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {
-                            showCupertinoModalBottomSheet(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              context: context,
-                              builder: (context) => Container(
-                                color: HexColor('#f9f6e8'),
-                                height:
-                                    MediaQuery.of(context).size.height / 1.8,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                        flex: 10,
-                                        child: CupertinoDatePicker(
-                                            minimumYear: 2022,
-                                            maximumYear:
-                                                (DateTime.now().year + 30),
-                                            minimumDate: _selectedDate == null
-                                                ? DateTime.now()
-                                                : _selectedDate!.day <=
-                                                        DateTime.now().day
-                                                    ? _selectedDate
-                                                    : DateTime.now(),
-                                            initialDateTime:
-                                                _selectedDate ?? DateTime.now(),
-                                            mode: CupertinoDatePickerMode.date,
-                                            onDateTimeChanged: (datetime) {
-                                              setState(() {
-                                                _selectedDate = datetime;
-                                              });
-                                            })),
-                                    Expanded(
-                                        flex: 2,
-                                        child: CupertinoButton(
-                                            child: const Text(
-                                              'Ok',
-                                              style: TextStyle(fontSize: 25),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            }))
-                                  ],
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.amber.shade800),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(13.0),
                                 ),
                               ),
-                            );
-                          },
-                          child: FittedBox(
-                            child: _selectedDate == null
-                                ? Text(
-                                    'Select Date \n(Default Date: ${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year})',
-                                    textAlign: TextAlign.center,
-                                  )
-                                : Text(
-                                    'Selected: ${_selectedDate?.day.toString().padLeft(2, '0')}/${_selectedDate?.month.toString().padLeft(2, '0')}/${_selectedDate?.year}'),
-                          ),
-                        ),
+                            ),
+                            onPressed: () {
+                              showCupertinoModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                context: context,
+                                builder: (context) => Container(
+                                  color: HexColor('#f9f6e8'),
+                                  height:
+                                      MediaQuery.of(context).size.height / 1.8,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                          flex: 10,
+                                          child: CupertinoDatePicker(
+                                              minimumYear: 2022,
+                                              maximumYear:
+                                                  (DateTime.now().year + 30),
+                                              minimumDate: _selectedDate == null
+                                                  ? DateTime.now()
+                                                  : _selectedDate!.day <=
+                                                          DateTime.now().day
+                                                      ? _selectedDate
+                                                      : DateTime.now(),
+                                              initialDateTime: _selectedDate ??
+                                                  DateTime.now(),
+                                              mode:
+                                                  CupertinoDatePickerMode.date,
+                                              onDateTimeChanged: (datetime) {
+                                                setState(() {
+                                                  _selectedDate = datetime;
+                                                });
+                                              })),
+                                      Expanded(
+                                          flex: 2,
+                                          child: CupertinoButton(
+                                              child: Text(
+                                                context.locale == Locale('en')
+                                                    ? 'Ok'
+                                                    : 'Tamam',
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }))
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            child: FittedBox(
+                              child: _selectedDate == null
+                                  ? Text(
+                                      LocaleKeys.addtodo_date.tr(args: [
+                                        '${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}'
+                                      ]),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  : Text(LocaleKeys.addtodo_selected.tr(args: [
+                                      '${_selectedDate?.day.toString().padLeft(2, '0')}/${_selectedDate?.month.toString().padLeft(2, '0')}/${_selectedDate?.year}'
+                                    ])),
+                            )),
                       ),
                     ),
                     const SizedBox(
@@ -180,11 +187,14 @@ class _AddTodoState extends State<AddTodo> {
                           child: FittedBox(
                             child: _selectedTime == null
                                 ? Text(
-                                    'Select Time \n(Default time : ${DateTime.now().hour.toString().padLeft(2, '0')}:${DateTime.now().minute.toString().padLeft(2, '0')})     ',
+                                    LocaleKeys.addtodo_time.tr(args: [
+                                      '${DateTime.now().hour.toString().padLeft(2, '0')}:${DateTime.now().minute.toString().padLeft(2, '0')}'
+                                    ]),
                                     textAlign: TextAlign.center,
                                   )
-                                : Text(
-                                    'Selected: ${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                                : Text(LocaleKeys.addtodo_selected.tr(args: [
+                                    '${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'
+                                  ])),
                           ),
                           onPressed: () {
                             showCupertinoModalBottomSheet(
@@ -212,8 +222,10 @@ class _AddTodoState extends State<AddTodo> {
                                       Expanded(
                                           flex: 2,
                                           child: CupertinoButton(
-                                              child: const Text(
-                                                'Ok',
+                                              child: Text(
+                                                context.locale == Locale('en')
+                                                    ? 'Ok'
+                                                    : 'Tamam',
                                                 style: TextStyle(fontSize: 25),
                                               ),
                                               onPressed: () {
@@ -249,14 +261,19 @@ class _AddTodoState extends State<AddTodo> {
                             setState(() {
                               if (formKey.currentState!.validate()) {
                                 if (categoryController.text.isEmpty) {
-                                  categoryController.text = 'Uncategorized';
+                                  context.locale == Locale('en')
+                                      ? categoryController.text =
+                                          'Uncategorized'
+                                      : categoryController.text = 'Kategorisiz';
                                   saveTodo();
                                   titleController.text = '';
                                   descController.text = '';
                                   categoryController.text = '';
                                   Navigator.pop(context);
                                   Fluttertoast.showToast(
-                                      msg: "Added!",
+                                      msg: context.locale == Locale('en')
+                                          ? "Added!"
+                                          : "Eklendi!",
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.BOTTOM,
                                       timeInSecForIosWeb: 1,
@@ -270,7 +287,9 @@ class _AddTodoState extends State<AddTodo> {
                                   categoryController.text = '';
                                   Navigator.pop(context);
                                   Fluttertoast.showToast(
-                                      msg: "Added!",
+                                      msg: context.locale == Locale('en')
+                                          ? "Added!"
+                                          : "Eklendi!",
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.BOTTOM,
                                       timeInSecForIosWeb: 1,
@@ -281,7 +300,7 @@ class _AddTodoState extends State<AddTodo> {
                               }
                             });
                           },
-                          child: const Text('Add Todo'))),
+                          child: Text(LocaleKeys.addtodo_add_btn.tr()))),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 14,
@@ -300,8 +319,8 @@ class _AddTodoState extends State<AddTodo> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
-                      'Cancel',
+                    child: Text(
+                      LocaleKeys.addtodo_cancel_btn.tr(),
                       style: TextStyle(
                           color: Colors.amber, fontWeight: FontWeight.bold),
                     ),

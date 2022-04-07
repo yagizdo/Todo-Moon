@@ -29,7 +29,18 @@
     "name_tf": "İsim",
     "surname_tf": "Soyad",
     "title": "İsminizi Değiştirin",
-    "done_ btn": "Değiştir",
-    "cancel_btn": "Vazgeç"
+    "cancel_btn": "Vazgeç",
+    "done_btn": "Değiştir"
+  },
+  "addtodo": {
+    "title": "İş Ekle",
+    "title_tf": "Başlık",
+    "desc_tf": "Açıklama",
+    "category_tf": "Kategori",
+    "date": "Tarih Seçin\nVarsayılan Tarih: {}",
+    "time": "Saat Seçin\nVarsayılan Saat: {}",
+    "add_btn": "İş Ekle",
+    "cancel_btn": "Vazgeç",
+    "selected": "Seçilen {}"
   }
 }

@@ -29,7 +29,18 @@
     "name_tf": "Name",
     "surname_tf": "Surname",
     "title": "Change Name",
-    "done_ btn": "Done",
-    "cancel_btn": "Cancel"
+    "cancel_btn": "Cancel",
+    "done_btn": "Done"
+  },
+  "addtodo": {
+    "title": "Add Todo",
+    "title_tf": "Title",
+    "desc_tf": "Description",
+    "category_tf": "Category",
+    "date": "Select Date\nDefault Date: {}",
+    "time": "Select Time\nDefault Time : {}",
+    "add_btn": "Add Todo",
+    "cancel_btn": "Cancel",
+    "selected": "Selected {}"
   }
 }

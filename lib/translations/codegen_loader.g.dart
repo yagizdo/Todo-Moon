@@ -45,8 +45,19 @@ class CodegenLoader extends AssetLoader{
     "name_tf": "İsim",
     "surname_tf": "Soyad",
     "title": "İsminizi Değiştirin",
-    "done_ btn": "Değiştir",
-    "cancel_btn": "Vazgeç"
+    "cancel_btn": "Vazgeç",
+    "done_btn": "Değiştir"
+  },
+  "addtodo": {
+    "title": "İş Ekle",
+    "title_tf": "Başlık",
+    "desc_tf": "Açıklama",
+    "category_tf": "Kategori",
+    "date": "Tarih Seçin\nVarsayılan Tarih: {}",
+    "time": "Saat Seçin\nVarsayılan Saat: {}",
+    "add_btn": "İş Ekle",
+    "cancel_btn": "Vazgeç",
+    "selected": "Seçilen {}"
   }
 };
 static const Map<String,dynamic> en = {
@@ -80,8 +91,19 @@ static const Map<String,dynamic> en = {
     "name_tf": "Name",
     "surname_tf": "Surname",
     "title": "Change Name",
-    "done_ btn": "Done",
-    "cancel_btn": "Cancel"
+    "cancel_btn": "Cancel",
+    "done_btn": "Done"
+  },
+  "addtodo": {
+    "title": "Add Todo",
+    "title_tf": "Title",
+    "desc_tf": "Description",
+    "category_tf": "Category",
+    "date": "Select Date\nDefault Date: {}",
+    "time": "Select Time\nDefault Time : {}",
+    "add_btn": "Add Todo",
+    "cancel_btn": "Cancel",
+    "selected": "Selected {}"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};
