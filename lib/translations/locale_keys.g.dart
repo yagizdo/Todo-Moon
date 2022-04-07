@@ -16,5 +16,11 @@ abstract class  LocaleKeys {
   static const dashboard_alertdialog_cancel = 'dashboard.alertdialog.cancel';
   static const dashboard_alertdialog = 'dashboard.alertdialog';
   static const dashboard = 'dashboard';
+  static const profile_completed_text = 'profile.completed_text';
+  static const profile_uncompleted_text = 'profile.uncompleted_text';
+  static const profile_alltasks_text = 'profile.alltasks_text';
+  static const profile_title = 'profile.title';
+  static const profile_stats = 'profile.stats';
+  static const profile = 'profile';
 
 }

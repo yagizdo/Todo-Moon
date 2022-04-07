@@ -32,6 +32,13 @@ class CodegenLoader extends AssetLoader{
       "delete": "Tamamlanmış tüm işleri sil!",
       "cancel": "Vazgeç"
     }
+  },
+  "profile": {
+    "completed_text": "Tamamlanmış",
+    "uncompleted_text": "Tamamlanmamış",
+    "alltasks_text": "Tüm İşleriniz",
+    "title": "Profil",
+    "stats": "İstatistik"
   }
 };
 static const Map<String,dynamic> en = {
@@ -52,6 +59,13 @@ static const Map<String,dynamic> en = {
       "delete": "Delete completed todos!",
       "cancel": "Cancel"
     }
+  },
+  "profile": {
+    "completed_text": "Completed",
+    "uncompleted_text": "Uncomplete",
+    "alltasks_text": "All Tasks",
+    "title": "Profile",
+    "stats": "Statistics"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};

@@ -16,5 +16,12 @@
       "delete": "Tamamlanmış tüm işleri sil!",
       "cancel": "Vazgeç"
     }
+  },
+  "profile": {
+    "completed_text": "Tamamlanmış",
+    "uncompleted_text": "Tamamlanmamış",
+    "alltasks_text": "Tüm İşleriniz",
+    "title": "Profil",
+    "stats": "İstatistik"
   }
 }

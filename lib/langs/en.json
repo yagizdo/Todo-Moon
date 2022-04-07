@@ -16,5 +16,12 @@
       "delete": "Delete completed todos!",
       "cancel": "Cancel"
     }
+  },
+  "profile": {
+    "completed_text": "Completed",
+    "uncompleted_text": "Uncomplete",
+    "alltasks_text": "All Tasks",
+    "title": "Profile",
+    "stats": "Statistics"
   }
 }

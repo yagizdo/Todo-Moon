@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Profile/profile_circle.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 import '../Widgets/Profile/todos_stats_comp.dart';
 
@@ -18,8 +20,8 @@ class ProfilePage extends StatelessWidget {
           // App Bar
           appBar: AppBar(
             backgroundColor: HexColor('#F9F6E9'),
-            title: const Text(
-              'Profile',
+            title: Text(
+              LocaleKeys.profile_title.tr(),
               style: TextStyle(color: Colors.black),
             ),
             elevation: 0,
