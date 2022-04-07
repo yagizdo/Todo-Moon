@@ -40,6 +40,13 @@ class CodegenLoader extends AssetLoader{
     "alltasks_text": "Tüm İşleriniz",
     "title": "Profil",
     "stats": "İstatistik"
+  },
+  "changename": {
+    "name_tf": "İsim",
+    "surname_tf": "Soyad",
+    "title": "İsminizi Değiştirin",
+    "done_ btn": "Değiştir",
+    "cancel_btn": "Vazgeç"
   }
 };
 static const Map<String,dynamic> en = {
@@ -68,6 +75,13 @@ static const Map<String,dynamic> en = {
     "alltasks_text": "All Tasks",
     "title": "Profile",
     "stats": "Statistics"
+  },
+  "changename": {
+    "name_tf": "Name",
+    "surname_tf": "Surname",
+    "title": "Change Name",
+    "done_ btn": "Done",
+    "cancel_btn": "Cancel"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 import '../Widgets/ChangeName/change_name_text.dart';
 
@@ -49,9 +51,11 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                       const EdgeInsets.only(left: 15.0, right: 15, bottom: 10),
                   child: Column(children: [
                     WelcomCustomTF(
-                        controller: nameController, labelText: 'Name'),
+                        controller: nameController,
+                        labelText: LocaleKeys.changename_name_tf.tr()),
                     WelcomCustomTF(
-                        controller: surnameController, labelText: 'Surname'),
+                        controller: surnameController,
+                        labelText: LocaleKeys.changename_surname_tf.tr()),
                   ]),
                 ),
               ),
@@ -84,7 +88,7 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                                   Navigator.of(context).pop();
                                 }
                               },
-                              child: const Text('Done')),
+                              child: Text(LocaleKeys.changename_done_btn.tr())),
                         ),
                       ),
                     ),
@@ -109,8 +113,8 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text(
-                          'Cancel',
+                        child: Text(
+                          LocaleKeys.changename_cancel_btn.tr(),
                           style: TextStyle(
                               color: Colors.amber, fontWeight: FontWeight.bold),
                         ),

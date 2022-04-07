@@ -24,5 +24,12 @@
     "alltasks_text": "All Tasks",
     "title": "Profile",
     "stats": "Statistics"
+  },
+  "changename": {
+    "name_tf": "Name",
+    "surname_tf": "Surname",
+    "title": "Change Name",
+    "done_ btn": "Done",
+    "cancel_btn": "Cancel"
   }
 }
