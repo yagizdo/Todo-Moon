@@ -50,5 +50,11 @@ abstract class  LocaleKeys {
   static const edittodo_edit_btn = 'edittodo.edit_btn';
   static const edittodo_close_btn = 'edittodo.close_btn';
   static const edittodo = 'edittodo';
+  static const welcomescreen_title = 'welcomescreen.title';
+  static const welcomescreen_subtitle = 'welcomescreen.subtitle';
+  static const welcomescreen_done_button = 'welcomescreen.done_button';
+  static const welcomescreen_name_tf = 'welcomescreen.name_tf';
+  static const welcomescreen_surname_tf = 'welcomescreen.surname_tf';
+  static const welcomescreen = 'welcomescreen';
 
 }

@@ -54,5 +54,12 @@
     "default_time": "Varsayılan Saat : {}",
     "edit_btn": "Düzenlemeyi bitir",
     "close_btn": "Kapat"
+  },
+  "welcomescreen": {
+    "title": "Hoşgeldin",
+    "subtitle": "Size hitap etmek için lütfen adınızı ve soyadınızı belirtin",
+    "done_button": "Tamam",
+    "name_tf": "İsim",
+    "surname_tf": "Soyad"
   }
 }

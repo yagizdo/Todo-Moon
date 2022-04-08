@@ -70,6 +70,13 @@ class CodegenLoader extends AssetLoader{
     "default_time": "Varsayılan Saat : {}",
     "edit_btn": "Düzenlemeyi bitir",
     "close_btn": "Kapat"
+  },
+  "welcomescreen": {
+    "title": "Hoşgeldin",
+    "subtitle": "Size hitap etmek için lütfen adınızı ve soyadınızı belirtin",
+    "done_button": "Tamam",
+    "name_tf": "İsim",
+    "surname_tf": "Soyad"
   }
 };
 static const Map<String,dynamic> en = {
@@ -128,6 +135,13 @@ static const Map<String,dynamic> en = {
     "default_time": "Default Time : {}",
     "edit_btn": "Finish editing",
     "close_btn": "Close"
+  },
+  "welcomescreen": {
+    "title": "Welcome",
+    "subtitle": "Please provide your name and surname to address you",
+    "done_button": "Done",
+    "name_tf": "Name",
+    "surname_tf": "Surname"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"tr": tr, "en": en};

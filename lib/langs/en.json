@@ -54,5 +54,12 @@
     "default_time": "Default Time : {}",
     "edit_btn": "Finish editing",
     "close_btn": "Close"
+  },
+  "welcomescreen": {
+    "title": "Welcome",
+    "subtitle": "Please provide your name and surname to address you",
+    "done_button": "Done",
+    "name_tf": "Name",
+    "surname_tf": "Surname"
   }
 }

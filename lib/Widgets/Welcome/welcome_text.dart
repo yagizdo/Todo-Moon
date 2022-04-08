@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class welcomeText extends StatelessWidget {
   const welcomeText({Key? key}) : super(key: key);
@@ -9,10 +11,10 @@ class welcomeText extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 10.0, left: 10, right: 10),
               child: Text(
-                'Welcome',
+                LocaleKeys.welcomescreen_title.tr(),
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -26,10 +28,10 @@ class welcomeText extends StatelessWidget {
                 width: 170,
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 10.0, left: 15, right: 15),
               child: Text(
-                'Please provide your name and surname to address you',
+                LocaleKeys.welcomescreen_subtitle.tr(),
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
