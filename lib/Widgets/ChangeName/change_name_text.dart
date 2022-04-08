@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class ChangeNameText extends StatelessWidget {
   const ChangeNameText({Key? key}) : super(key: key);
@@ -9,10 +11,10 @@ class ChangeNameText extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 10.0, left: 10, right: 10),
               child: Text(
-                'Change Name',
+                LocaleKeys.changename_title.tr(),
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
