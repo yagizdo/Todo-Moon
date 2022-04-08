@@ -193,7 +193,7 @@ class _AddTodoState extends State<AddTodo> {
                                     textAlign: TextAlign.center,
                                   )
                                 : Text(LocaleKeys.addtodo_selected.tr(args: [
-                                    '${_selectedTime?.hour.toString().padLeft(2, '0')}.${_selectedTime?.minute.toString().padLeft(2, '0')}'
+                                    '${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'
                                   ])),
                           ),
                           onPressed: () {
