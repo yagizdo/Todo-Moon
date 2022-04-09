@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_text.dart';
 import 'package:todo_app/Widgets/Welcome/welcome_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 import 'main_screen.dart';
 
@@ -44,9 +46,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         left: 15.0, right: 15, bottom: 10),
                     child: Column(children: [
                       WelcomCustomTF(
-                          controller: nameController, labelText: 'Name'),
+                          controller: nameController,
+                          labelText: LocaleKeys.welcomescreen_name_tf.tr()),
                       WelcomCustomTF(
-                          controller: surnameController, labelText: 'Surname'),
+                          controller: surnameController,
+                          labelText: LocaleKeys.welcomescreen_surname_tf.tr()),
                     ]),
                   ),
                 ),
@@ -77,7 +81,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                           const MainScreen()));
                             }
                           },
-                          child: const Text('Done')),
+                          child:
+                              Text(LocaleKeys.welcomescreen_done_button.tr())),
                     ),
                   ),
                 )

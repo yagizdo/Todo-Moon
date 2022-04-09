@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 // External Libs
 import 'package:hexcolor/hexcolor.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class InfoWidget extends StatelessWidget {
   InfoWidget(
@@ -66,7 +68,8 @@ class InfoWidget extends StatelessWidget {
                           Consumer<TodosProvider>(
                               builder: (context, state, child) {
                             return AutoSizeText(
-                              'Good Job ${state.name}!',
+                              LocaleKeys.homescreen_goodjob_text
+                                  .tr(args: [(state.name)]),
                               maxLines: 2,
                               style: TextStyle(
                                   color: Colors.white,
@@ -74,11 +77,11 @@ class InfoWidget extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             );
                           }),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 6),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6),
                             child: Text(
-                              'Your life is well-balanced',
-                              style: TextStyle(
+                              LocaleKeys.homescreen_goodjob_subtitle_text.tr(),
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
                               ),

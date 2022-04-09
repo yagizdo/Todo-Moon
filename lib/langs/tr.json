@@ -1,0 +1,65 @@
+{
+  "homescreen": {
+    "hello_text": "Merhaba",
+    "subtitle_text": "Bu hafta iş yaşam dengeniz nasıl?",
+    "goodjob_text": "İyi iş {}!",
+    "goodjob_subtitle_text": "Hayatınız gayet dengeli",
+    "taskstitle": "İşleriniz",
+    "taskssubtitle": "{} tarihi için {} işiniz var"
+  },
+  "dashboard": {
+    "tasktitle": "İşleriniz",
+    "taskssubtitle": "Toplamda {} tane iş bitirmişsiniz",
+    "alertdialog": {
+      "title": "Emin misiniz?",
+      "subtitle": "Tamamlanmış tüm işleriniz silinecek. Bunun farkındasınız değil mi?",
+      "delete": "Tamamlanmış tüm işleri sil!",
+      "cancel": "Vazgeç"
+    },
+    "title": "Panel"
+  },
+  "profile": {
+    "completed_text": "Tamamlanmış",
+    "uncompleted_text": "Tamamlanmamış",
+    "alltasks_text": "Tüm İşleriniz",
+    "title": "Profil",
+    "stats": "İstatistik"
+  },
+  "changename": {
+    "name_tf": "İsim",
+    "surname_tf": "Soyad",
+    "title": "İsminizi Değiştirin",
+    "cancel_btn": "Vazgeç",
+    "done_btn": "Değiştir"
+  },
+  "addtodo": {
+    "title": "İş Ekle",
+    "title_tf": "Başlık",
+    "desc_tf": "Açıklama",
+    "category_tf": "Kategori",
+    "date": "Tarih Seçin\nVarsayılan Tarih: {}",
+    "time": "Saat Seçin\nVarsayılan Saat: {}",
+    "add_btn": "İş Ekle",
+    "cancel_btn": "Vazgeç",
+    "selected": "Seçilen {}"
+  },
+  "edittodo": {
+    "title": "İşi Düzenle",
+    "title_tf": "Başlık",
+    "category_tf": "Kategori",
+    "desc_tf": "Açıklama",
+    "selecteddate": "Seçilen Tarih : {}",
+    "selectedtime": "Seçilen Saat : {}",
+    "default_date": "Varsayılan Tarih : {}",
+    "default_time": "Varsayılan Saat : {}",
+    "edit_btn": "Düzenlemeyi bitir",
+    "close_btn": "Kapat"
+  },
+  "welcomescreen": {
+    "title": "Hoşgeldin",
+    "subtitle": "Size hitap etmek için lütfen adınızı ve soyadınızı belirtin",
+    "done_button": "Tamam",
+    "name_tf": "İsim",
+    "surname_tf": "Soyad"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "homescreen": {
+    "hello_text": "Hello",
+    "subtitle_text": "How is your work life balance this week?",
+    "goodjob_text": "Good Job {}!",
+    "goodjob_subtitle_text": "Your life is well-balanced",
+    "taskstitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks for {}"
+  },
+  "dashboard": {
+    "tasktitle": "Your tasks",
+    "taskssubtitle": "You have {} tasks completed all time",
+    "alertdialog": {
+      "title": "Are you sure?",
+      "subtitle": "You do realize that all todos you complete will be deleted, right?",
+      "delete": "Delete completed todos!",
+      "cancel": "Cancel"
+    },
+    "title": "Dashboard"
+  },
+  "profile": {
+    "completed_text": "Completed",
+    "uncompleted_text": "Uncomplete",
+    "alltasks_text": "All Tasks",
+    "title": "Profile",
+    "stats": "Statistics"
+  },
+  "changename": {
+    "name_tf": "Name",
+    "surname_tf": "Surname",
+    "title": "Change Name",
+    "cancel_btn": "Cancel",
+    "done_btn": "Done"
+  },
+  "addtodo": {
+    "title": "Add Todo",
+    "title_tf": "Title",
+    "desc_tf": "Description",
+    "category_tf": "Category",
+    "date": "Select Date\nDefault Date: {}",
+    "time": "Select Time\nDefault Time : {}",
+    "add_btn": "Add Todo",
+    "cancel_btn": "Cancel",
+    "selected": "Selected {}"
+  },
+  "edittodo": {
+    "title": "Edit Task",
+    "title_tf": "Title",
+    "category_tf": "Category",
+    "desc_tf": "Description",
+    "selecteddate": "Selected Date : {}",
+    "selectedtime": "Selected Time : {}",
+    "default_date": "Default Date : {}",
+    "default_time": "Default Time : {}",
+    "edit_btn": "Finish editing",
+    "close_btn": "Close"
+  },
+  "welcomescreen": {
+    "title": "Welcome",
+    "subtitle": "Please provide your name and surname to address you",
+    "done_button": "Done",
+    "name_tf": "Name",
+    "surname_tf": "Surname"
+  }
+}

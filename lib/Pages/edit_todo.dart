@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/edit_tf.dart';
 import 'package:todo_app/provider/todos_provider.dart';
+import 'package:todo_app/translations/locale_keys.g.dart';
 
 class EditTodo extends StatefulWidget {
   EditTodo({Key? key, required this.todo}) : super(key: key);
@@ -66,26 +68,26 @@ class _EditTodoState extends State<EditTodo> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 100.0),
                       child: Text(
-                        'Edit Todo',
+                        LocaleKeys.edittodo_title.tr(),
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
                     EditTF(
-                        hint: 'Title',
+                        hint: LocaleKeys.edittodo_title_tf.tr(),
                         controller: titleController!,
-                        labelText: 'Title'),
+                        labelText: LocaleKeys.edittodo_title_tf.tr()),
                     EditTF(
-                        hint: 'Description',
+                        hint: LocaleKeys.edittodo_desc_tf.tr(),
                         controller: descController!,
-                        labelText: 'Description'),
+                        labelText: LocaleKeys.edittodo_desc_tf.tr()),
                     EditTF(
-                        hint: 'Category',
+                        hint: LocaleKeys.edittodo_category_tf.tr(),
                         controller: categoryController!,
-                        labelText: 'Category'),
+                        labelText: LocaleKeys.edittodo_category_tf.tr()),
 
                     Row(
                       children: [
@@ -142,8 +144,10 @@ class _EditTodoState extends State<EditTodo> {
                                         Expanded(
                                           flex: 2,
                                           child: CupertinoButton(
-                                              child: const Text(
-                                                'Ok',
+                                              child: Text(
+                                                context.locale == Locale('en')
+                                                    ? 'Ok'
+                                                    : 'Tamam',
                                                 style: TextStyle(fontSize: 25),
                                               ),
                                               onPressed: () {
@@ -162,10 +166,14 @@ class _EditTodoState extends State<EditTodo> {
                               decoration:
                                   BoxDecoration(color: Colors.grey[200]),
                               child: _selectedDate == null
-                                  ? Text(
-                                      'Default Date : ${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}')
-                                  : Text(
-                                      'Selected Date : ${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'),
+                                  ? Text(LocaleKeys.edittodo_default_date
+                                      .tr(args: [
+                                      '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}'
+                                    ]))
+                                  : Text(LocaleKeys.edittodo_selecteddate
+                                      .tr(args: [
+                                      '${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'
+                                    ])),
                             ),
                           ),
                         ),
@@ -205,8 +213,10 @@ class _EditTodoState extends State<EditTodo> {
                                         Expanded(
                                           flex: 2,
                                           child: CupertinoButton(
-                                              child: const Text(
-                                                'Ok',
+                                              child: Text(
+                                                context.locale == Locale('en')
+                                                    ? 'Ok'
+                                                    : 'Tamam',
                                                 style: TextStyle(fontSize: 25),
                                               ),
                                               onPressed: () {
@@ -225,10 +235,14 @@ class _EditTodoState extends State<EditTodo> {
                               decoration:
                                   BoxDecoration(color: Colors.grey[200]),
                               child: _selectedTime == null
-                                  ? Text(
-                                      'Default Time : ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}')
-                                  : Text(
-                                      'Selected Time : ${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'),
+                                  ? Text(LocaleKeys.edittodo_default_time
+                                      .tr(args: [
+                                      '${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}'
+                                    ]))
+                                  : Text(LocaleKeys.edittodo_selectedtime
+                                      .tr(args: [
+                                      '${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'
+                                    ])),
                             ),
                           ),
                         ),
@@ -285,7 +299,7 @@ class _EditTodoState extends State<EditTodo> {
                                   }
                                 });
                               },
-                              child: const Text('Edit Todo'))),
+                              child: Text(LocaleKeys.edittodo_edit_btn.tr()))),
                     )
                   ],
                 ),
@@ -296,7 +310,7 @@ class _EditTodoState extends State<EditTodo> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text('Close')),
+                      child: Text(LocaleKeys.edittodo_close_btn.tr())),
                 )
               ],
             ),
