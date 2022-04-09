@@ -28,16 +28,14 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       LocaleKeys.dashboard_tasktitle.tr(),
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 170.0),
-                      child: ClearTodosBtn(),
-                    ),
+                    ClearTodosBtn(),
                   ],
                 ),
                 Consumer<TodosProvider>(
@@ -45,7 +43,7 @@ class _Task_InfoState extends State<CompletedTaskInfo> {
                     LocaleKeys.dashboard_taskssubtitle
                         .tr(args: ['${state.completedTodos.length}']),
                     style: const TextStyle(
-                        fontSize: 15,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.grey),
                   ),

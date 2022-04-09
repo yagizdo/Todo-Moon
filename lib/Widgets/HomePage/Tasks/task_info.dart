@@ -46,7 +46,7 @@ class _Task_InfoState extends State<TaskInfo> {
       'Aralık',
     ];
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 20, top: 15),
+      padding: const EdgeInsets.only(left: 10, right: 20, top: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

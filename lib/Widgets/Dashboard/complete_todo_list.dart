@@ -18,7 +18,7 @@ class _CompleteTodoListState extends State<CompleteTodoList> {
       padding: const EdgeInsets.only(top: 20.0),
       child: Consumer<TodosProvider>(
         builder: (context, state, child) => SizedBox(
-          height: MediaQuery.of(context).size.height / 1.6,
+          height: MediaQuery.of(context).size.height / 1.65,
           child: ListView.builder(
               itemCount: state.completedTodos.length,
               itemBuilder: (context, index) {

@@ -86,7 +86,7 @@ static const Map<String,dynamic> en = {
     "goodjob_text": "Good Job {}!",
     "goodjob_subtitle_text": "Your life is well-balanced",
     "taskstitle": "Your tasks",
-    "taskssubtitle": "You have {} tasks for {} {}"
+    "taskssubtitle": "You have {} tasks for {}"
   },
   "dashboard": {
     "tasktitle": "Your tasks",
