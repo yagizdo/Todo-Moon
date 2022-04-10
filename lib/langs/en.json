@@ -51,8 +51,8 @@
     "desc_tf": "Description",
     "selecteddate": "Selected Date : {}",
     "selectedtime": "Selected Time : {}",
-    "default_date": "Default Date : {}",
-    "default_time": "Default Time : {}",
+    "default_date": "Task Date : {}",
+    "default_time": "Task Time : {}",
     "edit_btn": "Finish editing",
     "close_btn": "Close"
   },

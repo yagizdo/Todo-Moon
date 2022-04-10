@@ -67,8 +67,8 @@ class CodegenLoader extends AssetLoader{
     "desc_tf": "Açıklama",
     "selecteddate": "Seçilen Tarih : {}",
     "selectedtime": "Seçilen Saat : {}",
-    "default_date": "Varsayılan Tarih : {}",
-    "default_time": "Varsayılan Saat : {}",
+    "default_date": "İşin Tarihi : {}",
+    "default_time": "İşin Saati : {}",
     "edit_btn": "Düzenlemeyi bitir",
     "close_btn": "Kapat"
   },
@@ -133,8 +133,8 @@ static const Map<String,dynamic> en = {
     "desc_tf": "Description",
     "selecteddate": "Selected Date : {}",
     "selectedtime": "Selected Time : {}",
-    "default_date": "Default Date : {}",
-    "default_time": "Default Time : {}",
+    "default_date": "Task Date : {}",
+    "default_time": "Task Time : {}",
     "edit_btn": "Finish editing",
     "close_btn": "Close"
   },

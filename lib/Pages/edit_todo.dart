@@ -97,83 +97,99 @@ class _EditTodoState extends State<EditTodo> {
                         ),
                         Expanded(
                           // DATE
-                          child: GestureDetector(
-                            onTap: () {
-                              showCupertinoModalBottomSheet(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: MediaQuery.of(context).size.height / 14,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.amber.shade800),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
                                 ),
-                                context: context,
-                                builder: (context) => Container(
-                                    color: HexColor('#f9f6e8'),
-                                    height: MediaQuery.of(context).size.height /
-                                        1.8,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                            flex: 10,
-                                            child: CupertinoDatePicker(
-                                                initialDateTime: DateTime
-                                                    .fromMillisecondsSinceEpoch(
-                                                        widget.todo
-                                                            .dateMilliseconds),
-                                                minimumYear: 2022,
-                                                maximumYear:
-                                                    (DateTime.now().year + 30),
-                                                minimumDate: DateTime.fromMillisecondsSinceEpoch(
-                                                                    // 18
-                                                                    widget.todo.dateMilliseconds)
-                                                                .day !=
-                                                            DateTime.now()
-                                                                .day // 19
-                                                        &&
-                                                        DateTime.fromMillisecondsSinceEpoch(
-                                                                    widget.todo
-                                                                        .dateMilliseconds)
-                                                                .day >=
-                                                            DateTime.now().day
-                                                    ? DateTime.now()
-                                                    : todoDate,
-                                                mode: CupertinoDatePickerMode
-                                                    .date,
-                                                onDateTimeChanged: (datetime) {
-                                                  setState(() {
-                                                    _selectedDate = datetime;
-                                                  });
-                                                })),
-                                        Expanded(
-                                          flex: 2,
-                                          child: CupertinoButton(
-                                              child: Text(
-                                                context.locale == Locale('en')
-                                                    ? 'Ok'
-                                                    : 'Tamam',
-                                                style: TextStyle(fontSize: 25),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              }),
-                                        )
-                                      ],
-                                    )),
-                              );
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 1.1,
-                              height: MediaQuery.of(context).size.height / 12,
-                              margin: const EdgeInsets.only(top: 10),
-                              alignment: Alignment.center,
-                              decoration:
-                                  BoxDecoration(color: Colors.grey[200]),
-                              child: _selectedDate == null
-                                  ? Text(LocaleKeys.edittodo_default_date
-                                      .tr(args: [
-                                      '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}'
-                                    ]))
-                                  : Text(LocaleKeys.edittodo_selecteddate
-                                      .tr(args: [
-                                      '${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'
-                                    ])),
+                              ),
+                              onPressed: () {
+                                showCupertinoModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  context: context,
+                                  builder: (context) => Container(
+                                      color: HexColor('#f9f6e8'),
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              1.8,
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                              flex: 10,
+                                              child: CupertinoDatePicker(
+                                                  initialDateTime: DateTime
+                                                      .fromMillisecondsSinceEpoch(
+                                                          widget.todo
+                                                              .dateMilliseconds),
+                                                  minimumYear: 2022,
+                                                  maximumYear:
+                                                      (DateTime.now().year +
+                                                          30),
+                                                  minimumDate: DateTime.fromMillisecondsSinceEpoch(
+                                                                      // 18
+                                                                      widget.todo.dateMilliseconds)
+                                                                  .day !=
+                                                              DateTime.now()
+                                                                  .day // 19
+                                                          &&
+                                                          DateTime.fromMillisecondsSinceEpoch(
+                                                                      widget
+                                                                          .todo
+                                                                          .dateMilliseconds)
+                                                                  .day >=
+                                                              DateTime.now().day
+                                                      ? DateTime.now()
+                                                      : todoDate,
+                                                  mode: CupertinoDatePickerMode
+                                                      .date,
+                                                  onDateTimeChanged: (datetime) {
+                                                    setState(() {
+                                                      _selectedDate = datetime;
+                                                    });
+                                                  })),
+                                          Expanded(
+                                            flex: 2,
+                                            child: CupertinoButton(
+                                                child: Text(
+                                                  context.locale == Locale('en')
+                                                      ? 'Ok'
+                                                      : 'Tamam',
+                                                  style:
+                                                      TextStyle(fontSize: 25),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                }),
+                                          )
+                                        ],
+                                      )),
+                                );
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.only(top: 10),
+                                  alignment: Alignment.center,
+                                  child: FittedBox(
+                                    child: _selectedDate == null
+                                        ? Text(LocaleKeys.edittodo_default_date
+                                            .tr(args: [
+                                            '${todoDate.day.toString().padLeft(2, '0')}.${todoDate.month.toString().padLeft(2, '0')}.${todoDate.year}'
+                                          ]))
+                                        : Text(LocaleKeys.edittodo_selecteddate
+                                            .tr(args: [
+                                            '${_selectedDate?.day.toString().padLeft(2, '0')}.${_selectedDate?.month.toString().padLeft(2, '0')}.${_selectedDate?.year}'
+                                          ])),
+                                  )),
                             ),
                           ),
                         ),
@@ -182,67 +198,75 @@ class _EditTodoState extends State<EditTodo> {
                         ),
                         Expanded(
                           // TIME
-                          child: GestureDetector(
-                            onTap: () {
-                              showCupertinoModalBottomSheet(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: MediaQuery.of(context).size.height / 14,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.amber.shade800),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
                                 ),
-                                context: context,
-                                builder: (context) => Container(
-                                    color: HexColor('#f9f6e8'),
-                                    height: MediaQuery.of(context).size.height /
-                                        1.8,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                            flex: 10,
-                                            child: CupertinoDatePicker(
-                                                use24hFormat: true,
-                                                initialDateTime: DateTime
-                                                    .fromMillisecondsSinceEpoch(
-                                                        widget.todo
-                                                            .timeMilliseconds),
-                                                mode: CupertinoDatePickerMode
-                                                    .time,
-                                                onDateTimeChanged: (datetime) {
-                                                  setState(() {
-                                                    _selectedTime = datetime;
-                                                  });
-                                                })),
-                                        Expanded(
-                                          flex: 2,
-                                          child: CupertinoButton(
-                                              child: Text(
-                                                context.locale == Locale('en')
-                                                    ? 'Ok'
-                                                    : 'Tamam',
-                                                style: TextStyle(fontSize: 25),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              }),
-                                        )
-                                      ],
-                                    )),
-                              );
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 1.1,
-                              height: MediaQuery.of(context).size.height / 12,
-                              margin: const EdgeInsets.only(top: 10),
-                              alignment: Alignment.center,
-                              decoration:
-                                  BoxDecoration(color: Colors.grey[200]),
-                              child: _selectedTime == null
-                                  ? Text(LocaleKeys.edittodo_default_time
-                                      .tr(args: [
-                                      '${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}'
-                                    ]))
-                                  : Text(LocaleKeys.edittodo_selectedtime
-                                      .tr(args: [
-                                      '${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'
-                                    ])),
+                              ),
+                              onPressed: () {
+                                showCupertinoModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  context: context,
+                                  builder: (context) => Column(
+                                    children: [
+                                      Expanded(
+                                          flex: 10,
+                                          child: CupertinoDatePicker(
+                                              use24hFormat: true,
+                                              initialDateTime: DateTime
+                                                  .fromMillisecondsSinceEpoch(
+                                                      widget.todo
+                                                          .timeMilliseconds),
+                                              mode:
+                                                  CupertinoDatePickerMode.time,
+                                              onDateTimeChanged: (datetime) {
+                                                setState(() {
+                                                  _selectedTime = datetime;
+                                                });
+                                              })),
+                                      Expanded(
+                                        flex: 2,
+                                        child: CupertinoButton(
+                                            child: Text(
+                                              context.locale == Locale('en')
+                                                  ? 'Ok'
+                                                  : 'Tamam',
+                                              style: TextStyle(fontSize: 25),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            }),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.only(top: 10),
+                                  alignment: Alignment.center,
+                                  child: FittedBox(
+                                    child: _selectedTime == null
+                                        ? Text(LocaleKeys.edittodo_default_time
+                                            .tr(args: [
+                                            '${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}'
+                                          ]))
+                                        : Text(LocaleKeys.edittodo_selectedtime
+                                            .tr(args: [
+                                            '${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'
+                                          ])),
+                                  )),
                             ),
                           ),
                         ),
