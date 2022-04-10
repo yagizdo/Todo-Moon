@@ -41,7 +41,8 @@
     "time": "Saat Seçin\nVarsayılan Saat: {}",
     "add_btn": "İş Ekle",
     "cancel_btn": "Vazgeç",
-    "selected": "Seçilen {}"
+    "selected": "Seçilen {}",
+    "error_text": "Lütfen {} giriniz"
   },
   "edittodo": {
     "title": "İşi Düzenle",

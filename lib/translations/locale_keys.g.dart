@@ -38,6 +38,7 @@ abstract class  LocaleKeys {
   static const addtodo_add_btn = 'addtodo.add_btn';
   static const addtodo_cancel_btn = 'addtodo.cancel_btn';
   static const addtodo_selected = 'addtodo.selected';
+  static const addtodo_error_text = 'addtodo.error_text';
   static const addtodo = 'addtodo';
   static const edittodo_title = 'edittodo.title';
   static const edittodo_title_tf = 'edittodo.title_tf';

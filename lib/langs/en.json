@@ -41,7 +41,8 @@
     "time": "Select Time\nDefault Time : {}",
     "add_btn": "Add Todo",
     "cancel_btn": "Cancel",
-    "selected": "Selected {}"
+    "selected": "Selected {}",
+    "error_text": "Please enter {}"
   },
   "edittodo": {
     "title": "Edit Task",

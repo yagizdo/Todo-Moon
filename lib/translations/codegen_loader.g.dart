@@ -57,7 +57,8 @@ class CodegenLoader extends AssetLoader{
     "time": "Saat Seçin\nVarsayılan Saat: {}",
     "add_btn": "İş Ekle",
     "cancel_btn": "Vazgeç",
-    "selected": "Seçilen {}"
+    "selected": "Seçilen {}",
+    "error_text": "Lütfen {} giriniz"
   },
   "edittodo": {
     "title": "İşi Düzenle",
@@ -122,7 +123,8 @@ static const Map<String,dynamic> en = {
     "time": "Select Time\nDefault Time : {}",
     "add_btn": "Add Todo",
     "cancel_btn": "Cancel",
-    "selected": "Selected {}"
+    "selected": "Selected {}",
+    "error_text": "Please enter {}"
   },
   "edittodo": {
     "title": "Edit Task",
