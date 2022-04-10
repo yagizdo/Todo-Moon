@@ -20,19 +20,20 @@ class EditTF extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 15.0),
       child: TextFormField(
-        textInputAction:
-            labelText.contains('Description') || labelText.contains('Title')
-                ? TextInputAction.next
-                : TextInputAction.done,
-        maxLength: labelText.contains('Title')
+        textInputAction: labelText.contains(LocaleKeys.edittodo_desc_tf.tr()) ||
+                labelText.contains(LocaleKeys.edittodo_title_tf.tr())
+            ? TextInputAction.next
+            : TextInputAction.done,
+        maxLength: labelText.contains(LocaleKeys.addtodo_title_tf.tr())
             ? 15
-            : labelText.contains('Category')
+            : labelText.contains(LocaleKeys.edittodo_category_tf.tr())
                 ? 15
                 : 250,
-        maxLines: labelText.contains('Description') ? null : 1,
+        maxLines:
+            labelText.contains(LocaleKeys.edittodo_desc_tf.tr()) ? null : 1,
         controller: controller,
         validator: (value) {
-          if (labelText.contains(LocaleKeys.addtodo_title_tf.tr())) {
+          if (labelText.contains(LocaleKeys.edittodo_title_tf.tr())) {
             if (value!.isEmpty || RegExp(r"\s").hasMatch(value.toString())) {
               return LocaleKeys.addtodo_error_text.tr(args: [labelText]);
             }
