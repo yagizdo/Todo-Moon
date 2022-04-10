@@ -34,7 +34,9 @@ class EditTF extends StatelessWidget {
         controller: controller,
         validator: (value) {
           if (labelText.contains(LocaleKeys.edittodo_title_tf.tr())) {
-            if (value!.isEmpty || RegExp(r"\s").hasMatch(value.toString())) {
+            if (value!.isEmpty
+                // || RegExp(r"\s").hasMatch(value.toString())
+                ) {
               return LocaleKeys.addtodo_error_text.tr(args: [labelText]);
             }
           }
