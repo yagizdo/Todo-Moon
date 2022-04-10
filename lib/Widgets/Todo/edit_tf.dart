@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../translations/locale_keys.g.dart';
 
 class EditTF extends StatelessWidget {
   EditTF(
@@ -29,9 +32,9 @@ class EditTF extends StatelessWidget {
         maxLines: labelText.contains('Description') ? null : 1,
         controller: controller,
         validator: (value) {
-          if (labelText.contains('Title')) {
-            if (value!.isEmpty) {
-              return 'Please enter $labelText';
+          if (labelText.contains(LocaleKeys.addtodo_title_tf.tr())) {
+            if (value!.isEmpty || RegExp(r"\s").hasMatch(value.toString())) {
+              return LocaleKeys.addtodo_error_text.tr(args: [labelText]);
             }
           }
         },
