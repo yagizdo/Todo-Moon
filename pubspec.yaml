@@ -53,6 +53,7 @@ dependencies:
   adaptive_dialog: ^1.4.0
   easy_localization: ^3.0.0
   flutter_app_badger: ^1.4.0
+  in_app_review: ^2.0.4
 
 dev_dependencies:
   flutter_test:

@@ -18,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late int badgeValue;
+
   @override
   void initState() {
     super.initState();
