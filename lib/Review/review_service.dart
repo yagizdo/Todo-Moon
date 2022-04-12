@@ -11,23 +11,28 @@ class ReviewService {
   Future<bool> isSecondTimeOpen() async {
     _sharedPreferences = await SharedPreferencesHelper.instance;
     try {
-      dynamic isSecondTime = _sharedPreferences.getBool(KEY) as bool;
+      dynamic isSecondTime = _sharedPreferences.getBool(KEY);
       if (isSecondTime != null && !isSecondTime) {
+        print('1. if');
         _sharedPreferences.setBool(KEY, false);
         return false;
       } else if (isSecondTime != null && isSecondTime) {
+        print('2. if');
         _sharedPreferences.setBool(KEY, false);
         return true;
       } else {
+        print('1. else');
         _sharedPreferences.setBool(KEY, true);
         return false;
       }
     } catch (e) {
+      print('hata : ${e.toString()}');
       return false;
     }
   }
 
   Future<bool> showRating() async {
+    print('shoe calisti');
     try {
       final available = await _inAppReview.isAvailable();
       if (available) {

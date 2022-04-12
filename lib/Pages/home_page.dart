@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/Review/review_service.dart';
 import 'package:todo_app/Widgets/HomePage/Grettings/greetings.dart';
 import 'package:todo_app/Widgets/HomePage/Info/info_widget.dart';
 import 'package:todo_app/Widgets/HomePage/Tasks/task_info.dart';
@@ -18,6 +21,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late int badgeValue;
+
+  final ReviewService _reviewService = ReviewService();
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +39,15 @@ class _HomePageState extends State<HomePage> {
               DateTime.now().year;
     }).length;
     FlutterAppBadger.updateBadgeCount(badgeValue);
+
+    // App Review
+    Timer(const Duration(seconds: 2), () {
+      _reviewService.isSecondTimeOpen().then((secondOpen) {
+        if (secondOpen) {
+          _reviewService.showRating();
+        }
+      });
+    });
   }
 
   @override
