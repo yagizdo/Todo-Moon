@@ -15,7 +15,7 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
-		<string>nb</string>
+		<string>tr</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>todo_app</string>
