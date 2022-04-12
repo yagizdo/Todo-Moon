@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -6,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/profile_page.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
+import '../Review/review_service.dart';
 import 'add_todo.dart';
 import 'calendar_page.dart';
 import 'dashboard_page.dart';
@@ -30,6 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   late int badgeValue;
+  final ReviewService _reviewService = ReviewService();
 
   @override
   void initState() {
@@ -45,6 +49,15 @@ class _MainScreenState extends State<MainScreen> {
           DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).year ==
               DateTime.now().year;
     }).length;
+
+    // App Review
+    Timer(const Duration(seconds: 2), () {
+      _reviewService.isSecondTimeOpen().then((secondOpen) {
+        if (secondOpen) {
+          _reviewService.showRating();
+        }
+      });
+    });
   }
 
   final PageStorageBucket bucket = PageStorageBucket();

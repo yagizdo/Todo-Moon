@@ -3,36 +3,50 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/provider/shared_prefences_helper.dart';
 
 const KEY = 'FIRST_TIME_OPEN';
+const COUNTER = 'OPEN_COUNTER';
 
 class ReviewService {
   late SharedPreferences _sharedPreferences;
+  late int openCounter;
 
   final InAppReview _inAppReview = InAppReview.instance;
   Future<bool> isSecondTimeOpen() async {
     _sharedPreferences = await SharedPreferencesHelper.instance;
+    openCounter = _sharedPreferences.getInt(COUNTER) ?? 1;
     try {
       dynamic isSecondTime = _sharedPreferences.getBool(KEY);
-      if (isSecondTime != null && !isSecondTime) {
-        print('1. if');
-        _sharedPreferences.setBool(KEY, false);
-        return false;
-      } else if (isSecondTime != null && isSecondTime) {
-        print('2. if');
-        _sharedPreferences.setBool(KEY, false);
+      if (openCounter == 3) {
+        _sharedPreferences.setBool(KEY, true);
+        openCounter += 1;
+        _sharedPreferences.setInt(COUNTER, openCounter);
+        return true;
+      } else if (openCounter == 15) {
+        _sharedPreferences.setBool(KEY, true);
+        openCounter += 1;
+        _sharedPreferences.setInt(COUNTER, openCounter);
+        return true;
+      } else if (openCounter == 150) {
+        _sharedPreferences.setBool(KEY, true);
+        openCounter += 1;
+        _sharedPreferences.setInt(COUNTER, openCounter);
+        return true;
+      } else if (openCounter == 400) {
+        _sharedPreferences.setBool(KEY, true);
+        openCounter += 1;
+        _sharedPreferences.setInt(COUNTER, openCounter);
         return true;
       } else {
-        print('1. else');
-        _sharedPreferences.setBool(KEY, true);
+        _sharedPreferences.setBool(KEY, false);
+        openCounter += 1;
+        _sharedPreferences.setInt(COUNTER, openCounter);
         return false;
       }
     } catch (e) {
-      print('hata : ${e.toString()}');
       return false;
     }
   }
 
   Future<bool> showRating() async {
-    print('shoe calisti');
     try {
       final available = await _inAppReview.isAvailable();
       if (available) {
