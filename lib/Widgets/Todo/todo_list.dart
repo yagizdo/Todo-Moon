@@ -22,21 +22,31 @@ class _TodoWidgetState extends State<TodoWidget> {
       builder: (context, state, child) => SizedBox(
         height: MediaQuery.of(context).size.height / 2.68,
         child: ListView.builder(
-            itemCount: state.unCompletedTodos
-                .where((Todo) =>
-                    DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
-                        .day ==
-                    DateTime.now().day)
-                .length,
+            itemCount: state.unCompletedTodos.where((Todo) {
+              return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                          .day ==
+                      DateTime.now().day &&
+                  DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                          .month ==
+                      DateTime.now().month &&
+                  DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                          .year ==
+                      DateTime.now().year;
+            }).length,
             itemBuilder: (context, index) {
               return TodoCard(
-                todo: state.unCompletedTodos
-                    .where((Todo) =>
-                        DateTime.fromMillisecondsSinceEpoch(
-                                Todo.dateMilliseconds)
-                            .day ==
-                        DateTime.now().day)
-                    .toList()[index],
+                todo: state.unCompletedTodos.where((Todo) {
+                  return DateTime.fromMillisecondsSinceEpoch(
+                                  Todo.dateMilliseconds)
+                              .day ==
+                          DateTime.now().day &&
+                      DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                              .month ==
+                          DateTime.now().month &&
+                      DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds)
+                              .year ==
+                          DateTime.now().year;
+                }).toList()[index],
               );
             }),
       ),

@@ -65,12 +65,38 @@ class _Task_InfoState extends State<TaskInfo> {
                       builder: (context, state, child) => Text(
                         context.locale == Locale('en')
                             ? LocaleKeys.homescreen_taskssubtitle.tr(args: [
-                                '${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length}',
+                                '${state.unCompletedTodos.where((Todo) {
+                                  return DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .day ==
+                                          DateTime.now().day &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .month ==
+                                          DateTime.now().month &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .year ==
+                                          DateTime.now().year;
+                                }).length}',
                                 '${DateTime.now().day.toString().padLeft(2, '0')} ${monthsENNames[DateTime.now().month]}'
                               ])
                             : LocaleKeys.homescreen_taskssubtitle.tr(args: [
                                 '${DateTime.now().day.toString().padLeft(2, '0')} ${monthsTRNames[DateTime.now().month]}',
-                                '${state.unCompletedTodos.where((Todo) => DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day == DateTime.now().day).length}'
+                                '${state.unCompletedTodos.where((Todo) {
+                                  return DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .day ==
+                                          DateTime.now().day &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .month ==
+                                          DateTime.now().month &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .year ==
+                                          DateTime.now().year;
+                                }).length}'
                               ]),
                         style: const TextStyle(
                             fontSize: 14,
