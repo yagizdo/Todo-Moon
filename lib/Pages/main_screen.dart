@@ -29,10 +29,22 @@ class _MainScreenState extends State<MainScreen> {
     const ProfilePage()
   ];
 
+  late int badgeValue;
+
   @override
   void initState() {
     super.initState();
     Provider.of<TodosProvider>(context, listen: false).initSharedPreferences();
+    badgeValue = Provider.of<TodosProvider>(context, listen: false)
+        .unCompletedTodos
+        .where((Todo) {
+      return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day ==
+              DateTime.now().day &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).month ==
+              DateTime.now().month &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).year ==
+              DateTime.now().year;
+    }).length;
   }
 
   final PageStorageBucket bucket = PageStorageBucket();

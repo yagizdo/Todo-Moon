@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -23,12 +24,14 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
+  late int badgeValue;
+
   DateTime? _selectedDate;
   DateTime? _selectedTime;
   String dateTextValue =
       '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
-  void saveTodo() {
+  void saveTodo(int badgeCount) {
     Todo todo = Todo(
         title: titleController.text,
         description: descController.text,
@@ -38,6 +41,7 @@ class _AddTodoState extends State<AddTodo> {
         timeMilliseconds: _selectedTime?.millisecondsSinceEpoch ??
             DateTime.now().millisecondsSinceEpoch);
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
+    FlutterAppBadger.updateBadgeCount(badgeCount);
   }
 
   @override
@@ -248,59 +252,79 @@ class _AddTodoState extends State<AddTodo> {
                   child: SizedBox(
                       height: MediaQuery.of(context).size.height / 14,
                       width: MediaQuery.of(context).size.width / 1.25,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.amber.shade600),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(13.0),
-                            )),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              if (formKey.currentState!.validate()) {
-                                if (categoryController.text.isEmpty) {
-                                  context.locale == Locale('en')
-                                      ? categoryController.text =
-                                          'Uncategorized'
-                                      : categoryController.text = 'Kategorisiz';
-                                  saveTodo();
-                                  titleController.text = '';
-                                  descController.text = '';
-                                  categoryController.text = '';
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(
-                                      msg: context.locale == Locale('en')
-                                          ? "Added!"
-                                          : "Eklendi!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                } else {
-                                  saveTodo();
-                                  titleController.text = '';
-                                  descController.text = '';
-                                  categoryController.text = '';
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(
-                                      msg: context.locale == Locale('en')
-                                          ? "Added!"
-                                          : "Eklendi!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
+                      child: Consumer<TodosProvider>(
+                        builder: (context, state, child) => ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.amber.shade600),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13.0),
+                              )),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                // App Icon badge
+                                int badgeCountValue =
+                                    state.unCompletedTodos.where((Todo) {
+                                  return DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .day ==
+                                          DateTime.now().day &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .month ==
+                                          DateTime.now().month &&
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                                  Todo.dateMilliseconds)
+                                              .year ==
+                                          DateTime.now().year;
+                                }).length;
+                                if (formKey.currentState!.validate()) {
+                                  if (categoryController.text.isEmpty) {
+                                    context.locale == Locale('en')
+                                        ? categoryController.text =
+                                            'Uncategorized'
+                                        : categoryController.text =
+                                            'Kategorisiz';
+                                    saveTodo(badgeCountValue);
+                                    titleController.text = '';
+                                    descController.text = '';
+                                    categoryController.text = '';
+                                    Navigator.pop(context);
+                                    Fluttertoast.showToast(
+                                        msg: context.locale == Locale('en')
+                                            ? "Added!"
+                                            : "Eklendi!",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.black,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                  } else {
+                                    saveTodo(badgeCountValue);
+                                    titleController.text = '';
+                                    descController.text = '';
+                                    categoryController.text = '';
+                                    Navigator.pop(context);
+                                    Fluttertoast.showToast(
+                                        msg: context.locale == Locale('en')
+                                            ? "Added!"
+                                            : "Eklendi!",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.black,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0);
+                                  }
                                 }
-                              }
-                            });
-                          },
-                          child: Text(LocaleKeys.addtodo_add_btn.tr()))),
+                              });
+                            },
+                            child: Text(LocaleKeys.addtodo_add_btn.tr())),
+                      )),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 14,

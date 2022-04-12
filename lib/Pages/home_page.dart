@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/HomePage/Grettings/greetings.dart';
 import 'package:todo_app/Widgets/HomePage/Info/info_widget.dart';
 import 'package:todo_app/Widgets/HomePage/Tasks/task_info.dart';
 import 'package:todo_app/Widgets/Todo/todo_list.dart';
+
+import '../provider/todos_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +17,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late int badgeValue;
+  @override
+  void initState() {
+    super.initState();
+    // App icon badge
+    badgeValue = Provider.of<TodosProvider>(context, listen: false)
+        .unCompletedTodos
+        .where((Todo) {
+      return DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).day ==
+              DateTime.now().day &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).month ==
+              DateTime.now().month &&
+          DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).year ==
+              DateTime.now().year;
+    }).length;
+    FlutterAppBadger.updateBadgeCount(badgeValue);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
