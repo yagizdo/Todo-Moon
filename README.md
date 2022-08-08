@@ -65,31 +65,8 @@ Run App
 
 ## App Video
 
-Uploading Simulator Screen Recording - iPhone 7 - 2022-03-16 at 02.12.43.mp4…
 
-
-## Screenshots
-
-### Splash Screen
-<img align="center" width="300" height="600" src="lib/screenshots/splashscreen.png">
-
-### Homepage
-<img align="left" width="300" height="600" src="lib/screenshots/homepage1.png">
-<img align="center" width="300" height="600" src="lib/screenshots/homepage2.png">
-
-### Description
-<img align="center" width="300" height="600" src="lib/screenshots/description.png">
-
-### Add Todo
-<img align="center" width="300" height="600" src="lib/screenshots/addtodo.png">
-
-
-### Dashboard
-<img align="center" width="300" height="600" src="lib/screenshots/dashboard.png">
-
-
-### Profile
-<img align="center" width="300" height="600" src="lib/screenshots/profile.png">
+https://user-images.githubusercontent.com/31064552/183441566-ade1c1c1-81fa-4b75-844b-2d762a11a61e.mp4
 
 
 ## Contributing
