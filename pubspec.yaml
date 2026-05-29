@@ -13,18 +13,13 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  hexcolor: ^3.0.1
   percent_indicator: ^4.2.3
-  font_awesome_flutter: ^11.0.0
   auto_size_text: ^3.0.0
   shared_preferences: ^2.3.0
   provider: ^6.1.2
   flutter_slidable: ^4.0.3
-  modal_bottom_sheet: ^3.0.0
   table_calendar: ^3.1.2
   flutter_native_splash: ^2.4.0
-  flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.0.10
   image_picker: ^1.1.2
   adaptive_dialog: ^2.2.0
   easy_localization: ^3.0.7
@@ -56,6 +51,4 @@ flutter:
     - lib/img/placeholder.jpg
     - lib/img/logo_350.png
     - lib/img/businessman-min.png
-    - lib/img/cnameicon.svg
-    - lib/img/editicon.svg
     - lib/langs/

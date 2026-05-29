@@ -24,7 +24,7 @@ class WelcomCustomTF extends StatelessWidget {
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(10.0),
           ),
-          fillColor: Colors.amber.shade50,
+          fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
           filled: true,
           suffixIcon: IconButton(
             icon: const Icon(

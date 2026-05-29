@@ -60,15 +60,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height / 13,
                       width: MediaQuery.of(context).size.width / 1.2,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                                Colors.amber.shade600),
-                            shape: WidgetStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(13.0),
-                            )),
-                          ),
+                      child: FilledButton(
                           onPressed: () {
                             bool validResult = formKey.currentState!.validate();
                             if (validResult == true) {

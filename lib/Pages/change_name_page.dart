@@ -68,17 +68,7 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                         child: SizedBox(
                           height: MediaQuery.of(context).size.height / 13,
                           width: MediaQuery.of(context).size.width / 1.2,
-                          child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    WidgetStateProperty.all<Color>(
-                                        Colors.amber.shade600),
-                                shape: WidgetStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(13.0),
-                                )),
-                              ),
+                          child: FilledButton(
                               onPressed: () {
                                 bool validResult =
                                     formKey.currentState!.validate();
@@ -98,26 +88,11 @@ class _ChangeNameScreenState extends State<ChangeNameScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 13,
                       width: MediaQuery.of(context).size.width / 1.2,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              WidgetStateProperty.all<Color>(Colors.white),
-                          shape:
-                              WidgetStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.amber, width: 3),
-                              borderRadius: BorderRadius.circular(13.0),
-                            ),
-                          ),
-                        ),
+                      child: OutlinedButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text(
-                          LocaleKeys.changename_cancel_btn.tr(),
-                          style: TextStyle(
-                              color: Colors.amber, fontWeight: FontWeight.bold),
-                        ),
+                        child: Text(LocaleKeys.changename_cancel_btn.tr()),
                       ),
                     )
                   ],

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Models/todo.dart';
 
 class TodoInfoSection extends StatelessWidget {
-  TodoInfoSection({Key? key, required this.todo}) : super(key: key);
-  Todo todo;
+  const TodoInfoSection({Key? key, required this.todo}) : super(key: key);
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
@@ -15,31 +14,27 @@ class TodoInfoSection extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          categoryText(todo.category, context),
-          SizedBox(
-            height: 20.h,
-          ),
+          const SizedBox(height: 20),
+          _categoryText(todo.category, context),
+          const SizedBox(height: 12),
           Text(
             todo.title,
             style: TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: 24),
+              fontWeight: FontWeight.w700,
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 24,
+            ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20.w, top: 20.h),
+            padding: const EdgeInsets.only(left: 20, top: 16, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    const Icon(
-                      Icons.calendar_today,
-                    ),
+                    const Icon(Icons.calendar_today),
                     Text(
                       ' ${todoDate.day.toString().padLeft(2, '0')}/${todoDate.month.toString().padLeft(2, '0')}/${todoDate.year}',
                       style: TextStyle(
@@ -50,25 +45,19 @@ class TodoInfoSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 20.w),
-                  child: Row(
-                    children: [
-                      // Todos time part
-                      const Icon(
-                        Icons.access_time_outlined,
+                Row(
+                  children: [
+                    const Icon(Icons.access_time_outlined),
+                    Text(
+                      ' ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        ' ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -78,21 +67,21 @@ class TodoInfoSection extends StatelessWidget {
   }
 }
 
-Widget categoryText(String categoryName, BuildContext context) {
+Widget _categoryText(String categoryName, BuildContext context) {
   return Container(
-    height: 25.h,
-    width: 150.w,
+    height: 25,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(40.0),
       color: Theme.of(context).colorScheme.secondaryContainer,
     ),
-    child: Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: Center(
-        child: Text(
-          categoryName,
-          style: const TextStyle(
-              color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 14),
+    child: Center(
+      child: Text(
+        categoryName,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSecondaryContainer,
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
         ),
       ),
     ),

@@ -112,9 +112,9 @@ class _Task_InfoState extends State<TaskInfo> {
             child: Container(
               width: 40,
               height: 40,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(14))),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: const BorderRadius.all(Radius.circular(14))),
               child: const Icon(Icons.calendar_today),
             ),
           ),

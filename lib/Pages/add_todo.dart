@@ -1,8 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/Todo/custom_tf.dart';
@@ -13,7 +10,7 @@ class AddTodo extends StatefulWidget {
   const AddTodo({Key? key}) : super(key: key);
 
   @override
-  _AddTodoState createState() => _AddTodoState();
+  State<AddTodo> createState() => _AddTodoState();
 }
 
 class _AddTodoState extends State<AddTodo> {
@@ -22,22 +19,19 @@ class _AddTodoState extends State<AddTodo> {
   var descController = TextEditingController();
   var categoryController = TextEditingController();
 
-  late int badgeValue;
-
   DateTime? _selectedDate;
   DateTime? _selectedTime;
-  String dateTextValue =
-      '${DateTime.now().day}:${DateTime.now().month.toString().padLeft(2, '0')}:${DateTime.now().year}';
 
-  void saveTodo(int badgeCount) {
+  void saveTodo() {
     Todo todo = Todo(
-        title: titleController.text,
-        description: descController.text,
-        category: categoryController.text,
-        dateMilliseconds: _selectedDate?.millisecondsSinceEpoch ??
-            DateTime.now().millisecondsSinceEpoch,
-        timeMilliseconds: _selectedTime?.millisecondsSinceEpoch ??
-            DateTime.now().millisecondsSinceEpoch);
+      title: titleController.text,
+      description: descController.text,
+      category: categoryController.text,
+      dateMilliseconds: _selectedDate?.millisecondsSinceEpoch ??
+          DateTime.now().millisecondsSinceEpoch,
+      timeMilliseconds: _selectedTime?.millisecondsSinceEpoch ??
+          DateTime.now().millisecondsSinceEpoch,
+    );
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
   }
 
@@ -53,8 +47,7 @@ class _AddTodoState extends State<AddTodo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        reverse: true,
+        padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
         child: Form(
           key: formKey,
           child: Center(
@@ -62,282 +55,142 @@ class _AddTodoState extends State<AddTodo> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 25.0),
+                  padding: const EdgeInsets.only(top: 25.0),
                   child: Text(
                     LocaleKeys.addtodo_title.tr(),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
                 CustomTF(
-                    hint: LocaleKeys.addtodo_title_tf.tr(),
-                    controller: titleController,
-                    labelText: LocaleKeys.addtodo_title_tf.tr()),
+                  hint: LocaleKeys.addtodo_title_tf.tr(),
+                  controller: titleController,
+                  labelText: LocaleKeys.addtodo_title_tf.tr(),
+                ),
                 CustomTF(
-                    hint: LocaleKeys.addtodo_desc_tf.tr(),
-                    controller: descController,
-                    labelText: LocaleKeys.addtodo_desc_tf.tr()),
+                  hint: LocaleKeys.addtodo_desc_tf.tr(),
+                  controller: descController,
+                  labelText: LocaleKeys.addtodo_desc_tf.tr(),
+                ),
                 CustomTF(
-                    hint: LocaleKeys.addtodo_category_tf.tr(),
-                    controller: categoryController,
-                    labelText: LocaleKeys.addtodo_category_tf.tr()),
-                Row(
-                  children: [
-                    // Cupertino DateTime Picker
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: MediaQuery.of(context).size.height / 13,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all<Color>(
-                                  Colors.amber.shade800),
-                              shape: WidgetStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(13.0),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {
-                              showCupertinoModalBottomSheet(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                context: context,
-                                builder: (context) => Container(
-                                  color: HexColor('#f9f6e8'),
-                                  height:
-                                      MediaQuery.of(context).size.height / 1.8,
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                          flex: 10,
-                                          child: CupertinoDatePicker(
-                                              minimumYear: 2022,
-                                              maximumYear:
-                                                  (DateTime.now().year + 30),
-                                              minimumDate: _selectedDate == null
-                                                  ? DateTime.now()
-                                                  : _selectedDate!.day <=
-                                                          DateTime.now().day
-                                                      ? _selectedDate
-                                                      : DateTime.now(),
-                                              initialDateTime: _selectedDate ??
-                                                  DateTime.now(),
-                                              mode:
-                                                  CupertinoDatePickerMode.date,
-                                              onDateTimeChanged: (datetime) {
-                                                setState(() {
-                                                  _selectedDate = datetime;
-                                                });
-                                              })),
-                                      Expanded(
-                                          flex: 2,
-                                          child: CupertinoButton(
-                                              child: Text(
-                                                context.locale == Locale('en')
-                                                    ? 'Ok'
-                                                    : 'Tamam',
-                                                style: TextStyle(fontSize: 25),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              }))
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                            child: FittedBox(
-                              child: _selectedDate == null
-                                  ? Text(
-                                      LocaleKeys.addtodo_date.tr(args: [
-                                        '${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}'
-                                      ]),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  : Text(LocaleKeys.addtodo_selected.tr(args: [
-                                      '${_selectedDate?.day.toString().padLeft(2, '0')}/${_selectedDate?.month.toString().padLeft(2, '0')}/${_selectedDate?.year}'
-                                    ])),
-                            )),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: MediaQuery.of(context).size.height / 13,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                                Colors.amber.shade800),
-                            shape: WidgetStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(13.0),
-                              ),
-                            ),
+                  hint: LocaleKeys.addtodo_category_tf.tr(),
+                  controller: categoryController,
+                  labelText: LocaleKeys.addtodo_category_tf.tr(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton.icon(
+                          icon: const Icon(Icons.calendar_today, size: 18),
+                          label: FittedBox(
+                            child: _selectedDate == null
+                                ? Text(LocaleKeys.addtodo_date.tr(args: [
+                                    '${DateTime.now().day.toString().padLeft(2, '0')}/${DateTime.now().month.toString().padLeft(2, '0')}/${DateTime.now().year}'
+                                  ]))
+                                : Text(LocaleKeys.addtodo_selected.tr(args: [
+                                    '${_selectedDate?.day.toString().padLeft(2, '0')}/${_selectedDate?.month.toString().padLeft(2, '0')}/${_selectedDate?.year}'
+                                  ])),
                           ),
-                          child: FittedBox(
+                          onPressed: () async {
+                            final date = await showDatePicker(
+                              context: context,
+                              initialDate: _selectedDate ?? DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime.now().add(const Duration(days: 365 * 30)),
+                            );
+                            if (date != null) {
+                              setState(() => _selectedDate = date);
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: FilledButton.icon(
+                          icon: const Icon(Icons.access_time, size: 18),
+                          label: FittedBox(
                             child: _selectedTime == null
-                                ? Text(
-                                    LocaleKeys.addtodo_time.tr(args: [
-                                      '${DateTime.now().hour.toString().padLeft(2, '0')}:${DateTime.now().minute.toString().padLeft(2, '0')}'
-                                    ]),
-                                    textAlign: TextAlign.center,
-                                  )
+                                ? Text(LocaleKeys.addtodo_time.tr(args: [
+                                    '${DateTime.now().hour.toString().padLeft(2, '0')}:${DateTime.now().minute.toString().padLeft(2, '0')}'
+                                  ]))
                                 : Text(LocaleKeys.addtodo_selected.tr(args: [
                                     '${_selectedTime?.hour.toString().padLeft(2, '0')}:${_selectedTime?.minute.toString().padLeft(2, '0')}'
                                   ])),
                           ),
-                          onPressed: () {
-                            showCupertinoModalBottomSheet(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
+                          onPressed: () async {
+                            final time = await showTimePicker(
                               context: context,
-                              builder: (context) => Container(
-                                  color: HexColor('#f9f6e8'),
-                                  height:
-                                      MediaQuery.of(context).size.height / 1.8,
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                          flex: 10,
-                                          child: CupertinoDatePicker(
-                                              use24hFormat: true,
-                                              mode:
-                                                  CupertinoDatePickerMode.time,
-                                              onDateTimeChanged: (datetime) {
-                                                setState(() {
-                                                  _selectedTime = datetime;
-                                                });
-                                              })),
-                                      Expanded(
-                                          flex: 2,
-                                          child: CupertinoButton(
-                                              child: Text(
-                                                context.locale == Locale('en')
-                                                    ? 'Ok'
-                                                    : 'Tamam',
-                                                style: TextStyle(fontSize: 25),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              }))
-                                    ],
-                                  )),
+                              initialTime: TimeOfDay.now(),
                             );
+                            if (time != null) {
+                              setState(() {
+                                _selectedTime = DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month,
+                                  DateTime.now().day,
+                                  time.hour,
+                                  time.minute,
+                                );
+                              });
+                            }
                           },
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0, bottom: 10),
+                  padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20, bottom: 10),
                   child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 14,
-                      width: MediaQuery.of(context).size.width / 1.25,
-                      child: Consumer<TodosProvider>(
-                        builder: (context, state, child) => ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all<Color>(
-                                  Colors.amber.shade600),
-                              shape: WidgetStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(13.0),
-                              )),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                // App Icon badge
-                                int badgeCountValue =
-                                    state.unCompletedTodos.where((Todo) {
-                                  return DateTime.fromMillisecondsSinceEpoch(
-                                                  Todo.dateMilliseconds)
-                                              .day ==
-                                          DateTime.now().day &&
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                                  Todo.dateMilliseconds)
-                                              .month ==
-                                          DateTime.now().month &&
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                                  Todo.dateMilliseconds)
-                                              .year ==
-                                          DateTime.now().year;
-                                }).length;
-                                if (formKey.currentState!.validate()) {
-                                  if (categoryController.text.isEmpty) {
-                                    context.locale == Locale('en')
-                                        ? categoryController.text =
-                                            'Uncategorized'
-                                        : categoryController.text =
-                                            'Kategorisiz';
-                                    saveTodo(badgeCountValue);
-                                    titleController.text = '';
-                                    descController.text = '';
-                                    categoryController.text = '';
-                                    final msg = context.locale == Locale('en') ? "Added!" : "Eklendi!";
-                                    final messenger = ScaffoldMessenger.of(context);
-                                    Navigator.pop(context);
-                                    messenger.showSnackBar(
-                                        SnackBar(content: Text(msg), duration: const Duration(seconds: 1)));
-                                  } else {
-                                    saveTodo(badgeCountValue);
-                                    titleController.text = '';
-                                    descController.text = '';
-                                    categoryController.text = '';
-                                    final msg = context.locale == Locale('en') ? "Added!" : "Eklendi!";
-                                    final messenger = ScaffoldMessenger.of(context);
-                                    Navigator.pop(context);
-                                    messenger.showSnackBar(
-                                        SnackBar(content: Text(msg), duration: const Duration(seconds: 1)));
-                                  }
-                                }
-                              });
-                            },
-                            child: Text(LocaleKeys.addtodo_add_btn.tr())),
-                      )),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 14,
-                  width: MediaQuery.of(context).size.width / 1.25,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(Colors.white),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.amber, width: 3),
-                          borderRadius: BorderRadius.circular(13.0),
-                        ),
+                    width: double.infinity,
+                    height: 50,
+                    child: Consumer<TodosProvider>(
+                      builder: (context, state, child) => FilledButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            if (categoryController.text.isEmpty) {
+                              categoryController.text =
+                                  context.locale == const Locale('en')
+                                      ? 'Uncategorized'
+                                      : 'Kategorisiz';
+                            }
+                            saveTodo();
+                            titleController.text = '';
+                            descController.text = '';
+                            categoryController.text = '';
+                            final msg = context.locale == const Locale('en')
+                                ? 'Added!'
+                                : 'Eklendi!';
+                            final messenger = ScaffoldMessenger.of(context);
+                            Navigator.pop(context);
+                            messenger.showSnackBar(
+                              SnackBar(
+                                content: Text(msg),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(LocaleKeys.addtodo_add_btn.tr()),
                       ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      LocaleKeys.addtodo_cancel_btn.tr(),
-                      style: TextStyle(
-                          color: Colors.amber, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                )
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(LocaleKeys.addtodo_cancel_btn.tr()),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
               ],
             ),
           ),

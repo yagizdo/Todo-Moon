@@ -46,7 +46,7 @@ class EditTF extends StatelessWidget {
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(10.0),
             ),
-            fillColor: Colors.amber.shade50,
+            fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
             filled: true,
             suffixIcon: IconButton(
               icon: const Icon(
@@ -59,7 +59,7 @@ class EditTF extends StatelessWidget {
               },
             ),
             hintText: labelText,
-            hintStyle: const TextStyle(color: Colors.black)),
+            hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
       ),
     );
   }

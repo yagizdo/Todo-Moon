@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -41,12 +40,12 @@ class MyApp extends StatelessWidget {
   final userName;
 
   static final _lightColorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.amber,
+    seedColor: Colors.indigo,
     brightness: Brightness.light,
   );
 
   static final _darkColorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.amber,
+    seedColor: Colors.indigo,
     brightness: Brightness.dark,
   );
 
@@ -60,10 +59,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: _lightColorScheme,
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         colorScheme: _darkColorScheme,
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
       ),
       themeMode: ThemeMode.system,
       localizationsDelegates: context.localizationDelegates,

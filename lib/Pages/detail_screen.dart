@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/DetailPage/todo_description.dart';
 
@@ -14,85 +11,52 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder: (context, child) => LayoutBuilder(
-        builder: (context, constraints) {
-          return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                showCupertinoModalBottomSheet(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  context: context,
-                  builder: (context) => SizedBox(
-                    height:
-                        // for iphone 11
-                        constraints.maxHeight == 896 ||
-                                constraints.maxHeight == 926
-                            ? MediaQuery.of(context).size.height / 1.6
-                            :
-                            // For iphone 11 pro, 12 mini, 12 pro(height 771)
-                            constraints.maxHeight == 812 ||
-                                    constraints.maxHeight == 771
-                                ? MediaQuery.of(context).size.height / 1.5
-                                : //For iphone 5s
-                                constraints.maxHeight == 522
-                                    ? MediaQuery.of(context).size.height / 1
-                                    : MediaQuery.of(context).size.height / 1.2,
-                    child: EditTodo(
-                      todo: todo,
-                    ),
-                  ),
-                );
-              },
-              child: SvgPicture.asset(
-                'lib/img/editicon.svg',
-                width: 26.w,
-              ),
-              backgroundColor: Colors.orangeAccent,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            showDragHandle: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
             ),
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            body: Column(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: TodoInfoSection(
-                    todo: todo,
-                  ),
-                ),
-                Expanded(
-                  flex: constraints.maxHeight == 621
-                      ? 6
-                      : constraints.maxHeight == 522
-                          ? 5
-                          : 7,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceContainerLowest,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: TodoDescription(
-                      todo: todo,
-                      textFontSize:
-                          // for iphone 7 - Height 621
-                          constraints.maxHeight == 621
-                              ? 18.h
-                              :
-                              // for iphone 5S - Height 522
-                              constraints.maxHeight == 522
-                                  ? 16.h
-                                  : 14.h,
-                    ),
-                  ),
-                ),
-              ],
+            builder: (context) => DraggableScrollableSheet(
+              initialChildSize: 0.85,
+              minChildSize: 0.5,
+              maxChildSize: 0.95,
+              expand: false,
+              builder: (_, __) => EditTodo(todo: todo),
             ),
           );
         },
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        child: Icon(
+          Icons.edit,
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 2,
+            child: TodoInfoSection(todo: todo),
+          ),
+          Expanded(
+            flex: 7,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerLowest,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: TodoDescription(todo: todo),
+            ),
+          ),
+        ],
       ),
     );
   }

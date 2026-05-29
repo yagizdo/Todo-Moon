@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Pages/detail_screen.dart';
@@ -15,13 +14,21 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Future(() {
-          showBarModalBottomSheet(
-              context: context,
-              builder: (context) => DetailScreen(
-                    todo: todo,
-                  ));
-        });
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          showDragHandle: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+          ),
+          builder: (context) => DraggableScrollableSheet(
+            initialChildSize: 0.85,
+            minChildSize: 0.5,
+            maxChildSize: 0.95,
+            expand: false,
+            builder: (_, __) => DetailScreen(todo: todo),
+          ),
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(8),
@@ -92,7 +99,7 @@ class TodoCard extends StatelessWidget {
                         child: Checkbox(
                           shape: const CircleBorder(),
                           checkColor: Colors.white,
-                          activeColor: Colors.black,
+                          activeColor: Theme.of(context).colorScheme.primary,
                           value: todo.complete,
                           onChanged: (bool? value) {
                             Provider.of<TodosProvider>(context, listen: false)
@@ -104,12 +111,14 @@ class TodoCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _CategoryText(todo.category),
-                      _TitleText(todo.title),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _CategoryText(todo.category),
+                        _TitleText(todo.title),
+                      ],
+                    ),
                   )
                 ]),
               ],

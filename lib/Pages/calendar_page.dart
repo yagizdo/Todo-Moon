@@ -25,8 +25,7 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
+      body: SafeArea(
         child: Column(
           children: [
             TableCalendar(
@@ -38,9 +37,9 @@ class _CalendarPageState extends State<CalendarPage> {
               focusedDay: _focusedDay,
               selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
               calendarFormat: CalendarFormat.month,
-              calendarStyle: const CalendarStyle(
+              calendarStyle: CalendarStyle(
                   todayDecoration: BoxDecoration(
-                      color: Colors.amber, shape: BoxShape.circle)),
+                      color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle)),
               onDaySelected: (selectedDay, focusedDay) {
                 setState(() {
                   _selectedDay = selectedDay;
