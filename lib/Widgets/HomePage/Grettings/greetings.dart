@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos_provider.dart';
 
@@ -34,18 +33,18 @@ class Greetings extends StatelessWidget {
         ),
         Container(
           height: MediaQuery.of(context).size.height / 7.5,
-          color: HexColor('#f9f6e8'),
+          color: Theme.of(context).colorScheme.surface,
           child: Column(children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _welcomeText(LocaleKeys.homescreen_hello_text.tr(),
-                    customFontSize, FontWeight.normal, Colors.black),
+                    customFontSize, FontWeight.normal, Theme.of(context).colorScheme.onSurface),
                 Consumer<TodosProvider>(
                   builder: (context, state, child) => Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                     child: _welcomeText(state.name, customFontSize,
-                        FontWeight.bold, Colors.black),
+                        FontWeight.bold, Theme.of(context).colorScheme.onSurface),
                   ),
                 ),
               ],
@@ -59,7 +58,7 @@ class Greetings extends StatelessWidget {
                     LocaleKeys.homescreen_subtitle_text.tr(),
                     15,
                     FontWeight.normal,
-                    Colors.black,
+                    Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],

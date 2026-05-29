@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/profile_page.dart';
@@ -67,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        backgroundColor: HexColor('#f3f0e5'),
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: PageStorage(
           child: currentScreen,
           bucket: bucket,
@@ -75,8 +74,8 @@ class _MainScreenState extends State<MainScreen> {
         floatingActionButton: SizedBox(
           height: 50,
           child: FloatingActionButton(
-            backgroundColor: HexColor('#000000'),
-            child: const Icon(Icons.add),
+            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+            child: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimaryContainer),
             onPressed: () {
               setState(() {
                 showCupertinoModalBottomSheet(
@@ -159,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           FaIcon(
                             FontAwesomeIcons.home,
-                            color: currentTab == 0 ? Colors.black : Colors.grey,
+                            color: currentTab == 0 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
                           )
                         ],
                       ),
@@ -180,7 +179,7 @@ class _MainScreenState extends State<MainScreen> {
                             FaIcon(
                               FontAwesomeIcons.calendar,
                               color:
-                                  currentTab == 1 ? Colors.black : Colors.grey,
+                                  currentTab == 1 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
                             ),
                           ],
                         ),
@@ -205,7 +204,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           FaIcon(
                             FontAwesomeIcons.clipboardCheck,
-                            color: currentTab == 3 ? Colors.black : Colors.grey,
+                            color: currentTab == 3 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
                           )
                         ],
                       ),
@@ -226,7 +225,7 @@ class _MainScreenState extends State<MainScreen> {
                             FaIcon(
                               FontAwesomeIcons.user,
                               color:
-                                  currentTab == 4 ? Colors.black : Colors.grey,
+                                  currentTab == 4 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
                             ),
                           ],
                         ),

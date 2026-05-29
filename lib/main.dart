@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Pages/main_screen.dart';
 import 'package:todo_app/Pages/welcome_screen.dart';
@@ -41,6 +40,16 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.userName}) : super(key: key);
   final userName;
 
+  static final _lightColorScheme = ColorScheme.fromSeed(
+    seedColor: Colors.amber,
+    brightness: Brightness.light,
+  );
+
+  static final _darkColorScheme = ColorScheme.fromSeed(
+    seedColor: Colors.amber,
+    brightness: Brightness.dark,
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,8 +58,14 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       theme: ThemeData(
-        primaryColor: HexColor('#f9f6e8'),
+        useMaterial3: true,
+        colorScheme: _lightColorScheme,
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: _darkColorScheme,
+      ),
+      themeMode: ThemeMode.system,
       localizationsDelegates: context.localizationDelegates,
       home: userName.toString().contains('null')
           ? const WelcomeScreen()

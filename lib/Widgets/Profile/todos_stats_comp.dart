@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Profile/todos_big_container.dart';
 import 'package:todo_app/Widgets/Profile/todos_container.dart';
 
@@ -22,7 +21,7 @@ class TodosStats extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.w,
-              color: HexColor('#393939'),
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),

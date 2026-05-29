@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
@@ -310,16 +309,11 @@ class _EditTodoState extends State<EditTodo> {
                                     titleController?.text = '';
                                     descController?.text = '';
                                     categoryController?.text = '';
+                                    final messenger = ScaffoldMessenger.of(context);
                                     Navigator.of(context)
                                         .popUntil((route) => route.isFirst);
-                                    Fluttertoast.showToast(
-                                        msg: "Done!",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                    messenger.showSnackBar(
+                                        const SnackBar(content: Text("Done!"), duration: Duration(seconds: 1)));
                                   }
                                 });
                               },

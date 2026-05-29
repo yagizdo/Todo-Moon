@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +39,6 @@ class _AddTodoState extends State<AddTodo> {
         timeMilliseconds: _selectedTime?.millisecondsSinceEpoch ??
             DateTime.now().millisecondsSinceEpoch);
     Provider.of<TodosProvider>(context, listen: false).addTodo(todo);
-    FlutterAppBadger.updateBadgeCount(badgeCount);
   }
 
   @override
@@ -292,33 +289,21 @@ class _AddTodoState extends State<AddTodo> {
                                     titleController.text = '';
                                     descController.text = '';
                                     categoryController.text = '';
+                                    final msg = context.locale == Locale('en') ? "Added!" : "Eklendi!";
+                                    final messenger = ScaffoldMessenger.of(context);
                                     Navigator.pop(context);
-                                    Fluttertoast.showToast(
-                                        msg: context.locale == Locale('en')
-                                            ? "Added!"
-                                            : "Eklendi!",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                    messenger.showSnackBar(
+                                        SnackBar(content: Text(msg), duration: const Duration(seconds: 1)));
                                   } else {
                                     saveTodo(badgeCountValue);
                                     titleController.text = '';
                                     descController.text = '';
                                     categoryController.text = '';
+                                    final msg = context.locale == Locale('en') ? "Added!" : "Eklendi!";
+                                    final messenger = ScaffoldMessenger.of(context);
                                     Navigator.pop(context);
-                                    Fluttertoast.showToast(
-                                        msg: context.locale == Locale('en')
-                                            ? "Added!"
-                                            : "Eklendi!",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                    messenger.showSnackBar(
+                                        SnackBar(content: Text(msg), duration: const Duration(seconds: 1)));
                                   }
                                 }
                               });

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Widgets/HomePage/Grettings/greetings.dart';
 import 'package:todo_app/Widgets/HomePage/Info/info_widget.dart';
@@ -33,13 +31,12 @@ class _HomePageState extends State<HomePage> {
           DateTime.fromMillisecondsSinceEpoch(Todo.dateMilliseconds).year ==
               DateTime.now().year;
     }).length;
-    FlutterAppBadger.updateBadgeCount(badgeValue);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#f9f6e8'),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: LayoutBuilder(builder: (context, constraints) {
         return Column(
           children: [

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:todo_app/Models/todo.dart';
 import 'package:todo_app/Widgets/DetailPage/todo_description.dart';
@@ -53,7 +52,7 @@ class DetailScreen extends StatelessWidget {
               ),
               backgroundColor: Colors.orangeAccent,
             ),
-            backgroundColor: HexColor('#F9F6E9'),
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: Column(
               children: [
                 Expanded(
@@ -69,8 +68,8 @@ class DetailScreen extends StatelessWidget {
                           ? 5
                           : 7,
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surfaceContainerLowest,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30),

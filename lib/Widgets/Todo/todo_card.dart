@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Models/todo.dart';
@@ -35,14 +33,8 @@ class TodoCard extends StatelessWidget {
               onDismissed: () {
                 Provider.of<TodosProvider>(context, listen: false)
                     .toggleTodo(todo);
-                Fluttertoast.showToast(
-                    msg: "Done!",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Done!"), backgroundColor: Colors.green, duration: Duration(seconds: 1)));
               },
             ),
             children: [
@@ -50,14 +42,8 @@ class TodoCard extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Provider.of<TodosProvider>(context, listen: false)
                       .toggleTodo(todo);
-                  Fluttertoast.showToast(
-                      msg: "Done!",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Done!"), backgroundColor: Colors.green, duration: Duration(seconds: 1)));
                 },
                 backgroundColor: Colors.green,
                 label: 'Done!',
@@ -70,14 +56,8 @@ class TodoCard extends StatelessWidget {
               onDismissed: () {
                 Provider.of<TodosProvider>(context, listen: false)
                     .removeTodo(todo);
-                Fluttertoast.showToast(
-                    msg: "Uncompleted!!",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Removed!"), backgroundColor: Colors.red, duration: Duration(seconds: 1)));
               },
             ),
             children: [
@@ -85,14 +65,8 @@ class TodoCard extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Provider.of<TodosProvider>(context, listen: false)
                       .removeTodo(todo);
-                  Fluttertoast.showToast(
-                      msg: "Removed!",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Removed!"), backgroundColor: Colors.red, duration: Duration(seconds: 1)));
                 },
                 backgroundColor: Colors.red,
                 label: 'Remove!',
@@ -101,7 +75,7 @@ class TodoCard extends StatelessWidget {
           ),
           child: Card(
             shadowColor: Colors.transparent,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
             elevation: 20,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -123,14 +97,8 @@ class TodoCard extends StatelessWidget {
                           onChanged: (bool? value) {
                             Provider.of<TodosProvider>(context, listen: false)
                                 .toggleTodo(todo);
-                            Fluttertoast.showToast(
-                                msg: "Done!",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Done!"), backgroundColor: Colors.green, duration: Duration(seconds: 1)));
                           },
                         ),
                       ),
@@ -139,8 +107,8 @@ class TodoCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      categoryText(todo.category),
-                      titleText(todo.title),
+                      _CategoryText(todo.category),
+                      _TitleText(todo.title),
                     ],
                   )
                 ]),
@@ -153,35 +121,51 @@ class TodoCard extends StatelessWidget {
   }
 }
 
-Widget categoryText(String categoryName) {
-  return Container(
-    height: 18,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20.0),
-      color: HexColor('#d3e3f2'),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: Center(
-          child: Text(
-        categoryName,
-        style: const TextStyle(
-            color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 10),
-      )),
-    ),
-  );
+class _CategoryText extends StatelessWidget {
+  const _CategoryText(this.categoryName);
+  final String categoryName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 18,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: Theme.of(context).colorScheme.secondaryContainer,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Center(
+            child: Text(
+          categoryName,
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+              fontWeight: FontWeight.bold,
+              fontSize: 10),
+        )),
+      ),
+    );
+  }
 }
 
-Widget titleText(String titleName) {
-  return Padding(
-    padding: const EdgeInsets.only(top: 10.0),
-    child: Center(
-        child: Text(
-      titleName,
-      maxLines: 2,
-      overflow: TextOverflow.fade,
-      style: const TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
-    )),
-  );
+class _TitleText extends StatelessWidget {
+  const _TitleText(this.titleName);
+  final String titleName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Center(
+          child: Text(
+        titleName,
+        maxLines: 2,
+        overflow: TextOverflow.fade,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontWeight: FontWeight.bold,
+            fontSize: 15),
+      )),
+    );
+  }
 }

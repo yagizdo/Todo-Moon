@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Dashboard/complete_todo_list.dart';
 import 'package:todo_app/Widgets/Dashboard/completed_task_info.dart';
 import 'package:todo_app/translations/locale_keys.g.dart';
@@ -16,9 +15,9 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: dashboardAB(),
+      appBar: const _DashboardAppBar(),
       body: Container(
-        color: HexColor('#f9f6e8'),
+        color: Theme.of(context).colorScheme.surface,
         child: Column(
           children: const [CompletedTaskInfo(), CompleteTodoList()],
         ),
@@ -27,14 +26,22 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 }
 
-AppBar dashboardAB() {
-  return AppBar(
-    centerTitle: true,
-    backgroundColor: HexColor('#f9f6e8'),
-    elevation: 0,
-    title: Text(
-      LocaleKeys.dashboard_title.tr(),
-      style: TextStyle(fontSize: 25, color: Colors.black),
-    ),
-  );
+class _DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const _DashboardAppBar();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      centerTitle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      elevation: 0,
+      title: Text(
+        LocaleKeys.dashboard_title.tr(),
+        style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.onSurface),
+      ),
+    );
+  }
 }

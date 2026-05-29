@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hexcolor/hexcolor.dart';
-
 import '../../Models/todo.dart';
 
 class TodoInfoSection extends StatelessWidget {
@@ -29,7 +27,7 @@ class TodoInfoSection extends StatelessWidget {
             todo.title,
             style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: HexColor('#393939'),
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 24),
           ),
           Padding(
@@ -46,7 +44,7 @@ class TodoInfoSection extends StatelessWidget {
                       ' ${todoDate.day.toString().padLeft(2, '0')}/${todoDate.month.toString().padLeft(2, '0')}/${todoDate.year}',
                       style: TextStyle(
                         fontSize: 15,
-                        color: HexColor('#393939'),
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -64,7 +62,7 @@ class TodoInfoSection extends StatelessWidget {
                         ' ${todoTime.hour.toString().padLeft(2, '0')}:${todoTime.minute.toString().padLeft(2, '0')}',
                         style: TextStyle(
                           fontSize: 15,
-                          color: HexColor('#393939'),
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -86,7 +84,7 @@ Widget categoryText(String categoryName, BuildContext context) {
     width: 150.w,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(40.0),
-      color: HexColor('#d3e3f2'),
+      color: Theme.of(context).colorScheme.secondaryContainer,
     ),
     child: Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),

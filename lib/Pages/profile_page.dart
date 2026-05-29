@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/Widgets/Profile/profile_circle.dart';
 import 'package:todo_app/translations/locale_keys.g.dart';
 
@@ -16,13 +15,13 @@ class ProfilePage extends StatelessWidget {
       designSize: const Size(391, 850),
       builder: (context, child) => LayoutBuilder(builder: (context, constraints) {
         return Scaffold(
-          backgroundColor: HexColor('#F9F6E9'),
+          backgroundColor: Theme.of(context).colorScheme.surface,
           // App Bar
           appBar: AppBar(
-            backgroundColor: HexColor('#F9F6E9'),
+            backgroundColor: Theme.of(context).colorScheme.surface,
             title: Text(
               LocaleKeys.profile_title.tr(),
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
             ),
             elevation: 0,
           ),
@@ -33,7 +32,7 @@ class ProfilePage extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      color: HexColor('#F9F6E9'),
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                   // White Container
@@ -42,8 +41,8 @@ class ProfilePage extends StatelessWidget {
                         // For Pixel 2 - height 633.4285714285714
                         constraints.maxHeight == 633.4285714285714 ? 5 : 7,
                     child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surfaceContainerLowest,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30.0),
                           topLeft: Radius.circular(30.0),

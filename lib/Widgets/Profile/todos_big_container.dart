@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/todos_provider.dart';
@@ -30,7 +29,7 @@ class TodosBigContainer extends StatelessWidget {
           height: containerHeight,
           width: containerWidth,
           decoration: BoxDecoration(
-            color: HexColor(backgroundColor),
+            color: Color(int.parse('FF$backgroundColor', radix: 16)),
             borderRadius: const BorderRadius.all(
               Radius.circular(14.0),
             ),
@@ -42,7 +41,7 @@ class TodosBigContainer extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(
-                    color: HexColor('#393939'),
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: textfontSize,
                     fontWeight: FontWeight.w600),
               ),
@@ -50,7 +49,7 @@ class TodosBigContainer extends StatelessWidget {
               Text(
                 '${state.allTodos.length}',
                 style: TextStyle(
-                    color: HexColor('#393939'),
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: numberfontSize,
                     fontWeight: FontWeight.w700),
               ),
