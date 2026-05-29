@@ -16,7 +16,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder: () => LayoutBuilder(
+      builder: (context, child) => LayoutBuilder(
         builder: (context, constraints) {
           return Scaffold(
             floatingActionButton: FloatingActionButton(

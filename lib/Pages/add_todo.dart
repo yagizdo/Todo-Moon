@@ -96,9 +96,9 @@ class _AddTodoState extends State<AddTodo> {
                         height: MediaQuery.of(context).size.height / 13,
                         child: ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
+                              backgroundColor: WidgetStateProperty.all<Color>(
                                   Colors.amber.shade800),
-                              shape: MaterialStateProperty.all<
+                              shape: WidgetStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(13.0),
@@ -179,9 +179,9 @@ class _AddTodoState extends State<AddTodo> {
                         height: MediaQuery.of(context).size.height / 13,
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
+                            backgroundColor: WidgetStateProperty.all<Color>(
                                 Colors.amber.shade800),
-                            shape: MaterialStateProperty.all<
+                            shape: WidgetStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(13.0),
@@ -255,9 +255,9 @@ class _AddTodoState extends State<AddTodo> {
                       child: Consumer<TodosProvider>(
                         builder: (context, state, child) => ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
+                              backgroundColor: WidgetStateProperty.all<Color>(
                                   Colors.amber.shade600),
-                              shape: MaterialStateProperty.all<
+                              shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(13.0),
@@ -332,8 +332,8 @@ class _AddTodoState extends State<AddTodo> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          WidgetStateProperty.all<Color>(Colors.white),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.amber, width: 3),
                           borderRadius: BorderRadius.circular(13.0),

@@ -62,9 +62,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       width: MediaQuery.of(context).size.width / 1.2,
                       child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
+                            backgroundColor: WidgetStateProperty.all<Color>(
                                 Colors.amber.shade600),
-                            shape: MaterialStateProperty.all<
+                            shape: WidgetStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(13.0),
                             )),

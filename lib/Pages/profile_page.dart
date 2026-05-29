@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(391, 850),
-      builder: () => LayoutBuilder(builder: (context, constraints) {
+      builder: (context, child) => LayoutBuilder(builder: (context, constraints) {
         return Scaffold(
           backgroundColor: HexColor('#F9F6E9'),
           // App Bar

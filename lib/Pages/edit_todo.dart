@@ -103,9 +103,9 @@ class _EditTodoState extends State<EditTodo> {
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(
+                                    WidgetStateProperty.all<Color>(
                                         Colors.amber.shade800),
-                                shape: MaterialStateProperty.all<
+                                shape: WidgetStateProperty.all<
                                     RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(13.0),
@@ -204,9 +204,9 @@ class _EditTodoState extends State<EditTodo> {
                             child: ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(
+                                    WidgetStateProperty.all<Color>(
                                         Colors.amber.shade800),
-                                shape: MaterialStateProperty.all<
+                                shape: WidgetStateProperty.all<
                                     RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(13.0),
@@ -283,7 +283,7 @@ class _EditTodoState extends State<EditTodo> {
                           height: 50,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: Colors.orangeAccent),
+                                  backgroundColor: Colors.orangeAccent),
                               onPressed: () {
                                 setState(() {
                                   if (formKey.currentState!.validate()) {
